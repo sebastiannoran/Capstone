@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 function College({course}){
 
     return(
-      
+    
+
       <div class=" container m-auto h-screen grid grid-cols-3 gap-20 content-center place-items-center w-1/2">
         <Link to ="`/api/colleges/collegesId/courses/${course.id}:1`">
         <button class="w-40 h-32 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " >    
