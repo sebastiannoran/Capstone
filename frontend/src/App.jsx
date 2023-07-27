@@ -3,6 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import College from "./routes/colleges/College";
 import Homepage from "./routes/Homepage";
+import Register from "./routes/authentication/Register";
+import Major from "./routes/majors/Major";
+import CollegeHomepage from "./routes/colleges/CollegeHomepage";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +18,22 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
+        path: "/register",
+        element: <Register />,
+      },
+      {
         path: "/college/:collegeId",
         element: <College />,
+        children: [
+          {
+            index: true,
+            element: <CollegeHomepage />,
+          },
+          {
+            path: "/major/:majorId",
+            element: <Major />,
+          },
+        ],
       },
     ],
   },
