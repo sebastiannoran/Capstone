@@ -3,7 +3,7 @@ import PopularCourses from "./PopularCourses";
 const CollegeHomepage = () => {
   return (
     <div>
-      <p>CollegeHomepage component with sidebar and PopularCourses component</p>
+      <p>CollegeHomepage component</p>
 
       <div>
         <p>POPULAR COURSES</p>

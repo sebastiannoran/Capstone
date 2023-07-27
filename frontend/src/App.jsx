@@ -4,8 +4,8 @@ import ErrorPage from "./ErrorPage";
 import College from "./routes/colleges/College";
 import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
-import Major from "./routes/majors/Major";
 import CollegeHomepage from "./routes/colleges/CollegeHomepage";
+import CourseForum from "./routes/courseForums/CourseForum";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/college/:collegeId",
+        path: "/college-home/:collegeId",
         element: <College />,
         children: [
           {
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
             element: <CollegeHomepage />,
           },
           {
-            path: "/major/:majorId",
-            element: <Major />,
+            path: "/college-home/:collegeId/:courseId",
+            element: <CourseForum />,
           },
         ],
       },

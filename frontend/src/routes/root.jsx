@@ -26,7 +26,7 @@ const Root = () => {
       <nav className="bg-[#1C1C1C] py-1 flex justify-items-center justify-between drop-shadow-[0_3px_2px_rgba(0,0,0,0.5)]">
         <p className="text-white flex items-center">
           <Link
-            className="text-2xl font-bold flex items-center gap-1 px-3"
+            className="text-4xl font-bold flex items-center gap-1 px-3"
             to="/"
           >
             INSIGHT
