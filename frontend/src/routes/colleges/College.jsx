@@ -49,13 +49,8 @@ const handleCourseClick =() => {
             <br/>Introduction to Computer Science  
         </button>
         </Link>
-       
-        </div>
-     
+        </div>     
     );
 }
 
 export default College;
-
-
-// m-auto
