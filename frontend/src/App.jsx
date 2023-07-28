@@ -34,12 +34,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-// element: (
-//   <Routes>
-//     <Route path="/" element={<College courses={courses} />} />
-//   </Routes>
-// ),
