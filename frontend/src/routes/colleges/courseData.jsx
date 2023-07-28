@@ -1,4 +1,4 @@
-const course= [
+const courses= [
 {
     id: 1,
     courseCode:"BIO 101L",
@@ -30,3 +30,5 @@ const course= [
     courseName:"Introduction to Computer Science",
 },
 ]
+
+export default courses;
