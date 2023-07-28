@@ -8,7 +8,7 @@ const Sidebar =() =>{
   const [open,setOpen] = useState(true);
     return(
         <div class="flex">
-          <div class={`bg-cyan-400 h-screen p-5 pt-8  ${open? "w-72" : "w-20"} duration-300 relative `}>
+          <div class={`bg-cyan-400 h-screen p-5 pt-8 ${open? "w-72" : "w-20"} duration-300 relative `}>
               <AiFillCaretLeft class={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2
               border boarder-dark border-5 cursor-pointer ${!open && "rotate-180"}`} onClick={()=> setOpen(!open)}/>
           <div class="inline-flex">
