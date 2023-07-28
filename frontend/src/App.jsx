@@ -1,7 +1,8 @@
 import Root from "./routes/root";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider,Routes, Route} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import College from "./routes/colleges/College";
+import courses from "./routes/colleges/courseData";
 import Homepage from "./routes/Homepage";
 
 const router = createBrowserRouter([
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/college/:collegeId",
-        element: <College />,
+        element: (
+          <Routes>
+            <Route path="/" element={<College courses={courses} />} />
+          </Routes>
+        ),
       },
     ],
   },
@@ -33,3 +38,8 @@ export default App;
 
 
 
+// element: (
+//   <Routes>
+//     <Route path="/" element={<College courses={courses} />} />
+//   </Routes>
+// ),
