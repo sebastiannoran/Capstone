@@ -9,18 +9,12 @@ const Sidebar = () => {
 
   const [open, setOpen] = useState(true);
 
-  const [menusOpen, setMenusOpen] = useState({});
-
-  const toggleMenu = (index) => {
-    setMenusOpen({
-      ...menusOpen, 
-      [index]: !menusOpen[index]
-    });
-  }
+  const [searchQuery, setSearchQuery] = useState('');
 
   const menus = [
     {
       title: 'Biology',
+      courseCode: 'BIO',
       submenu: true,
       submenuItems: [
         { title: 'BIO 103' },
@@ -30,6 +24,7 @@ const Sidebar = () => {
     },
     {
       title: 'Computer Science',
+      courseCode: 'CSC',
       submenu: true,
       submenuItems: [
         { title: 'CSC 126' },
@@ -39,6 +34,7 @@ const Sidebar = () => {
     },
     {
       title: 'Chemistry',
+      courseCode: 'CHM',
       submenu: true,
       submenuItems: [
         { title: 'CHM 100' },
@@ -48,6 +44,7 @@ const Sidebar = () => {
     },
     {
       title: 'Accounting',
+      courseCode: 'ACC',
       submenu: true,
       submenuItems: [
         { title: 'ACC 114' },
@@ -56,6 +53,20 @@ const Sidebar = () => {
       ]
     }
   ];
+
+  const [menusOpen, setMenusOpen] = useState(
+    menus.reduce((acc, menu, index) => {
+      acc[index] = menu.submenu;
+      return acc;
+    }, {})
+  );
+
+  const toggleMenu = (index) => {
+    setMenusOpen({
+      ...menusOpen, 
+      [index]: !menusOpen[index]
+    });
+  }
 
   return (
     <div className="flex">
@@ -84,6 +95,8 @@ const Sidebar = () => {
           <input 
             type="search"
             placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className={`text-base bg-transparent w-full text-black focus:outline-none ${!open && 'hidden'}`}
           />
         </div>
@@ -111,7 +124,13 @@ const Sidebar = () => {
 
               {menu.submenu && menusOpen[index] && open && (
                 <ul>
-                  {menu.submenuItems.map(submenuItem => (
+                  {menu.submenuItems
+                  .filter(
+                    (submenuItem) =>
+                      submenuItem.title.toLowerCase().includes(searchQuery.toLowerCase()) || // Check if title matches search query
+                      submenuItem.title.toLowerCase().includes(menu.courseCode.toLowerCase() + ' ' + searchQuery.toLowerCase()) // Check if course code + title matches search query
+                  )
+                  .map(submenuItem => (
                     <li 
                       key={submenuItem.title}
                       className="text-black-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-7 hover:bg-indigo-400 rounded-md mt-2"
@@ -135,6 +154,10 @@ const Sidebar = () => {
 }
 
 export default Sidebar;
+
+
+
+
 
 
 
