@@ -5,11 +5,16 @@ import { BiSearch } from 'react-icons/bi';
 import { MdSchool } from 'react-icons/md';
 import { BsChevronDown } from 'react-icons/bs';
 
+import { useNavigate } from "react-router-dom";
+
+
 const Sidebar = () => {
 
   const [open, setOpen] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState('');
+
+  const navigate = useNavigate();
 
   const menus = [
     {
@@ -83,8 +88,8 @@ const Sidebar = () => {
           <FaSchool 
             className={`bg-emerald-200 text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${open && 'rotate-[360deg]'}`} 
           />
-          <h1 className={`text-dark origin-left font-medium text-4xl duration-300 ${!open && 'scale-0'}`}>
-            College
+          <h1 className={`text-dark origin-left font-medium text-1xl duration-300 ${!open && 'scale-0'}`}>
+            College of Staten Island
           </h1>
         </div>
       
@@ -134,6 +139,7 @@ const Sidebar = () => {
                     <li 
                       key={submenuItem.title}
                       className="text-black-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-7 hover:bg-indigo-400 rounded-md mt-2 "
+                      onClick={() => navigate(`/college/${menu.courseCode}/${submenuItem.title}`)}
                     >
                       {submenuItem.title}
                     </li>
