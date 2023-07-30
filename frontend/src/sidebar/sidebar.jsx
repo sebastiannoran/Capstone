@@ -23,9 +23,9 @@ const Sidebar = () => {
       title: 'Biology',
       submenu: true,
       submenuItems: [
-        { title: 'BIO 101L' },
-        { title: 'CHEM 101' },
-        { title: 'BUS 101' }
+        { title: 'BIO 103' },
+        { title: 'BIO 106' },
+        { title: 'BIO 150' }
       ]
     },
     {
@@ -36,13 +36,32 @@ const Sidebar = () => {
         { title: 'CSC 211' },
         { title: 'CSC 326' }
       ]
+    },
+    {
+      title: 'Chemistry',
+      submenu: true,
+      submenuItems: [
+        { title: 'CHM 100' },
+        { title: 'CHM 141' },
+        { title: 'CHM 142' }
+      ]
+    },
+    {
+      title: 'Accounting',
+      submenu: true,
+      submenuItems: [
+        { title: 'ACC 114' },
+        { title: 'ACC 218' },
+        { title: 'BUS 160' }
+      ]
     }
   ];
 
   return (
     <div className="flex">
 
-      <div className={`bg-cyan-400 h-screen p-5 pt-8 ${open ? 'w-72' : 'w-20'} duration-300 relative`}>
+    <div className={`flex-shrink-0 bg-cyan-400 p-5 pt-8 ${open ? 'w-72' : 'w-20'} duration-300 relative`}>
+      <div className={`max-h-screen ${open ? 'h-screen overflow-y-auto' : 'h-20'}  pr-5`}>
 
         <AiFillCaretLeft
           className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${!open && 'rotate-180'}`}
@@ -58,9 +77,9 @@ const Sidebar = () => {
           </h1>
         </div>
 
-        <div className={`flex items-center rounded-md bg-white mt-5 ${!open ? 'px-2.5' : 'px-7'}`}>
+        <div className={`flex items-center rounded-md bg-white mt-5 ${!open ? 'px-5' : 'px-7'}`}>
           <BiSearch
-            className={`text-black text-lg block float-left cursor-pointer ${open && 'mr-2'}`} 
+            className={`text-black text-lg block float-left cursor-pointer ${open && 'mr-2'}` } 
           />
           <input 
             type="search"
@@ -108,8 +127,19 @@ const Sidebar = () => {
 
       </div>
 
+      </div>
+
+
     </div>
   );
 }
 
 export default Sidebar;
+
+
+
+
+
+
+
+

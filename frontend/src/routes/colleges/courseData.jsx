@@ -1,7 +1,7 @@
 const courses= [
 {
     id: 1,
-    courseCode:"BIO 101L",
+    courseCode:"BIO 103",
     courseName:"Introduction to Biology",
 },
 {
