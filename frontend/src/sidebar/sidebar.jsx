@@ -81,9 +81,9 @@ const Sidebar = () => {
 
         <div className="inline-flex">
           <FaSchool 
-            className={`bg-indigo-400 text-4xl rounded cursor-pointer block float-left mr-5 duration-500 ${open && 'rotate-[360deg]'}`} 
+            className={`bg-emerald-200 text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${open && 'rotate-[360deg]'}`} 
           />
-          <h1 className={`text-dark origin-left font-medium text-2xl duration-300 ${!open && 'scale-0'}`}>
+          <h1 className={`text-dark origin-left font-medium text-4xl duration-300 ${!open && 'scale-0'}`}>
             College
           </h1>
         </div>
@@ -123,7 +123,7 @@ const Sidebar = () => {
               </li>
 
               {menu.submenu && menusOpen[index] && open && (
-                <ul>
+                <ul className="bg-cyan-50 rounded-md mt-2">
                   {menu.submenuItems
                   .filter(
                     (submenuItem) =>
@@ -133,7 +133,7 @@ const Sidebar = () => {
                   .map(submenuItem => (
                     <li 
                       key={submenuItem.title}
-                      className="text-black-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-7 hover:bg-indigo-400 rounded-md mt-2"
+                      className="text-black-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-7 hover:bg-indigo-400 rounded-md mt-2 "
                     >
                       {submenuItem.title}
                     </li>
