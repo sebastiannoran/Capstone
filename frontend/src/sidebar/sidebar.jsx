@@ -87,10 +87,10 @@ const Sidebar = () => {
             College
           </h1>
         </div>
-
-        <div className={`flex items-center rounded-md bg-white mt-5 ${!open ? 'px-5' : 'px-7'}`}>
+      
+        <div className={`flex items-center rounded-md bg-white mt-5 ${open ? 'p-2 px-6' : ''}`}>
           <BiSearch
-            className={`text-black text-lg block float-left cursor-pointer ${open && 'mr-2'}` } 
+            className={`text-black text-lg block float-left cursor-pointer ${open ? 'mr-4' : 'mr-1'}`}
           />
           <input 
             type="search"
@@ -154,10 +154,6 @@ const Sidebar = () => {
 }
 
 export default Sidebar;
-
-
-
-
 
 
 
