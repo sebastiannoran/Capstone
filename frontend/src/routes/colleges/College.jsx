@@ -1,15 +1,23 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useLocation } from "react-router-dom";
 import Sidebar from "../../sidebar/sidebar";
 
 function College({ courses }) {
 
   const { collegeId } = useParams();
+  
+  const {search} = useLocation();
+const query = new URLSearchParams(search).get('query');
 
+let searchQuery = '';
+
+if (location.state) {
+  searchQuery = location.state.searchQuery; 
+}
   return (
     <div className="grid grid-cols-6">
       <Sidebar />
-
+      
       <div className="col-span-4 flex flex-col justify-center items-center">
       
         <h1 className="text-center mb-14 text-5xl font-bold mt-10">Welcome to <br/> College of Staten Island </h1>
