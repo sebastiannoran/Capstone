@@ -12,7 +12,7 @@ function College({ courses }) {
 
       <div className="col-span-4 flex flex-col justify-center items-center">
       
-        <h1 className="text-center mb-2 text-5xl font-bold mt-10">Welcome to <br/> College of Staten Island <br/><br/></h1>
+        <h1 className="text-center mb-14 text-5xl font-bold mt-10">Welcome to <br/> College of Staten Island </h1>
         
           <h1 className="text-center mb-1 text-3xl text-red-600 font-bold">Popular Courses:</h1>
           
