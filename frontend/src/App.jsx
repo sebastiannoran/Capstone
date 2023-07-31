@@ -1,5 +1,5 @@
 import Root from "./routes/root";
-import { createBrowserRouter, RouterProvider,Routes, Route, Link} from "react-router-dom";
+import { createBrowserRouter, RouterProvider,Routes, Route} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import College from "./routes/colleges/College";
 import courses from "./routes/colleges/courseData";
