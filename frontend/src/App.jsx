@@ -1,6 +1,7 @@
 import Root from "./routes/root";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
+import LoginPage from "./LoginPage";
 import College from "./routes/colleges/College";
 import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      }
     ],
   },
 ]);
