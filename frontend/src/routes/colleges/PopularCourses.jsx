@@ -1,14 +1,26 @@
 import { useState } from "react";
-import { courseData } from "../../misc/data";
+import { courseData, collegeData } from "../../misc/data";
+import { Link } from "react-router-dom";
 
 const PopularCourses = () => {
   const [courses, setCourses] = useState(courseData);
+  const [college, setCollegeData] = useState(collegeData);
 
   return (
-    <div>
-      {courses.map((course) => {
-        return <div key={course}>{course}</div>;
-      })}
+    <div className="mx-auto">
+      <div>
+        {courses.map((course, id) => (
+          <Link
+            // to={`/college/${collegeData}/courses/${course.id}`}
+            to={`/colleges/${college[id]}/courses/${courses[id]}`}
+            key={course.id}
+          >
+            <button className="w-40 h-32 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 mx-4 rounded">
+              {course}
+            </button>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

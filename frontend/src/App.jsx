@@ -1,7 +1,12 @@
 import Root from "./routes/root";
-import { createBrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Routes,
+  Route,
+} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
-import LoginPage from "./LoginPage";
+import Login from "./routes/authentication/Login";
 import College from "./routes/colleges/College";
 import courses from "./routes/colleges/courseData";
 import Homepage from "./routes/Homepage";
@@ -24,26 +29,22 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/college/:collegeId",
-        element: (
-          <Routes>
-            <Route path="/" element={<College courses={courses} />} />
-            <Route
-              path="/college-home/:collegeId/:courseId"
-              element={<CourseForum />}
-            />
-          </Routes>
-        ),
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/colleges/:collegeId",
+        element: <College />,
         children: [
           {
             index: true,
             element: <CollegeHomepage />,
           },
+          {
+            path: "/colleges/:collegeId/courses/:courseId",
+            element: <CourseForum />,
+          },
         ],
-      },
-      {
-        path: "/login",
-        element: <LoginPage />,
       },
     ],
   },
