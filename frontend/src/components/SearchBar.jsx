@@ -24,7 +24,7 @@ export const SearchBar = ({ handleSearch }) => {
           />
           <input
             type="text"
-            className="w-[308.94px] h-[29.79px] absolute left-[57.99px] top-[7.10px] bg-transparent text-lg italic text-left text-[#b7b7b7]"
+            className="w-[308.94px] h-[29.79px] absolute left-[57.99px] top-[7.10px] bg-transparent text-lg italic text-left text-black focus:outline-none mt-1"
             placeholder="Type to Search..."
             value={searchQuery}
             onChange={handleInputChange}
