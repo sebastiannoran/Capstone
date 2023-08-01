@@ -3,7 +3,7 @@ import PopularCourses from "./PopularCourses";
 const CollegeHomepage = () => {
   return (
     <div className="px-12 pt-10 text-center">
-      <div className="text-3xl">
+      <div className="text-5xl">
         <p>(College Name) Homepage</p>
       </div>
 

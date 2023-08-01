@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebar";
 
 const College = () => {
   return (
-    <div className="flex">
+    <div className="flex bg-[#fff5ee]">
       <div className="bg-cyan-400 text-white h-screen w-20">
         <Sidebar />
       </div>
