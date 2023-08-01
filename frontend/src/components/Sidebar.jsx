@@ -72,10 +72,10 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-[#1f1f1f] text-white h-screen w-20 drop-shadow-[3px_2px_1px_rgba(0,0,0,0.25)]">
       <div
         className={`flex-shrink-0 p-5 pt-8 ${
-          open ? "w-72 bg-cyan-400" : "w-20"
+          open ? "w-72 bg-[#1a031a]" : "w-20"
         } duration-300 relative`}
       >
         <div
@@ -93,7 +93,7 @@ const Sidebar = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <FaSchool
-                className={`bg-emerald-200 text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${
+                className={`bg-fuchsia-100 text-[#1a031a] text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${
                   open && "rotate-[360deg]"
                 }`}
               />

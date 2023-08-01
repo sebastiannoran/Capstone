@@ -16,6 +16,17 @@ const data = [
         title: "POST 2 TITLE",
         content: "Post 2 contents.",
       },
+      {
+        id: 1,
+        title:
+          "POST 3 TITLE THIS IS JUST A TEST MR. HOLMES! YUURRRRRRR RRRRRR RRRRRR RRRRRR RRRRRR",
+        content: "Post 2 contents.",
+      },
+      {
+        id: 1,
+        title: "POST 4 TITLE LOLOLOLOLOLOLOLOLOWHATISTHISLOLOL",
+        content: "Post 2 contents.",
+      },
     ],
     //COMMENTS
     [

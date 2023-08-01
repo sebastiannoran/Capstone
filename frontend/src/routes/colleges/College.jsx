@@ -3,14 +3,10 @@ import Sidebar from "../../components/Sidebar";
 
 const College = () => {
   return (
-    <div className="flex bg-[#fff5ee]">
-      <div className="bg-cyan-400 text-white h-screen w-20">
-        <Sidebar />
-      </div>
+    <div className="flex bg-[#1f1f1f] text-white">
+      <Sidebar />
       <div className="max-w-7xl mx-auto">
-        <div className="">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const PopularCourses = () => {
             to={`/colleges/${college[id]}/courses/${courses[id]}`}
             key={course.id}
           >
-            <button className="w-40 h-32 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 mx-4 rounded">
+            <button className="w-40 h-32 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 mx-4 rounded shadow-[2px_2px_1px_rgba(0,0,0,0.25)]">
               {course}
             </button>
           </Link>
