@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchBar } from "../components/SearchBar";
 
 const Homepage = ({ collegeId }) => {
 
   const [searchQuery, setSearchQuery] = useState('');
+
   const [searchResults, setSearchResults] = useState([]);
 
   const navigate = useNavigate();
 
   const handleSearch = (query) => {
     setSearchQuery(query);
+
 
     navigate({
       pathname: `/college/${collegeId}`,
@@ -34,6 +37,7 @@ const Homepage = ({ collegeId }) => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onSubmit={handleSearch}  
           />
+
         </div>
 
         <div>
@@ -48,18 +52,23 @@ const Homepage = ({ collegeId }) => {
 
       <div className="flex gap-4 mt-4">
 
+
         <Link to="/login">
           <button className="bg-[#D1D5B5] text-black px-6 py-2 rounded ">Login</button>
         </Link>
 
         <Link to="/register">
           <button className="bg-[#D1D5B5] text-black px-4 py-2 rounded">Register</button>
+
+
         </Link>
 
       </div>
 
     </div>
   );
+
 }
 
 export default Homepage;
+
