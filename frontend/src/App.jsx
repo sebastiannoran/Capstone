@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-          path: "/college/:collegeId",
+          path: "/college/:collegeId/*",
           element: (
             <Routes>
               <Route path="/" element={<College courses={courses} />} />
