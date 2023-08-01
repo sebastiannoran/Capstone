@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) { 
+      //1 course page has many posts
+      this.hasMany(models.posts);
     }
   }
   courses.init({
