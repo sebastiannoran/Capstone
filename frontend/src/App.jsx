@@ -7,6 +7,8 @@ import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
 import CollegeHomepage from "./routes/colleges/CollegeHomepage";
 import CourseForum from "./routes/courseForums/CourseForum";
+import ForumPost from "./routes/forumPosts/ForumPost";
+import CreatePost from "./routes/forumPosts/CreatePost";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
           {
             path: "/colleges/:collegeId/courses/:courseId",
             element: <CourseForum />,
+          },
+          {
+            path: "/colleges/:collegeId/courses/:courseId/posts/:postId",
+            element: <ForumPost />,
+          },
+          {
+            path: "/colleges/:collegeId/courses/:courseId/create-post",
+            element: <CreatePost />,
           },
         ],
       },
