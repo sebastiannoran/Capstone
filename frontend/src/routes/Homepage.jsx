@@ -5,6 +5,7 @@ import { SearchResultsList } from "../components/SearchResultsList";
 
 const Homepage = ({ collegeId }) => {
 
+  const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
@@ -18,6 +19,15 @@ const Homepage = ({ collegeId }) => {
     });
   }
 
+  const handleSelect = (result) => {
+    setSearchQuery(result);
+  }
+
+  const handleChange = (value) => {
+    console.log(value)
+    setInput(value);
+    
+    };
   return (
     <div className="bg-[#FFFDED] h-screen flex flex-col justify-center items-center">
       <p className="text-5xl mb-8">Welcome to Insight</p>
@@ -26,12 +36,18 @@ const Homepage = ({ collegeId }) => {
         <div className="flex-1 ml-16 mr-2">
           <SearchBar
           setResults={setResults} 
+          input={input}
+          handleChange={handleChange}
           className="h-10 "
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onSubmit={handleSearch}  
           />
-          <SearchResultsList results ={results}/>
+          <SearchResultsList 
+            results={results}
+            handleChange={handleChange}
+            onSelectResult={handleSelect} 
+          />
         </div>
         <div>
           <button 
