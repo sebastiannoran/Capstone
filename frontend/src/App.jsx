@@ -1,14 +1,8 @@
 import Root from "./routes/root";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import Login from "./routes/authentication/Login";
 import College from "./routes/colleges/College";
-import courses from "./routes/colleges/courseData";
 import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
 import CollegeHomepage from "./routes/colleges/CollegeHomepage";
