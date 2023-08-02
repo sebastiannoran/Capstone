@@ -1,7 +1,15 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams, useLocation, Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
+import col_Name from "./CollegeData";
 
-const College = () => {
+function College({ courses }) {
+  const { collegeId } = useParams();
+  const { search } = useLocation();
+  const query = new URLSearchParams(search).get("query");
+  const college = col_Name.find(
+    (college) => college.id === parseInt(collegeId)
+  );
   return (
     <div className="flex bg-[#1f1f1f] text-white">
       <Sidebar />
@@ -10,6 +18,6 @@ const College = () => {
       </div>
     </div>
   );
-};
+}
 
 export default College;
