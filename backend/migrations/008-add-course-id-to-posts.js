@@ -18,3 +18,5 @@ module.exports = {
     await queryInterface.removeColumn('posts', 'courseId')
   }
 };
+
+

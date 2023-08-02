@@ -3,20 +3,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.addColumn('majors', 'collegeId', {
+    await queryInterface.addColumn('comments', 'postId', {
       type: Sequelize.INTEGER,
-      refernces: {
-        model: 'colleges',
-        key: 'id',
+      references: {
+        model: 'posts',
+        key: 'id'
       },
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
-    });
+    })
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.removeColumn('majors', 'collegeId')
+    await queryInterface.removeColumn('comments', 'postId');
   }
 };
-
-//model association established, verified @ 2:16pm
