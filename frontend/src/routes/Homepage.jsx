@@ -26,8 +26,8 @@ const Homepage = () => {
     setInput(value);
     };
   return (
-    <div className="bg-[#FFFDED] h-screen flex flex-col justify-center items-center">
-      <p className="text-5xl mb-8">Welcome to Insight</p>
+    <div className="bg-[#FFFDED] h-screen flex flex-col justify-center items-center pb-40">
+      <p className="text-5xl mb-8 font-bold">Welcome to Insight</p>
       <p className="text-1xl italic mb-5 text-[#b7b7b7]">Where Insightful Connections are Made</p>
       <div className="flex gap-2">
         <div className="flex-1 ml-16 mr-2">
