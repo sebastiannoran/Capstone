@@ -10,17 +10,17 @@ const CourseForum = () => {
       <div className="mb-12">
         <p className="text-5xl">{`"Course Name Here"`}</p>
       </div>
-      <div className="border-[1px] border-y-fuchsia-900 border-x-transparent py-10 px-12 rounded-lg shadow-[3px_5px_1px_rgba(0,0,0,0.25)]">
+      <div className="max-w-4xl border-[1px] bg-[#272727] divide-y-[1px] divide-gray-600 border-y-fuchsia-900 border-x-transparent rounded-lg shadow-[3px_5px_1px_rgba(0,0,0,0.25)]">
         {posts.map(({ id, title, content }) => {
           return (
-            <Link
-              key={id}
-              to={`/colleges/exampleId/courses/exampleId/posts/${id}`}
-            >
-              <div className="mx-auto w-[32rem] font-bold bg-[#272727] rounded-lg my-6 py-6 px-8 shadow-[2px_2px_1px_rgba(0,0,0,0.25)]">
+            <div key={id} className="max-w-4xl font-bold py-10 px-10">
+              <Link
+                to={`/colleges/exampleId/courses/exampleId/posts/${id}`}
+                className=""
+              >
                 <p className="text-2xl">{`${title}`}</p>
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>
