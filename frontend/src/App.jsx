@@ -1,18 +1,14 @@
 import Root from "./routes/root";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import Login from "./routes/authentication/Login";
 import College from "./routes/colleges/College";
-import courses from "./routes/colleges/courseData";
 import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
 import CollegeHomepage from "./routes/colleges/CollegeHomepage";
 import CourseForum from "./routes/courseForums/CourseForum";
+import ForumPost from "./routes/forumPosts/ForumPost";
+import CreatePost from "./routes/forumPosts/CreatePost";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +39,14 @@ const router = createBrowserRouter([
           {
             path: "/colleges/:collegeId/courses/:courseId",
             element: <CourseForum />,
+          },
+          {
+            path: "/colleges/:collegeId/courses/:courseId/posts/:postId",
+            element: <ForumPost />,
+          },
+          {
+            path: "/colleges/:collegeId/courses/:courseId/create-post",
+            element: <CreatePost />,
           },
         ],
       },
