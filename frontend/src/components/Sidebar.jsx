@@ -72,11 +72,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-[#1f1f1f] text-white h-screen w-20 drop-shadow-[3px_2px_1px_rgba(0,0,0,0.25)]">
+    <div className="bg-[#272727] text-white h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
       <div
         className={`flex-shrink-0 p-5 pt-8 ${
-          open ? "w-72 bg-[#1a031a]" : "w-20"
-        } duration-300 relative`}
+          open ? "w-72 bg-[#682168] duration-300" : "w-20 duration-100"
+        } relative`}
       >
         <div
           className={`max-h-screen ${
