@@ -1,19 +1,28 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams,useLocation, Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
+import col_Name from "./CollegeData";
 
-const College = () => {
+function College({ courses }) {
+  const { collegeId } = useParams();
+  const {search} = useLocation();
+  const query = new URLSearchParams(search).get('query');
+  const college = col_Name.find((college) => college.id === parseInt(collegeId));
   return (
-    <div className="flex">
-      <div className="bg-cyan-400 text-white h-screen w-20">
-        <Sidebar />
-      </div>
+    <div className="flex bg-[#1f1f1f] text-white">
+      <Sidebar />
       <div className="max-w-7xl mx-auto">
-        <div className="">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );
-};
+
+}
 
 export default College;
+
+
+
+
+
+

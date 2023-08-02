@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import collegeData from '../routes/colleges/CollegeData';
 
-export const SearchBar = ({ handleSearch }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+export const SearchBar = ({ input, handleChange, setResults }) => {
+  const fetchdata = (value) => {
+    const results = collegeData.filter((college) => {
+      return (
+        value &&
+        college &&
+        college.college_Name &&
+        college.college_Name.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+    setResults(results);
+  };
 
-  const handleInputChange = (event) => {
-    const query = event.target.value;
-    setSearchQuery(query);
-    handleSearch(query);
+
+  const handleChange2 = (value) => {
+  handleChange(value);
+  fetchdata(value);
   };
 
   return (
@@ -24,20 +35,13 @@ export const SearchBar = ({ handleSearch }) => {
           />
           <input
             type="text"
-            className="w-[308.94px] h-[29.79px] absolute left-[57.99px] top-[7.10px] bg-transparent text-lg italic text-left text-[#b7b7b7]"
+            className="w-[308.94px] h-[29.79px] absolute left-[57.99px] top-[7.10px] bg-transparent text-lg italic text-left text-black focus:outline-none mt-1"
             placeholder="Type to Search..."
-            value={searchQuery}
-            onChange={handleInputChange}
+            value={input}
+            onChange={(e)=>handleChange2(e.target.value)}
           />
-        </div>
-        {/* Search results container */}
-        <div className='SearchResults'>
-          {/* Display the search results here */}
-          {/* keep empty since no database exiists */}
         </div>
       </div>
     </div>
   );
 };
-
-

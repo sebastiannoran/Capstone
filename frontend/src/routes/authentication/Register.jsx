@@ -68,6 +68,6 @@ const Register = () => {
       </div>
     </Form>
   );
-};
+}
 
 export default Register;
