@@ -159,7 +159,7 @@ const Sidebar = () => {
                 </li>
 
                 {menu.submenu && menusOpen[index] && open && (
-                  <ul className="bg-cyan-50 rounded-md mt-2">
+                  <ul className="bg-white rounded-md mt-2">
                     {menu.submenuItems
                       .filter(
                         (submenuItem) =>
