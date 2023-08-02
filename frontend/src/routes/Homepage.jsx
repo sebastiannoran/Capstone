@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SearchBar } from "../components/SearchBar";
 import { SearchResultsList } from "../components/SearchResultsList";
 
-const Homepage = ({ collegeId }) => {
-
+const Homepage = () => {
   const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -14,7 +13,7 @@ const Homepage = ({ collegeId }) => {
     setSearchQuery(query);
 
     navigate({
-      pathname: `/college/${collegeId}`,
+      pathname: `/college/${query}`,
       state: { searchQuery: query }
     });
   }
@@ -24,9 +23,7 @@ const Homepage = ({ collegeId }) => {
   }
 
   const handleChange = (value) => {
-    console.log(value)
     setInput(value);
-    
     };
   return (
     <div className="bg-[#FFFDED] h-screen flex flex-col justify-center items-center">

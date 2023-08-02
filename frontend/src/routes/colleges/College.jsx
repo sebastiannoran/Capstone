@@ -1,26 +1,20 @@
 import React from "react";
 import { Link, useParams,useLocation } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
+import col_Name from "./CollegeData";
 
 function College({ courses }) {
-
   const { collegeId } = useParams();
-  
   const {search} = useLocation();
-const query = new URLSearchParams(search).get('query');
-
-let searchQuery = '';
-
-if (location.state) {
-  searchQuery = location.state.searchQuery; 
-}
+  const query = new URLSearchParams(search).get('query');
+  const college = col_Name.find((college) => college.id === parseInt(collegeId));
   return (
     <div className="grid grid-cols-6">
       <Sidebar />
       
       <div className="col-span-4 flex flex-col justify-center items-center">
       
-        <h1 className="text-center mb-14 text-5xl font-bold mt-10">Welcome to <br/> College of Staten Island </h1>
+        <h1 className="text-center mb-14 text-5xl font-bold mt-10">Welcome to <br/> {college?.college_Name} </h1>
         
           <h1 className="text-center mb-1 text-3xl text-red-600 font-bold">Popular Courses:</h1>
           
@@ -46,3 +40,9 @@ if (location.state) {
 }
 
 export default College;
+
+
+
+
+
+
