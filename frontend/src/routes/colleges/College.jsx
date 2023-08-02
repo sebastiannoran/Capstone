@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useLocation, Outlet } from "react-router-dom";
+import { Link, useParams,useLocation, Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import col_Name from "./CollegeData";
 
