@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import collegeData from '../routes/colleges/CollegeData';
 
-export const SearchBar = ({input, handleChange, setResults}) => {
-
-  
-  const fetchdata = (value)=>{
-    fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response) => response.json())
-    .then((json) =>{
-   
-    const results = json.filter((user)=>{
+export const SearchBar = ({ input, handleChange, setResults }) => {
+  const fetchdata = (value) => {
+    const results = collegeData.filter((college) => {
       return (
         value &&
-        user && 
-        user.name &&
-        user.name.toLowerCase().includes(value)
-        );
-      });
+        college &&
+        college.college_Name &&
+        college.college_Name.toLowerCase().includes(value.toLowerCase())
+      );
+    });
     setResults(results);
-  });
   };
 
 
   const handleChange2 = (value) => {
-  // setInput(value);
   handleChange(value);
   fetchdata(value);
   };
