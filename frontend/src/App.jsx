@@ -33,18 +33,16 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/colleges/:collegeId",
-        element: <College />,
-        children: [
-          {
-            index: true,
-            element: <CollegeHomepage />,
-          },
-          {
-            path: "/colleges/:collegeId/courses/:courseId",
-            element: <CourseForum />,
-          },
-        ],
+          path: "/college/:collegeId/*",
+          element: (
+            <Routes>
+              <Route path="/" element={<College courses={courses} />} />
+              <Route
+                path="/college-home/:collegeId/:courseId"
+                element={<CourseForum />}
+              />
+            </Routes>
+          ),
       },
     ],
   },
