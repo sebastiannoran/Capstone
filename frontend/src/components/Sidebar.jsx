@@ -74,26 +74,40 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="flex">
-
-    <div className={`flex-shrink-0 bg-cyan-400 p-5 pt-8 ${open ? 'w-72' : 'w-20'} duration-300 relative`}>
-      <div className={`max-h-screen ${open ? 'h-screen overflow-y-auto' : 'h-20'}  pr-5`}>
-
-        <AiFillCaretLeft
-          className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${!open && 'rotate-180'}`}
-          onClick={() => setOpen(!open)} 
-        />
-
-      <div className="flex items-center">
-          <div className="flex-shrink-0">
-        <FaSchool 
-            className={`bg-emerald-200 text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${open && 'rotate-[360deg]'}`} 
+    <div className="bg-[#1f1f1f] text-white h-screen w-20 drop-shadow-[3px_2px_1px_rgba(0,0,0,0.25)]">
+      <div
+        className={`flex-shrink-0 p-5 pt-8 ${
+          open ? "w-72 bg-[#1a031a]" : "w-20"
+        } duration-300 relative`}
+      >
+        <div
+          className={`max-h-screen ${
+            open ? "h-screen overflow-y-auto" : "h-20"
+          }  pr-5`}
+        >
+          <AiFillCaretLeft
+            className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${
+              !open && "rotate-180"
+            }`}
+            onClick={() => setOpen(!open)}
           />
+
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <FaSchool
+                className={`bg-fuchsia-100 text-[#1a031a] text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${
+                  open && "rotate-[360deg]"
+                }`}
+              />
+            </div>
+            <h1
+              className={`text-dark origin-left font-lg font-bold  text-2xl duration-300 ${
+                !open && "scale-0"
+              }`}
+            >
+              College of Staten Island
+            </h1>
           </div>
-        <h1 className={`text-dark origin-left font-lg font-bold  text-2xl duration-300 ${!open && 'scale-0'}`}>
-          College of Staten Island
-        </h1>
-      </div>
 
         <div className={`flex items-center rounded-md bg-white mt-5 ${open ? 'p-2 px-6' : ''}`}>
           <BiSearch
