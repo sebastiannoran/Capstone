@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      //1 user can have many posts
+      this.hasMany(models.posts);
+      this.hasMany(models.comments);
+      this.belongsToMany(models.courses, {
+        through: 'user_courses'
+      });
     }
   }
   users.init({

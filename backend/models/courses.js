@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) { 
       //1 course page has many posts
       this.hasMany(models.posts);
+      this.belongsToMany(models.users, {
+        through: 'user_courses'
+      });
     }
   }
   courses.init({
