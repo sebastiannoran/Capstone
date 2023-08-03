@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.users);
+      this.belongsTo(models.posts);
     }
   }
   comments.init({
