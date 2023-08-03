@@ -10,7 +10,7 @@ const CourseForum = () => {
       <div className="flex justify-center">
         <div>
           <div className="mb-12">
-            <p className="text-5xl">{`"Course Name Here"`}</p>
+            <p className="text-5xl font-bold">{`"Course Name Here"`}</p>
           </div>
           <div className="max-w-4xl bg-[#272727] divide-y-[1px] divide-black rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)]">
             {posts.map(({ id, title, content }) => {
@@ -23,7 +23,7 @@ const CourseForum = () => {
                     to={`/colleges/exampleId/courses/exampleId/posts/${id}`}
                     className=""
                   >
-                    <p className="text-2xl">{`${title}`}</p>
+                    <p className="text-2xl transition hover:underline duration-700">{`${title}`}</p>
                   </Link>
                 </div>
               );
@@ -33,7 +33,12 @@ const CourseForum = () => {
         <div className="flex justify-center mx-auto mt-24">
           <div className="ml-10">
             <Link to={`/colleges/:collegeId/courses/:courseId/create-post`}>
-              <div className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)]">
+              <div
+                className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
+              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+              font-bold border-b-[1px] border-fuchsia-700
+              "
+              >
                 <p>Create Post</p>
               </div>
             </Link>
