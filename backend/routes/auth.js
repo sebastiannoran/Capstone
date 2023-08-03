@@ -1,7 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/users');
+module.exports = router;
 
 // Middleware for user authentication
 const authenticateUser = (req, res, next) => {

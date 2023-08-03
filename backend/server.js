@@ -7,11 +7,10 @@ const cors = require("cors");
 
 const authRouter = require("./routes/auth");
 
-const {
-    forbiddenErrorHandler,
-    notFoundErrorHandler,
-  } = require("./middleware/errorHandlers");
-
+// const {
+//     forbiddenErrorHandler,
+//     notFoundErrorHandler,
+//   } = require("./middleware/errorHandlers");
 
 app.use(
     cors({
@@ -41,7 +40,6 @@ app.use((req, res, next) => {
     })
   );
 app.use("/api/auth", authRouter);
-
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
