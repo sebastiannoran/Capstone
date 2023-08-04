@@ -2,6 +2,19 @@
 
 const csiCourses = [
   {
+    course_id: 'ACC 114',
+    course_name: 'Introduction to Accounting I'
+  },
+  {
+    course_id: 'ACC 218',
+    course_name: 'Introduction to Accounting II'
+  },
+  {
+    course_id: 'ACC 305',
+    course_name: 'Intermediate Accounting I'
+  },
+
+  {
     course_id: "AFA 160/HST 160",
     course_name: "African American History 1619 to Present"
   },
@@ -74,6 +87,14 @@ const csiCourses = [
     course_name: "General Biology II, General Biology Lab II"
   },
   {
+    course_id: 'BUS 160',
+    course_name: 'Business Law I'
+  },
+  {
+    course_id: 'BUS 215',
+    course_name: 'Information Management'
+  },
+  {
     course_id: "CHM 104",
     course_name: "Chemistry in a Nutshell"
   },
@@ -94,7 +115,7 @@ const csiCourses = [
     course_name: "General Chemistry I/General Chemistry Lab I"
   },
   {
-    course_id: "CHM 142/122",
+    course_id: "CHM 142/127",
     course_name: "General Chemistry II/General Chemistry Lab II"
   },
   {
@@ -142,6 +163,14 @@ const csiCourses = [
     course_name: "Introduction to Digital Technology"
   },
   {
+    course_id: 'ENS 110',
+    course_name: 'Engineering Graphics'
+  },
+  {
+    course_id: 'ENS 220',
+    course_name: 'Computer-Aided Graphics'
+  },
+  {
     course_id: "ECO 111",
     course_name: "Introduction to Microeconomics",
   },
@@ -158,8 +187,8 @@ const csiCourses = [
     course_name: "Engineering Mechanics"
   },
   {
-    course_id: "ESC 110",
-    course_name: "Meteorology and Climatology"
+    course_id: "ESC 110/111",
+    course_name: "Meteorology and Climatology/Meteorology and Climatology Lab"
   },
   {
     course_id: "FRN 112",
@@ -178,12 +207,12 @@ const csiCourses = [
     course_name: "Physical Geology"
   },
   {
-    course_id: "GEO 102",
-    course_name: "Historical Geology"
+    course_id: "GEO 102/103",
+    course_name: "Earth Systems Hisotory/Earth Systems Hisotory Lab"
   },
   {
-    course_id: "GEO 115",
-    course_name: "Fundamentals of Physical Geology"
+    course_id: "GEO 115/116",
+    course_name: "Fundamentals of Physical Geology/Fundamentals of Physical Geology Lab"
   },
   {
     course_id: "GEO 210",
@@ -298,8 +327,8 @@ const csiCourses = [
     course_name: "Physics I"
   },
   {
-    course_id: "PHY 120",
-    course_name: "General Physics I"
+    course_id: "PHY 120/121",
+    course_name: "General Physics I/General Physics I Lab"
   },
   {
     course_id: "PHY 156",

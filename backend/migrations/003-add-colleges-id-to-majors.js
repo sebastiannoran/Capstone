@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.addColumn('majors', 'collegeId', {
       type: Sequelize.INTEGER,
       refernces: {
-        model: 'colleges',
+        model: 'College',
         key: 'id',
       },
       onUpdate: 'CASCADE',
