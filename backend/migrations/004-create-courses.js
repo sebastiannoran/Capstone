@@ -9,17 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      course_id:{
+        type: Sequelize.STRING
+      },
       course_name: {
         type: Sequelize.STRING
-      },
-      course_id:{
-        type: Sequelize.INTEGER
-      },
-      course_semester: {
-        type: Sequelize.STRING
-      },
-      course_year: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
