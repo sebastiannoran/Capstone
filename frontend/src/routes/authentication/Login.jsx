@@ -14,7 +14,7 @@ function Login() {
     const loginData = { email, password };
 
     try {
-      const response = await fetch('/backend/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function Login() {
 
       if (response.ok) {
         // Login successful
-        window.location.replace('/dashboard'); // Redirect to the dashboard or home page
+        window.location.replace('/Homepage'); // Redirect to the dashboard or home page
       } else {
         const data = await response.json();
         alert(data.error); // Display the error message received from the server
