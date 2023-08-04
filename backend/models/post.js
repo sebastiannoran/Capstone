@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Comment);
     }
   }
-  posts.init({
+  Post.init({
     title: DataTypes.STRING,
     content: DataTypes.TEXT
   }, {
@@ -23,5 +23,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Post',
     tableName: 'posts',
   });
-  return posts;
+  return Post;
 };

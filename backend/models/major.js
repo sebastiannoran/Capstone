@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.College);
     }
   }
-  majors.init({
+  Major.init({
     name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Major',
     tableName: 'majors'
   });
-  return majors;
+  return Major;
 };

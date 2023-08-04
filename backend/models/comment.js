@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Post);
     }
   }
-  comments.init({
+  Comment.init({
     content: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Comment',
     tableName: 'comments',
   });
-  return comments;
+  return Comment;
 };

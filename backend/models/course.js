@@ -17,13 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  courses.init({
-    course_id: DataTypes.STRING,
-    course_name: DataTypes.STRING,
+  Course.init({
+    name: DataTypes.STRING,
+    courseId: DataTypes.INTEGER,
+    semester: DataTypes.STRING,
+    year: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Course',
     tableName: 'courses'
   });
-  return courses;
+  return Course;
 };

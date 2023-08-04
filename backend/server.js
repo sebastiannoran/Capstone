@@ -4,12 +4,15 @@ const port = 4000;
 const session = require("express-session");
 require("dotenv").config();
 const cors = require("cors");
-const authRouter = require("./routes/auth");
+
+const authRouter = require("./routes/auth.js");
+const postRouter= require("./routes/posts.js");
 
 // const {
 //     forbiddenErrorHandler,
 //     notFoundErrorHandler,
 //   } = require("./middleware/errorHandlers");
+
 app.use(
     cors({
       origin: "http://127.0.0.1:5173",
@@ -17,6 +20,7 @@ app.use(
       methods: ["GET", "POST", "PATCH", "DELETE"],
     })
   );
+
 app.use((req, res, next) => {
     console.log(`Request: ${req.method} ${req.originalUrl}`);
     res.on("finish", () => {
@@ -37,6 +41,8 @@ app.use((req, res, next) => {
     })
   );
 app.use("/api/auth", authRouter);
+app.use("/api/posts",postRouter);
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
   });

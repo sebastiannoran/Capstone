@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  userCourses.init({
+  UserCourse.init({
     userId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -37,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'UserCourse',
     tableName: 'user_courses'
   });
-  return userCourses;
+  return UserCourse;
 };

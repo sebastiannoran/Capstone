@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Major);
     }
   }
-  colleges.init({
+  College.init({
     name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'College',
     tableName: 'colleges'
   });
-  return colleges;
+  return College;
 };
