@@ -4,6 +4,7 @@ const router = express.Router();
 const {User} = require('../models');
 module.exports = router;
 
+
 // Middleware for user authentication
 const authenticateUser = (req, res, next) => {
     if (req.session.user) {
@@ -13,6 +14,8 @@ const authenticateUser = (req, res, next) => {
       res.status(401).json({ error: 'Unauthorized' });
     }
   };
+
+
 
 // User registration endpoint
 router.post('/register', async (req, res) => {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import isAuthChecked from '/contexts/AuthContext'
 
 const ForumPost = () => {
+  
   const [post, setPost] = useState({
     id: 1,
     title: 'Sample Post',
@@ -18,13 +20,23 @@ const ForumPost = () => {
   const [newCommentText, setNewCommentText] = useState('');
 
   const handlePostEdit = () => {
-    setTitleEditing(true);
-    setContentEditing(false);
+    if (isAuthChecked){
+      setTitleEditing(true);
+      setContentEditing(false);
+    }
+    else{
+      console.log('Error');
+    }
   };
 
   const handleContentEdit = () => {
-    setTitleEditing(false);
-    setContentEditing(true);
+    if (isAuthChecked){
+      setTitleEditing(false);
+      setContentEditing(true);
+    } 
+    else{
+      console.log('Error');
+    }
   };
 
   const handleTitleChange = (event) => {
@@ -36,8 +48,13 @@ const ForumPost = () => {
   };
 
   const handleCommentEdit = (commentId) => {
-    const commentToEdit = comments.find((comment) => comment.id === commentId);
-    setEditedComments([{ ...commentToEdit }]);
+    if (isAuthChecked){
+      const commentToEdit = comments.find((comment) => comment.id === commentId);
+      setEditedComments([{ ...commentToEdit }]);
+    }
+    else{
+      console.log('Error');
+    }
   };
 
   const handleCommentChange = (commentId, event) => {
