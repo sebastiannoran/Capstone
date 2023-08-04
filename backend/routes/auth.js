@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/users');
 
 // Middleware for user authentication
 const authenticateUser = (req, res, next) => {
@@ -12,6 +12,8 @@ const authenticateUser = (req, res, next) => {
       res.status(401).json({ error: 'Unauthorized' });
     }
   };
+
+
 
 // User registration endpoint
 router.post('/register', async (req, res) => {
