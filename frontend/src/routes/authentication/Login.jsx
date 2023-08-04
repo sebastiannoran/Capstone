@@ -5,16 +5,16 @@ import { useContext } from "react";
 
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [email_address, setemail_address] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const loginData = { email, password };
+    const loginData = { email_address, password };
 
     try {
-      const response = await fetch('/backend/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function Login() {
 
       if (response.ok) {
         // Login successful
-        window.location.replace('/dashboard'); // Redirect to the dashboard or home page
+        window.location.replace('/Homepage'); // Redirect to the dashboard or home page
       } else {
         const data = await response.json();
         alert(data.error); // Display the error message received from the server
@@ -54,8 +54,8 @@ function Login() {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={email_address}
+                onChange={(e) => setemail_address(e.target.value)}
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />

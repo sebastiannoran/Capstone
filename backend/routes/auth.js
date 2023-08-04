@@ -48,11 +48,11 @@ router.post('/register', async (req, res) => {
 
 // User login endpoint
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email_address, password } = req.body;
 
   try {
     // Find the user by email
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email_address } });
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
