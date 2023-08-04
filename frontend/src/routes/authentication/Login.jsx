@@ -8,11 +8,30 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // const formData = new FormData(event.target);
-    // const credentials = Object.fromEntries(formData);
-    // await register(credentials);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const loginData = { email, password };
+
+    try {
+      const response = await fetch('/backend/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (response.ok) {
+        // Login successful
+        window.location.replace('/dashboard'); // Redirect to the dashboard or home page
+      } else {
+        const data = await response.json();
+        alert(data.error); // Display the error message received from the server
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -35,8 +54,9 @@ function Login() {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                name="email"
-                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
             </fieldset>
@@ -44,16 +64,16 @@ function Login() {
               <label htmlFor="company">Password</label>
               <input
                 type="password"
-                name="password"
-                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
             </fieldset>
           </div>
-          <input
-            className="bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md"
-            type="submit"
-          ></input>
+          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        Submit
+      </button>
         </div>
       </div>
     </Form>
