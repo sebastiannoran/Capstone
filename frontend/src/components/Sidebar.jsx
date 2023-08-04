@@ -107,8 +107,6 @@ const Sidebar = () => {
             </h1>
           </div>
 
-
-
           <div
             className={`flex items-center rounded-md bg-white mt-5 ${
               open ? "p-2 px-6" : ""
