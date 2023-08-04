@@ -5,7 +5,8 @@ const session = require("express-session");
 require("dotenv").config();
 const cors = require("cors");
 
-const authRouter = require("./routes/auth");
+const authRouter = require("./routes/auth.js");
+const postRouter= require("./routes/posts.js");
 
 // const {
 //     forbiddenErrorHandler,
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
     })
   );
 app.use("/api/auth", authRouter);
+app.use("/api/posts",postRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

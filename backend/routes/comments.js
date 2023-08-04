@@ -20,7 +20,7 @@ router.post('/', authenticateUser, async (req, res) => {
   });
 
 // Retrieve all Comments for a specific Post
-router.get('/post/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
   const postId = req.params.id;
 
   try {

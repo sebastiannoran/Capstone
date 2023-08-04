@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-const User = require('../models/users');
+const {User} = require('../models');
 module.exports = router;
 
 // Middleware for user authentication
@@ -16,11 +16,11 @@ const authenticateUser = (req, res, next) => {
 
 // User registration endpoint
 router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name, email_address, password } = req.body;
 
   try {
     // Check if the user already exists
-    const existingUser = await User.findOne({ where: { email } });
+    const existingUser = await User.findOne({ where: { email_address } });
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
     }
@@ -30,13 +30,13 @@ router.post('/register', async (req, res) => {
 
     // Create the new user
     const newUser = await User.create({
-      username,
-      email,
+      name,
+      email_address,
       password: hashedPassword,
     });
 
     res.json(newUser);
-    req.session.userId = User.id;
+    req.session.userId = newUser.id;
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
