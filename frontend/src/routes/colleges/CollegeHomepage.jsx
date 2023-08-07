@@ -1,3 +1,4 @@
+import Courses from "./Courses";
 import PopularCourses from "./PopularCourses";
 
 const CollegeHomepage = () => {
@@ -8,6 +9,8 @@ const CollegeHomepage = () => {
       </div>
 
       <div className="pt-12">
+        <p>Prereq Courses</p>
+        <Courses />
         <p className="italic pb-4">Popular Courses</p>
         <PopularCourses />
       </div>

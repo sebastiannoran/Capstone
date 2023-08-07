@@ -12,7 +12,7 @@ export async function loader({ params }) {
   return { jobs };
 }
 
-const PopularCourses = () => {
+const Courses = () => {
   const [courses, setCourses] = useState(courseData);
   const [college, setCollegeData] = useState(collegeData);
 
@@ -40,4 +40,4 @@ const PopularCourses = () => {
   );
 };
 
-export default PopularCourses;
+export default Courses;
