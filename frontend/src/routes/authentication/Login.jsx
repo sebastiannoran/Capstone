@@ -1,37 +1,17 @@
 import React, { useState } from 'react';
-import { AuthProvider } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { Form, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
-
 function Login() {
-  const [email_address, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const loginData = { email_address, password };
-
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      if (response.ok) {
-        // Login successful
-        window.location.replace('./Homepage'); // Redirect to the dashboard or home page
-      } else {
-        const data = await response.json();
-        alert(data.error); // Display the error message received from the server
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    const formData = new FormData(e.target);
+    const credentials = Object.fromEntries(formData);
+    await login(credentials);
   };
 
   return (
@@ -54,8 +34,7 @@ function Login() {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email_address"
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
@@ -64,16 +43,18 @@ function Login() {
               <label htmlFor="company">Password</label>
               <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
             </fieldset>
           </div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Submit
-      </button>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </Form>

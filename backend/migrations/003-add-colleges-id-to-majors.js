@@ -18,3 +18,5 @@ module.exports = {
     await queryInterface.removeColumn('majors', 'collegeId')
   }
 };
+
+//model association established, verified @ 2:16pm

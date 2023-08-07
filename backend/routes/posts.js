@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const authenticateUser = require('./auth')
-const Post = require('../models/Post');
+const authenticateUser = require('./auth');
+const {Post} = require("../models");
 
 // Create a new Post
 router.post('/', authenticateUser, async (req, res) => {
