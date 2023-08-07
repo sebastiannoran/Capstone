@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Post);
       this.hasMany(models.Comment);
       this.belongsToMany(models.Course, {
-        through: 'user_courses'
+        through: 'user_course'
       });
     }
   }

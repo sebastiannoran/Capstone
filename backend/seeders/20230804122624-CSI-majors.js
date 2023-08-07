@@ -2,7 +2,6 @@
 
 const csiMajors = [
   "Accounting",
-  "Accounting and Business Management",
   "African and African Diaspora Studies",
   "American Studies",
   "Art",
@@ -10,11 +9,9 @@ const csiMajors = [
   "Biology",
   "Business",
   "Chemistry",
-  "Cinema Studies",
   "Communications",
   "Computer Science",
   "Computer Technology",
-  "Drama",
   "Earth and Environmental Science",
   "Economics",
   "Electrical Engineering",
@@ -25,11 +22,8 @@ const csiMajors = [
   "Information Systems and Informatics",
   "International Studies",
   "Italian Studies",
-  "Latin American Caribbean and Latina/o Studies",
-  "Liberal Arts and Sciences",
   "Mathematics",
   "Medical Laboratory Science",
-  "Modern China Studies",
   "Music",
   "Nursing",
   "Philosophy",
@@ -41,7 +35,8 @@ const csiMajors = [
   "Sociology/Anthropology",
   "Spanish",
   "Womens Gender And Sexuality Studies",
-];
+]
+module.exports = csiMajors;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
