@@ -18,12 +18,14 @@ const AuthProvider = ({ children }) => {
         const { user } = await response.json();
 
         setCurrentUser(user);
+        setIsAuthChecked(true);
       } catch (error) {
         console.error(error);
         setCurrentUser(null);
+        setIsAuthChecked(false);
       }
 
-      setIsAuthChecked(true);
+      
     };
 
     checkAuthStatus();

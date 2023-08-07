@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import isAuthChecked from '/contexts/AuthContext'
+import isAuthChecked from '../../contexts/AuthContext'
 
 const ForumPost = () => {
   

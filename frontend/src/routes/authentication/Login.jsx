@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthProvider } from "../../contexts/AuthContext";
 import { Form, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [email_address, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const loginData = { email, password };
+    const loginData = { email_address, password };
 
     try {
       const response = await fetch('/api/auth/login', {
@@ -24,7 +24,7 @@ function Login() {
 
       if (response.ok) {
         // Login successful
-        window.location.replace('/Homepage'); // Redirect to the dashboard or home page
+        window.location.replace('./Homepage'); // Redirect to the dashboard or home page
       } else {
         const data = await response.json();
         alert(data.error); // Display the error message received from the server
