@@ -13,8 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       //1 course page has many posts
       this.hasMany(models.Post);
       this.belongsToMany(models.User, {
-        through: 'user_courses'
+        through: 'user_course'
       });
+      this.belongsToMany(models.Major, {
+        through: 'major_course'
+      })
     }
   }
   Course.init({

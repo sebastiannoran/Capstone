@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) { 
       this.belongsTo(models.College);
+      this.belongsToMany(models.Course, {
+        through: 'major_course'
+      });
     }
   }
   Major.init({
