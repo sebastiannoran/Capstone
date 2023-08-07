@@ -5,12 +5,13 @@ const session = require("express-session");
 require("dotenv").config();
 const cors = require("cors");
 
-const authRouter = require("./routes/auth");
-const jobsRouter = require("./routes/jobs");
-const {
-  forbiddenErrorHandler,
-  notFoundErrorHandler,
-} = require("./middleware/errorHandlers");
+const authRouter = require("./routes/auth.js");
+const postRouter = require("./routes/posts.js");
+
+// const {
+//     forbiddenErrorHandler,
+//     notFoundErrorHandler,
+//   } = require("./middleware/errorHandlers");
 
 app.use(
   cors({
@@ -44,7 +45,7 @@ app.use(notFoundErrorHandler);
 
 // routes
 app.use("/api/auth", authRouter);
-app.use("/api/jobs", jobsRouter);
+app.use("/api/posts", postRouter);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

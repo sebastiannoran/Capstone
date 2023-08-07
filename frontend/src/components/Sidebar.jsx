@@ -117,7 +117,6 @@ const Sidebar = () => {
                 open ? "mr-4" : "mr-1"
               }`}
             />
-
             <input
               type="search"
               placeholder="Search"
@@ -192,6 +191,7 @@ const Sidebar = () => {
               </>
             ))}
           </ul>
+
         </div>
       </div>
     </div>
