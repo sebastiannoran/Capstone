@@ -27,12 +27,24 @@ const csiCourses = [
     course_name: "Contemporary African Issues"
   },
   {
+    course_id: 'AMS 101',
+    course_name: 'American: An Introduction'
+  },
+  {
     course_id: "ANT 100",
     course_name: "Understanding Our Worlds"
   },
   {
     course_id: "ART 100",
     course_name: "Introduction to Visual Arts"
+  },
+  {
+    course_id: "ART 120",
+    course_name: "Introductory Drawing"
+  },
+  {
+    course_id: "ART 200",
+    course_name: "History of Art to the Renaissance"
   },
   {
     course_id: "AST 100",
@@ -87,6 +99,10 @@ const csiCourses = [
     course_name: "General Biology II, General Biology Lab II"
   },
   {
+    course_id: 'BIO 350/351',
+    course_name: 'Microbiology and Cellular Pathology/ Microbiology and Cellular Pathology Lab'
+  },
+  {
     course_id: 'BUS 160',
     course_name: 'Business Law I'
   },
@@ -127,6 +143,18 @@ const csiCourses = [
     course_name: "Organic Chemistry I"
   },
   {
+    course_id: 'COM 115',
+    course_name: 'Introduction tp Design and Digital Media'
+  },
+  {
+    course_id: 'COM 150',
+    course_name: 'Introduction to Communications'
+  },
+  {
+    course_id: 'COM 203',
+    course_name: 'Theories of Communications'
+  },
+  {
     course_id: "CSC 115",
     course_name: "Introduction to Computer Technology"
   },
@@ -155,6 +183,22 @@ const csiCourses = [
     course_name: "Introduction to Economics"
   },
   {
+    course_id: 'ENL 290',
+    course_name: 'Introduction to Literary Studies'
+  },
+  {
+    course_id: 'ENL 300',
+    course_name: 'British and American Literary Traditions I'
+  },
+  {
+    course_id: 'ENL 310',
+    course_name: 'World Literature in Contexts'
+  },
+  {
+    course_id: 'ENS 100',
+    course_name: 'Introduction to Engineering'
+  },
+  {
     course_id: "ENS 102",
     course_name: "Introduction to Electrical and Electronic Technology"
   },
@@ -165,6 +209,10 @@ const csiCourses = [
   {
     course_id: 'ENS 110',
     course_name: 'Engineering Graphics'
+  },
+  {
+    course_id: 'ENS 136',
+    course_name: 'Computer-Aided Engineering'
   },
   {
     course_id: 'ENS 220',
@@ -203,8 +251,16 @@ const csiCourses = [
     course_name: "World Regional Geography"
   },
   {
-    course_id: "GEO 100",
+    course_id: 'GEG 102',
+    course_name: 'People and Their Environment'
+  },
+  {
+    course_id: "GEG 100",
     course_name: "Physical Geology"
+  },
+  {
+    course_id: 'GEG 212',
+    course_name: "Introduction to GIS"
   },
   {
     course_id: "GEO 102/103",
@@ -247,12 +303,36 @@ const csiCourses = [
     course_name: "Individual and Society in Ancient Greece"
   },
   {
+    course_id: 'HST 200',
+    course_name: 'Historical Method'
+  },
+  {
+    course_id: 'HST 300',
+    course_name: 'Historiography'
+  },
+  {
     course_id: "HST 115",
     course_name: "Comparative Ancient Religion"
   },
   {
+    course_id: 'INT 100',
+    course_name: 'International Studies'
+  },
+  {
+    course_id: 'INT 367',
+    course_name: 'Globalization and the World System'
+  },
+  {
     course_id: "ITL 112",
     course_name: "Basic Italian I"
+  },
+  {
+    course_id: 'ITL 213',
+    course_name: 'Continuing Italian I'
+  },
+  {
+    course_id: 'ITL 120',
+    course_name: "Intensive Italian I"
   },
   {
     course_id: "MTH 102",
@@ -315,6 +395,22 @@ const csiCourses = [
     course_name: "Introduction to Music History"
   },
   {
+    course_id: 'MUS 120',
+    course_name: 'Rudiments of Music'
+  },
+  {
+    course_id: 'MUS 123',
+    course_name: 'Piano I'
+  },
+  {
+    course_id: 'MUS 125',
+    course_name: 'Introduction to Music History'
+  },
+  { 
+    course_id: 'NRS 110',
+    course_name: 'Medical-Surgical Nursing I'
+  },
+  {
     course_id: "PHY 107",
     course_name: "Maxwell to Einstein and Beyond"
   },
@@ -335,8 +431,8 @@ const csiCourses = [
     course_name: "Physics II"
   },
   {
-    course_id: "PHY 160",
-    course_name: "General Physics II"
+    course_id: "PHY 160/161",
+    course_name: "General Physics II, General Physics II Lab"
   },
   {
     course_id: "PHY 240",
@@ -360,7 +456,7 @@ const csiCourses = [
   },
   {
     course_id: "POL 103",
-    course_name: "Science"
+    course_name: "Understanding the Political World: An Introduction to Political Science"
   },
   {
     course_id: "POL 140",
@@ -375,21 +471,73 @@ const csiCourses = [
     course_name: "Psychology"
   },
   {
+    course_id: 'PSY 201', 
+    course_name: 'Foundations of Psychological Research'
+  },
+  {
     course_id: "PSY 242",
     course_name: "Developmental Psychology",
+  },
+  {
+    course_id: 'PSY 266',
+    course_name: 'Statistics in Psychology'
+  },
+  {
+    course_id: 'PSY 352',
+    course_name: 'History of Psychology',
+  },
+  {
+    course_id: 'SLS 301',
+    course_name: 'Humanities I: Ancient Cultures'
+  },
+  {
+    course_id: 'SLS 302',
+    course_name: 'Humanities II: Medieval and Early Moden Cultures'
   },
   {
     course_id: "SOC 100",
     course_name: "Sociology"
   },
   {
+    course_id: 'SOC 200',
+    course_name: 'Sociological Theory'
+  },
+  {
+    course_id: 'SOC 201',
+    course_name: 'Methods of Sociological Research'
+  },
+  {
     course_id: "SPN 112",
     course_name: "Basic Spanish I"
   },
   {
+    course_id: 'SPN 120',
+    course_name: 'Intensive Spanish I'
+  },
+  {
+    course_id: 'SPN 220',
+    course_name: "Intensive Spanish II"
+  },
+  {
     course_id: "SPN 119",
     course_name: "Elementary Spanish for Heritage Speakers"
-  }
+  },
+  {
+    course_id: 'SWK 200',
+    course_name: 'Introduction to Social Work'
+  },
+  {
+    course_id: 'WGS 201',
+    course_name: "Introduction to Women's, Gender, and Sexuality Studies",
+  },
+  {
+    course_id: 'WGS 206',
+    course_name: 'Women and the Economy',
+  },
+  {
+    course_id: 'WGS 222',
+    course_name: 'Women and Literature',
+  },
 ];
 
 /** @type {import('sequelize-cli').Migration} */
