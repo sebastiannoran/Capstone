@@ -3,11 +3,11 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.addColumn('comments', 'PostId', {
-      type: Sequelize.INTEGER,
+    await queryInterface.addColumn('posts', 'majorId', {
+      type: Sequelize.INTEGER, 
       references: {
-        model: 'posts',
-        key: 'id'
+        model: 'majors',
+        key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
@@ -15,6 +15,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.removeColumn('comments', 'PostId');
+    await queryInterface.removeColumn('posts', 'majorId')
   }
 };

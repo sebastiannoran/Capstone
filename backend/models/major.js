@@ -13,9 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.College, {
         foreignKey: 'collegeId'
       });
-      this.belongsToMany(models.Course, {
-        through: 'major_course'
-      });
+      this.hasMany(models.Post)
+      // this.belongsToMany(models.Course, {
+      //   through: 'major_course'
+      // });
     }
   }
   Major.init({
