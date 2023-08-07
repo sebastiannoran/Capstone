@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'majorId'
       }), 
       this.belongsTo(models.User);
-      this.hasMany(models.Comment);
     }
   }
   Post.init({

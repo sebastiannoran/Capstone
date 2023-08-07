@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillCaretLeft } from "react-icons/ai";
 import { FaSchool } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
@@ -11,51 +11,32 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [majors,setMajors] = useState([]);
 
   const navigate = useNavigate();
 
   const menus = [
     {
       title: "Biology",
-      courseCode: "BIO",
-      submenu: true,
-      submenuItems: [
-        { title: "BIO 103" },
-        { title: "BIO 106" },
-        { title: "BIO 150" },
-      ],
     },
     {
       title: "Computer Science",
-      courseCode: "CSC",
-      submenu: true,
-      submenuItems: [
-        { title: "CSC 126" },
-        { title: "CSC 211" },
-        { title: "CSC 326" },
-      ],
     },
     {
       title: "Chemistry",
-      courseCode: "CHM",
-      submenu: true,
-      submenuItems: [
-        { title: "CHM 100" },
-        { title: "CHM 141" },
-        { title: "CHM 142" },
-      ],
     },
     {
       title: "Accounting",
-      courseCode: "ACC",
-      submenu: true,
-      submenuItems: [
-        { title: "ACC 114" },
-        { title: "ACC 218" },
-        { title: "BUS 160" },
-      ],
     },
   ];
+
+  // useEffect(() => {
+  //   fetch('/api/majors')
+  //   .then((response) => response.json());
+  //   .then ((data) => setMajors(data);
+  //   .catch((error) => console.error('could not fetch majors', error))
+  // }, []);
+
 
   const [menusOpen, setMenusOpen] = useState(
     menus.reduce((acc, menu, index) => {
