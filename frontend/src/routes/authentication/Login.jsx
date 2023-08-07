@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Form, Navigate, redirect } from "react-router-dom";
+import { Form, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 function Login() {
@@ -31,7 +30,7 @@ function Login() {
           <div className="flex flex-col">
             <p className="text-center text-3xl pb-6">Login</p>
 
-            {/* {authError && <div className="text-red-500">{authError}</div>} */}
+            {authError && <div className="text-red-500">{authError}</div>}
 
             <fieldset className="flex flex-col">
               <label htmlFor="title">Email</label>
@@ -52,12 +51,10 @@ function Login() {
               />
             </fieldset>
           </div>
-          <button
+          <input
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Submit
-          </button>
+          ></input>
         </div>
       </div>
     </Form>

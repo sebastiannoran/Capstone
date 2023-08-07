@@ -9,9 +9,9 @@ const Register = () => {
     return <Navigate to="/" />;
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const credentials = Object.fromEntries(formData);
     await register(credentials);
   };
@@ -30,7 +30,7 @@ const Register = () => {
           <div className="flex flex-col">
             <p className="text-center text-3xl pb-6">Register</p>
 
-            {/* {authError && <div className="text-red-500">{authError}</div>} */}
+            {authError && <div className="text-red-500">{authError}</div>}
 
             <fieldset className="flex flex-col">
               <label htmlFor="title">Name</label>
