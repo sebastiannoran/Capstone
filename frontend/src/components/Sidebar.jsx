@@ -17,16 +17,106 @@ const Sidebar = () => {
 
   const menus = [
     {
+      title: "Accounting",
+    },
+    {
+      title: "African and African Diaspora Studies",
+    },
+    {
+      title: "American Studies",
+    },
+    {
+      title: "Art",
+    },
+    {
+      title: "Biochemistry",
+    },
+    {
       title: "Biology",
     },
     {
-      title: "Computer Science",
+      title: "Business",
     },
     {
       title: "Chemistry",
     },
     {
-      title: "Accounting",
+      title: "Communications",
+    },
+    {
+      title: "Computer Science",
+    },
+    {
+      title: "Computer Technology",
+    },
+    {
+      title: "Earth and Environmental Science",
+    },
+    {
+      title: "Economics",
+    },
+    {
+      title: "Electrical Engineering",
+    },
+    {
+      title: "Engineering Science",
+    },
+    {
+      title: "English",
+    },
+    {
+      title: "Geography",
+    },
+    {
+      title: "History",
+    },
+    {
+      title: "Information Systems and Informatics",
+    },
+    {
+      title: "International Studies",
+    },
+    {
+      title: "Italian Studies",
+    },
+    {
+      title: "Mathematics",
+    },
+    {
+      title: "Medical Laboratory Science",
+    },
+    {
+      title: "Music",
+    },
+    {
+      title: "Nursing",
+    },
+    {
+      title: "Philosophy",
+    },
+    {
+      title: "Physics",
+    },
+    {
+      title: "Political Science",
+    },
+    {
+      title: "Psychology",
+    },
+    {
+      title: "Science, Letters, Society",
+    },
+    {
+      title: "Social Work",
+    },
+    {
+      title: "Sociology/Anthropology",
+    },
+    {
+      title: "Spanish",
+    },
+    {
+      title: "Womens Gender And Sexuality Studies",
     },
   ];
 
