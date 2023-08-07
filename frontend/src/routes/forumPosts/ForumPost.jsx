@@ -145,69 +145,7 @@ const ForumPost = () => {
           </button>
         )}
       </div>
-      <div className="bg-green-200 p-6 rounded-lg mb-4">
-        <h2 className="text-2xl font-bold mb-2">Comments:</h2>
-        <ul className="comments">
-          {comments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              {!editedComments.some((editedComment) => editedComment.id === comment.id) ? (
-                <span className="text-sm mr-2">{comment.text}</span>
-              ) : (
-                <input
-                  type="text"
-                  value={editedComments.find((editedComment) => editedComment.id === comment.id)?.text || ''}
-                  onChange={(e) => handleCommentChange(comment.id, e)}
-                  className="block w-full border rounded-md px-3 py-2 mb-2"
-                />
-              )}
-              {!editedComments.some((editedComment) => editedComment.id === comment.id) ? (
-                <button
-                  className="comment-button bg-blue-500 hover:bg-blue-600 text-white mr-2"
-                  onClick={() => handleCommentEdit(comment.id)}
-                >
-                  Edit Comment
-                </button>
-              ) : (
-                <button
-                  className="comment-button bg-green-500 hover:bg-green-600 text-white mr-2"
-                  onClick={() => handleCommentSave(comment.id)}
-                >
-                  Save Comment
-                </button>
-              )}
-            </li>
-          ))}
-          {editedComments.some((editedComment) => editedComment.id === -1) && (
-            <li className="comment-item">
-              <input
-                type="text"
-                value={newCommentText}
-                onChange={(e) => setNewCommentText(e.target.value)}
-                className="block w-full border rounded-md px-3 py-2 mb-2"
-              />
-              <button
-                className="comment-button bg-green-500 hover:bg-green-600 text-white mr-2"
-                onClick={() => handleCommentSave(-1)}
-              >
-                Save Comment
-              </button>
-              <button
-                className="comment-button bg-red-500 hover:bg-red-600 text-white"
-                onClick={() => setEditedComments(editedComments.filter((comment) => comment.id !== -1))}
-              >
-                Cancel
-              </button>
-            </li>
-          )}
-        </ul>
-        <button
-          className="button bg-green-500 hover:bg-green-600 text-white mt-2"
-          onClick={() => setEditedComments([...editedComments, { id: -1, text: '' }])}
-        >
-          Add Comment
-        </button>
       </div>
-    </div>
   );
 }
 
