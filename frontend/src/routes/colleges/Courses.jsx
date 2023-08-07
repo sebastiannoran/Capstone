@@ -2,16 +2,6 @@ import { useState } from "react";
 import { courseData, collegeData } from "../../misc/data";
 import { Link } from "react-router-dom";
 
-export async function loader({ params }) {
-  let url = "/api/posts";
-  if (params.status) {
-    url += `?status=${statusIdByText[params.status]}`;
-  }
-  const response = await fetch(url);
-  const jobs = await response.json();
-  return { jobs };
-}
-
 const Courses = () => {
   const [courses, setCourses] = useState(courseData);
   const [college, setCollegeData] = useState(collegeData);
