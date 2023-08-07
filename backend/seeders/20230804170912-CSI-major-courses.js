@@ -44,15 +44,45 @@ module.exports = {
       "Spanish": ["SPN 112", 'SPN 120', 'SPN 220',],
       "Womens Gender And Sexuality Studies": ['WGS 201', 'WGS 206', 'WGS 222'],
     };
+    const csiCoursesArray = Object.values(csiCourses);
+
     // Loop through each major
     for (const major of majors) {
       const prerequisites = majorPrerequisites[major.name];
+      console.log('Major:', major.name);
+      console.log('Prerequisites:', prerequisites);
+      if (!prerequisites) {
+        console.error(`Prerequisites not found for major: ${major.name}`);
+        continue;
+      }
+    
+      // Get the course IDs of the prerequisites for this major from the csiCourses array
+      const prerequisiteCourseIds = csiCoursesArray
+        .filter((course) => {
+          const matchingCourse = csiCoursesArray.find((course) => {
+            const matches = prerequisites.some((prerequisite) => {
+              if (prerequisite.includes('/')) {
+                // Handle course ranges (e.g., "BIO 170/171")
+                const [start, end] = prerequisite.split('/');
+                return course.course_id >= start && course.course_id <= end;
+              } else {
+                // Handle individual courses (e.g., "ACC 114")
+                return course.course_id === prerequisite;
+              }
+            });
+            console.log('Course:', course.course_id);
+            console.log('Matches:', matches);
+            return matches;
+          });
 
-      // Get the course IDs of the prerequisites for this major from the csiCourses list
-      const prerequisiteCourseIds = csiCourses
-        .filter((course) => prerequisites.includes(course.course_id))
+        })
         .map((course) => course.id);
-
+    
+      if (prerequisiteCourseIds.length === 0) {
+        console.error(`No matching course IDs found for prerequisites of major: ${major.name}`);
+        continue;
+      }
+    
       // Create major_courses objects for each major and its prerequisite courses
       const majorCourses = prerequisiteCourseIds.map((courseId) => ({
         majorId: major.id,
@@ -60,7 +90,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       }));
-
+    
       // Add the major_courses objects to the main array
       majorCoursesData.push(...majorCourses);
     }
@@ -69,7 +99,8 @@ module.exports = {
     await queryInterface.bulkInsert('major_courses', majorCoursesData);
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('major_courses', majorCoursesData);
+  async down(queryInterface, Sequelize) {
+    // Remove major_courses data from the table
+    await queryInterface.bulkDelete('major_courses', null, {});
   }
 };

@@ -539,6 +539,7 @@ const csiCourses = [
     course_name: 'Women and Literature',
   },
 ];
+module.exports = csiCourses;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
