@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const authRouter = require("./routes/auth.js");
 const postRouter = require("./routes/posts.js");
+const commentRouter = require("./routes/comments.js");
 
 // const {
 //     forbiddenErrorHandler,
@@ -46,6 +47,7 @@ app.use(notFoundErrorHandler);
 // routes
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/comments", commentRouter);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
