@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import isAuthChecked from '../..../../contexts/AuthContext';
+import { AuthContext } from "../../contexts/AuthContext";
 
 const ForumPost = () => {
   
   const [post, setPost] = useState({
-    id: 1,
-    title: 'Sample Post',
-    content: 'This is the content of the post.',
+    
   });
 
   const [comments, setComments] = useState([
-    { id: 1, text: 'Comment 1' },
-    { id: 2, text: 'Comment 2' },
+    
   ]);
 
   const [isTitleEditing, setTitleEditing] = useState(false);
@@ -20,23 +17,13 @@ const ForumPost = () => {
   const [newCommentText, setNewCommentText] = useState('');
 
   const handlePostEdit = () => {
-    if (isAuthChecked){
-      setTitleEditing(true);
-      setContentEditing(false);
-    }
-    else{
-      console.log('Error');
-    }
+    setTitleEditing(true);
+    setContentEditing(false);
   };
 
   const handleContentEdit = () => {
-    if (isAuthChecked){
-      setTitleEditing(false);
-      setContentEditing(true);
-    } 
-    else{
-      console.log('Error');
-    }
+    setTitleEditing(false);
+    setContentEditing(true);
   };
 
   const handleTitleChange = (event) => {
@@ -48,13 +35,9 @@ const ForumPost = () => {
   };
 
   const handleCommentEdit = (commentId) => {
-    if (isAuthChecked){
-      const commentToEdit = comments.find((comment) => comment.id === commentId);
-      setEditedComments([{ ...commentToEdit }]);
-    }
-    else{
-      console.log('Error');
-    }
+    
+    const commentToEdit = comments.find((comment) => comment.id === commentId);
+    setEditedComments([{ ...commentToEdit }]);
   };
 
   const handleCommentChange = (commentId, event) => {
