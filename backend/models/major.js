@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Major extends Model {
     /**
@@ -9,22 +7,25 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) { 
+    static associate(models) {
       this.belongsTo(models.College, {
-        foreignKey: 'collegeId'
+        foreignKey: "CollegeId",
       });
-      this.hasMany(models.Post)
+      this.hasMany(models.Post);
       // this.belongsToMany(models.Course, {
       //   through: 'major_course'
       // });
     }
   }
-  Major.init({
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Major',
-    tableName: 'majors'
-  });
+  Major.init(
+    {
+      name: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Major",
+      tableName: "majors",
+    }
+  );
   return Major;
 };

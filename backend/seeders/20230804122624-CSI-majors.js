@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const csiMajors = [
   "Accounting",
@@ -35,7 +35,7 @@ const csiMajors = [
   "Sociology/Anthropology",
   "Spanish",
   "Womens Gender And Sexuality Studies",
-]
+];
 module.exports = csiMajors;
 
 /** @type {import('sequelize-cli').Migration} */
@@ -43,11 +43,11 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     // Get the collegeId of CSI
     const college = await queryInterface.rawSelect(
-      'colleges',
+      "colleges",
       {
         where: { name: "College of Staten Island" },
       },
-      ['id']
+      ["id"]
     );
 
     // If the collegeId is found, insert data into the majors table
@@ -61,18 +61,18 @@ module.exports = {
           name: majorName,
           createdAt: new Date(),
           updatedAt: new Date(),
-          collegeId: college, // Use the retrieved collegeId
+          CollegeId: college, // Use the retrieved collegeId
         });
       }
 
       // Insert all major objects into the majors table
-      await queryInterface.bulkInsert('majors', majorData);
+      await queryInterface.bulkInsert("majors", majorData);
     } else {
       console.error("College of Staten Island not found.");
     }
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('majors', null, {});
-  }
+    await queryInterface.bulkDelete("majors", null, {});
+  },
 };
