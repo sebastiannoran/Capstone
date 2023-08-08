@@ -3,16 +3,17 @@ import { forumData } from "../../misc/data";
 import { Link, useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
-  const courseResponse = await fetch(`/api/posts/${params.courseId}`);
-  const course = await courseResponse.json();
-  const commentsResponse = await fetch(
-    `/api/comments?courseId=${params.courseId}`
-  );
-  const comments = await commentsResponse.json();
-  return { course, comments };
+  const majorResponse = await fetch(`/api/majors/${params.majorId}`);
+  const major = await majorResponse.json();
+  const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
+  const college = await collegeResponse.json();
+  console.log(major, college);
+  return { major, college };
 }
 
 const MajorForum = () => {
+  const { major, college } = useLoaderData();
+  const { id, name } = college;
   const [posts, setPosts] = useState(forumData[0]);
 
   return (

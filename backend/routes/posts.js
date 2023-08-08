@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const authenticateUser = require('./auth');
-const {Post} = require("../models");
+const bcrypt = require("bcryptjs");
+const authenticateUser = require("./auth");
+const { Post } = require("../models");
 
 // Create a new Post
-router.post('/', authenticateUser, async (req, res) => {
+router.post("/", authenticateUser, async (req, res) => {
   const { title, content } = req.body;
   const userId = req.session.user.id;
 
@@ -14,82 +14,97 @@ router.post('/', authenticateUser, async (req, res) => {
     res.json(newPost);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// Retrieve all Posts
-router.get('/', async (req, res) => {
+// Get all posts
+// router.get("/", async (req, res) => {
+//   try {
+//     // const whereClause = {};
+//     // if (req.query.status) {
+//     //   whereClause.status = req.query.status;
+//     // }
+//     // const allJobs = await req.user.getJobApplications({ where: whereClause});
+//     const allPosts = await req.user.getPosts({ where: {} });
+
+//     res.status(200).json(allPosts);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send({ message: err.message });
+//   }
+// });
+router.get("/", async (req, res) => {
   try {
     const posts = await Post.findAll();
     res.json(posts);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
 // Retrieve a specific Post by ID
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   const postId = req.params.id;
 
   try {
     const post = await Post.findOne({ where: { id: postId } });
     if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
+      return res.status(404).json({ error: "Post not found" });
     }
 
     res.json(post);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
 // Update a Post
-router.put('/:id', authenticateUser, async (req, res) => {
+router.put("/:id", authenticateUser, async (req, res) => {
   const postId = req.params.id;
   const { title, content } = req.body;
 
   try {
     const post = await Post.findOne({ where: { id: postId } });
     if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
+      return res.status(404).json({ error: "Post not found" });
     }
 
     // Check if the authenticated user is the owner of the post
     if (req.session.user.id !== post.userId) {
-      return res.status(403).json({ error: 'Unauthorized' });
+      return res.status(403).json({ error: "Unauthorized" });
     }
 
     await post.update({ title, content });
     res.json(post);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
 // Delete a Post
-router.delete('/:id', authenticateUser, async (req, res) => {
+router.delete("/:id", authenticateUser, async (req, res) => {
   const postId = req.params.id;
 
   try {
     const post = await Post.findOne({ where: { id: postId } });
     if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
+      return res.status(404).json({ error: "Post not found" });
     }
 
     // Check if the authenticated user is the owner of the post
     if (req.session.user.id !== post.userId) {
-      return res.status(403).json({ error: 'Unauthorized' });
+      return res.status(403).json({ error: "Unauthorized" });
     }
 
     await post.destroy();
-    res.json({ message: 'Post deleted successfully' });
+    res.json({ message: "Post deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
