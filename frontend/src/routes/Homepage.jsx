@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchBar } from "../components/SearchBar";
 import { SearchResultsList } from "../components/SearchResultsList";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Homepage = () => {
+  const { currentUser } = useContext(AuthContext);
+
   const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -57,18 +60,20 @@ const Homepage = () => {
           </button>
         </div>
       </div>
-      <div className="flex gap-4 mt-4">
-        <Link to="/login">
-          <button className="bg-[#D1D5B5] text-black px-6 py-2 rounded ">
-            Login
-          </button>
-        </Link>
-        <Link to="/register">
-          <button className="bg-[#D1D5B5] text-black px-4 py-2 rounded">
-            Register
-          </button>
-        </Link>
-      </div>
+      {!currentUser && (
+        <div className="flex gap-4 mt-4">
+          <Link to="/login">
+            <button className="bg-[#D1D5B5] text-black px-6 py-2 rounded ">
+              Login
+            </button>
+          </Link>
+          <Link to="/register">
+            <button className="bg-[#D1D5B5] text-black px-4 py-2 rounded">
+              Register
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

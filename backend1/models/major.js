@@ -9,14 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) { 
-      this.belongsTo(models.College, {
-        foreignKey: 'collegeId'
-      });
-      this.hasMany(models.Post)
-      // this.belongsToMany(models.Course, {
-      //   through: 'major_course'
-      // });
+    static associate(models) {
+      // define association here
     }
   }
   Major.init({
@@ -24,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Major',
-    tableName: 'majors'
   });
   return Major;
 };

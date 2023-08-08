@@ -1,37 +1,19 @@
-import React, { useState } from 'react';
 import { AuthContext } from "../../contexts/AuthContext";
 import { Form, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
-
 function Login() {
-  const [email_address, setemail_address] = useState('');
-  const [password, setPassword] = useState('');
+  const { currentUser, login, authError } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const loginData = { email_address, password };
-
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      if (response.ok) {
-        // Login successful
-        window.location.replace('/Homepage'); // Redirect to the dashboard or home page
-      } else {
-        const data = await response.json();
-        alert(data.error); // Display the error message received from the server
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    const formData = new FormData(e.target);
+    const credentials = Object.fromEntries(formData);
+    await login(credentials);
   };
 
   return (
@@ -48,14 +30,13 @@ function Login() {
           <div className="flex flex-col">
             <p className="text-center text-3xl pb-6">Login</p>
 
-            {/* {authError && <div className="text-red-500">{authError}</div>} */}
+            {authError && <div className="text-red-500">{authError}</div>}
 
             <fieldset className="flex flex-col">
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                value={email_address}
-                onChange={(e) => setemail_address(e.target.value)}
+                name="email_address"
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
@@ -64,16 +45,16 @@ function Login() {
               <label htmlFor="company">Password</label>
               <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
             </fieldset>
           </div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Submit
-      </button>
+          <input
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          ></input>
         </div>
       </div>
     </Form>

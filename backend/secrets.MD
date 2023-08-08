@@ -1,3 +1,0 @@
-post_password='be3f316af508ec34da4d1e57dfc654ea'
-
-DB_PASSWORD='57f366d72e76dcc442a5d3a57a418b70'

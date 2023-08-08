@@ -3,17 +3,17 @@ import { Form, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 const Register = () => {
-  // const { currentUser, register, authError } = useContext(AuthContext);
+  const { currentUser, register, authError } = useContext(AuthContext);
 
-  // if (currentUser) {
-  //   return <Navigate to="/" />;
-  // }
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // const formData = new FormData(event.target);
-    // const credentials = Object.fromEntries(formData);
-    // await register(credentials);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const credentials = Object.fromEntries(formData);
+    await register(credentials);
   };
 
   return (
@@ -30,7 +30,7 @@ const Register = () => {
           <div className="flex flex-col">
             <p className="text-center text-3xl pb-6">Register</p>
 
-            {/* {authError && <div className="text-red-500">{authError}</div>} */}
+            {authError && <div className="text-red-500">{authError}</div>}
 
             <fieldset className="flex flex-col">
               <label htmlFor="title">Name</label>
@@ -45,7 +45,7 @@ const Register = () => {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                name="email"
+                name="email_address"
                 id="email"
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
@@ -68,6 +68,6 @@ const Register = () => {
       </div>
     </Form>
   );
-}
+};
 
 export default Register;
