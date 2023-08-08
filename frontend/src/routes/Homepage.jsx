@@ -6,6 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const Homepage = () => {
   const { currentUser } = useContext(AuthContext);
+  const [currentCollege, setCurrentCollege] = useState(null);
 
   const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,13 +17,14 @@ const Homepage = () => {
     setSearchQuery(query);
 
     navigate({
-      pathname: `/colleges/${query}`,
+      pathname: `/colleges/${currentCollege.id}`,
       state: { searchQuery: query },
     });
   };
 
   const handleSelect = (result) => {
-    setSearchQuery(result);
+    setCurrentCollege(result);
+    // console.log(`Current College: ${currentCollege.id}`);
   };
 
   const handleChange = (value) => {
@@ -44,6 +46,7 @@ const Homepage = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onSubmit={handleSearch}
+            setCollege={setCurrentCollege}
           />
           <SearchResultsList
             results={results}
