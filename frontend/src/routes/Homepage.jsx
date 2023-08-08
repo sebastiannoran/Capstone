@@ -17,7 +17,7 @@ const Homepage = () => {
     setSearchQuery(query);
 
     navigate({
-      pathname: `/colleges/${currentCollege.id}`,
+      pathname: `/colleges/id`,
       state: { searchQuery: query },
     });
   };
