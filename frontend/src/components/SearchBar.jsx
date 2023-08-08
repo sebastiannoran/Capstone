@@ -3,11 +3,19 @@ import { FaSearch } from "react-icons/fa";
 import collegeData from "../routes/colleges/CollegeData";
 
 export const SearchBar = ({ input, handleChange, setResults }) => {
-  const fetchdata = (value) => {
-    const results = collegeData.filter((college) => {
-      return college.college_Name.toLowerCase().includes(value.toLowerCase());
-    });
-    setResults(results);
+  const fetchdata = async (value) => {
+    try {
+      const response = await fetch(`api/colleges`);
+      const data = await response.json();
+      
+      const results = data.filter((college) => {
+        return college.name.toLowerCase().includes(value.toLowerCase());
+      });
+      
+      setResults(results);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handleChange2 = (value) => {
