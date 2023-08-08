@@ -5,10 +5,13 @@ import Login from "./routes/authentication/Login";
 import College from "./routes/colleges/College";
 import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
-import CollegeHomepage from "./routes/colleges/CollegeHomepage";
+import CollegeHomepage, {
+  loader as majorLoader,
+} from "./routes/colleges/CollegeHomepage";
 import CourseForum from "./routes/courseForums/CourseForum";
 import ForumPost from "./routes/forumPosts/ForumPost";
 import CreatePost from "./routes/forumPosts/CreatePost";
+import Major from "./routes/majors/Major";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,11 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <CollegeHomepage />,
+            loader: majorLoader,
+          },
+          {
+            path: "/colleges/:collegeId/majors/:majorId",
+            element: <Major />,
           },
           {
             path: "/colleges/:collegeId/courses/:courseId",

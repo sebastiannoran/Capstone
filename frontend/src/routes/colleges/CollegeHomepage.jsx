@@ -1,7 +1,17 @@
+import { useLoaderData } from "react-router-dom";
 import Courses from "./Courses";
 import PopularCourses from "./PopularCourses";
 
+export async function loader({ params }) {
+  const response = await fetch("/api/majors");
+  const majors = await response.json();
+  console.log(majors);
+  return { majors };
+}
+
 const CollegeHomepage = () => {
+  const { majors } = useLoaderData();
+
   return (
     <div className="text-center">
       <div className="text-5xl mb-10 font-bold">
@@ -10,9 +20,7 @@ const CollegeHomepage = () => {
 
       <div className="pt-12">
         <p>Prereq Courses</p>
-        <Courses />
-        <p className="italic pb-4">Popular Courses</p>
-        <PopularCourses />
+        <Major majors={majors} />
       </div>
     </div>
   );
