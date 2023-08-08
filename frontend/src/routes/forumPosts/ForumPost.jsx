@@ -1,92 +1,50 @@
-import React, { useState } from 'react';
-import isAuthChecked from '../../contexts/AuthContext';
+import { useState } from "react";
+import { forumData } from "../../misc/data";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext, user, currentUser } from "../../contexts/AuthContext";
+
+export async function loader({ params }) {
+  const courseResponse = await fetch(`/api/posts/${params.courseId}`);
+  const course = await courseResponse.json();
+  return { course };
+}
 
 const ForumPost = () => {
-  
-  const [post, setPost] = useState({
-    id: 1,
-    title: 'Sample Post',
-    content: 'This is the content of the post.',
-  });
-
-  const [comments, setComments] = useState([
-    { id: 1, text: 'Comment 1' },
-    { id: 2, text: 'Comment 2' },
-  ]);
-
+  const [posts, setPosts] = useState(forumData[0]);
   const [isTitleEditing, setTitleEditing] = useState(false);
   const [isContentEditing, setContentEditing] = useState(false);
-  const [editedComments, setEditedComments] = useState([]);
-  const [newCommentText, setNewCommentText] = useState('');
 
   const handlePostEdit = () => {
-    if (isAuthChecked){
+    if (user == currentUser) {
       setTitleEditing(true);
       setContentEditing(false);
     }
     else{
-      console.log('Error');
+      console.log("Unauthorized");
     }
   };
 
   const handleContentEdit = () => {
-    if (isAuthChecked){
+    if (user == currentUser) {
       setTitleEditing(false);
       setContentEditing(true);
-    } 
+    }
     else{
-      console.log('Error');
+      console.log("Unauthorized");
     }
   };
 
   const handleTitleChange = (event) => {
-    setPost({ ...post, title: event.target.value });
+    setPosts({ ...posts, title: event.target.value });
   };
 
   const handleContentChange = (event) => {
-    setPost({ ...post, content: event.target.value });
-  };
-
-  const handleCommentEdit = (commentId) => {
-    if (isAuthChecked){
-      const commentToEdit = comments.find((comment) => comment.id === commentId);
-      setEditedComments([{ ...commentToEdit }]);
-    }
-    else{
-      console.log('Error');
-    }
-  };
-
-  const handleCommentChange = (commentId, event) => {
-    const { value } = event.target;
-    setEditedComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === commentId ? { ...comment, text: value } : comment
-      )
-    );
+    setPosts({ ...posts, content: event.target.value });
   };
 
   const handlePostSave = () => {
     setTitleEditing(false);
     setContentEditing(false);
-  };
-
-  const handleCommentSave = (commentId) => {
-    if (commentId === -1) {
-      // New comment
-      if (newCommentText.trim() !== '') {
-        const newCommentId = comments.length + 1;
-        setComments([...comments, { id: newCommentId, text: newCommentText }]);
-        setNewCommentText('');
-      }
-    } else {
-      // Existing comment
-      const updatedComments = comments.map((comment) =>
-        comment.id === commentId ? editedComments[0] : comment
-      );
-      setComments(updatedComments);
-    }
-    setEditedComments(editedComments.filter((comment) => comment.id !== commentId));
   };
 
   return (
@@ -95,12 +53,12 @@ const ForumPost = () => {
         {isTitleEditing ? (
           <input
             type="text"
-            value={post.title}
+            value={posts.title}
             onChange={handleTitleChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <h3 className="text-2xl font-bold mb-2">Title: {post.title}</h3>
+          <h3 className="text-2xl font-bold mb-2">Title: {posts.title}</h3>
         )}
         {isTitleEditing ? (
           <button
@@ -122,12 +80,12 @@ const ForumPost = () => {
         <h2 className="text-2xl font-bold mb-2">Post:</h2>
         {isContentEditing ? (
           <textarea
-            value={post.content}
+            value={posts.content}
             onChange={handleContentChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <p className="text-lg">{post.content}</p>
+          <p className="text-lg">{posts.content}</p>
         )}
         {isContentEditing ? (
           <button
@@ -145,69 +103,7 @@ const ForumPost = () => {
           </button>
         )}
       </div>
-      <div className="bg-green-200 p-6 rounded-lg mb-4">
-        <h2 className="text-2xl font-bold mb-2">Comments:</h2>
-        <ul className="comments">
-          {comments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              {!editedComments.some((editedComment) => editedComment.id === comment.id) ? (
-                <span className="text-sm mr-2">{comment.text}</span>
-              ) : (
-                <input
-                  type="text"
-                  value={editedComments.find((editedComment) => editedComment.id === comment.id)?.text || ''}
-                  onChange={(e) => handleCommentChange(comment.id, e)}
-                  className="block w-full border rounded-md px-3 py-2 mb-2"
-                />
-              )}
-              {!editedComments.some((editedComment) => editedComment.id === comment.id) ? (
-                <button
-                  className="comment-button bg-blue-500 hover:bg-blue-600 text-white mr-2"
-                  onClick={() => handleCommentEdit(comment.id)}
-                >
-                  Edit Comment
-                </button>
-              ) : (
-                <button
-                  className="comment-button bg-green-500 hover:bg-green-600 text-white mr-2"
-                  onClick={() => handleCommentSave(comment.id)}
-                >
-                  Save Comment
-                </button>
-              )}
-            </li>
-          ))}
-          {editedComments.some((editedComment) => editedComment.id === -1) && (
-            <li className="comment-item">
-              <input
-                type="text"
-                value={newCommentText}
-                onChange={(e) => setNewCommentText(e.target.value)}
-                className="block w-full border rounded-md px-3 py-2 mb-2"
-              />
-              <button
-                className="comment-button bg-green-500 hover:bg-green-600 text-white mr-2"
-                onClick={() => handleCommentSave(-1)}
-              >
-                Save Comment
-              </button>
-              <button
-                className="comment-button bg-red-500 hover:bg-red-600 text-white"
-                onClick={() => setEditedComments(editedComments.filter((comment) => comment.id !== -1))}
-              >
-                Cancel
-              </button>
-            </li>
-          )}
-        </ul>
-        <button
-          className="button bg-green-500 hover:bg-green-600 text-white mt-2"
-          onClick={() => setEditedComments([...editedComments, { id: -1, text: '' }])}
-        >
-          Add Comment
-        </button>
       </div>
-    </div>
   );
 }
 

@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
         setCurrentUser(null);
       }
 
-      setIsAuthChecked(true);
+      
     };
 
     checkAuthStatus();

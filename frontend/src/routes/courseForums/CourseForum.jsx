@@ -5,11 +5,7 @@ import { Link, useLoaderData } from "react-router-dom";
 export async function loader({ params }) {
   const courseResponse = await fetch(`/api/posts/${params.courseId}`);
   const course = await courseResponse.json();
-  const commentsResponse = await fetch(
-    `/api/comments?courseId=${params.courseId}`
-  );
-  const comments = await commentsResponse.json();
-  return { course, comments };
+  return { course };
 }
 
 const CourseForum = () => {
