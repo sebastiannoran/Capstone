@@ -2,37 +2,37 @@ const express = require("express");
 const router = express.Router();
 // const { authenticateUser } = require("../middleware/auth");
 // const { ForbiddenError, NotFoundError } = require("../errors");
-const { College } = require("../models");
+const { Major } = require("../models");
 
-const getCollege = async (id) => {
-  const college = await College.findByPk(parseInt(id, 10));
-  if (!college) {
-    throw new NotFoundError("College not found");
+const getMajor = async (id) => {
+  const major = await Major.findByPk(parseInt(id, 10));
+  if (!major) {
+    throw new NotFoundError("Major not found");
   }
-  return college;
+  return major;
 };
 
-// Get all colleges
+// Get all majors
 router.get("/", async (req, res) => {
   try {
-    const allColleges = await College.findAll();
+    const allMajors = await Major.findAll();
 
-    res.status(200).json(allColleges);
+    res.status(200).json(allMajors);
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: err.message });
   }
 });
 
-// Get a specific job
+// Get a specific major
 router.get("/:id", async (req, res) => {
   try {
-    const college = await getCollege(req.params.id);
+    const major = await getMajor(req.params.id);
 
-    if (college) {
-      res.status(200).json(college);
+    if (major) {
+      res.status(200).json(major);
     } else {
-      res.status(404).send({ message: "College not found" });
+      res.status(404).send({ message: "Major not found" });
     }
   } catch (err) {
     console.error(err);
