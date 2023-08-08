@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { forumData } from "../../misc/data";
 import { Link, useLoaderData } from "react-router-dom";
-import { AuthContext, user, currentUser } from "../../contexts/AuthContext";
+//import { AuthContext, user, currentUser } from "../../contexts/AuthContext";
 
 export async function loader({ params }) {
   const courseResponse = await fetch(`/api/posts/${params.courseId}`);
@@ -15,23 +15,23 @@ const ForumPost = () => {
   const [isContentEditing, setContentEditing] = useState(false);
 
   const handlePostEdit = () => {
-    if (user == currentUser) {
+    // if (user == currentUser) {
       setTitleEditing(true);
       setContentEditing(false);
-    }
-    else{
-      console.log("Unauthorized");
-    }
+    // }
+    // else{
+    //   console.log("Unauthorized");
+    // }
   };
 
   const handleContentEdit = () => {
-    if (user == currentUser) {
+    //if (user == currentUser) {
       setTitleEditing(false);
       setContentEditing(true);
-    }
-    else{
-      console.log("Unauthorized");
-    }
+   // }
+    //else{
+      //console.log("Unauthorized");
+   // }
   };
 
   const handleTitleChange = (event) => {

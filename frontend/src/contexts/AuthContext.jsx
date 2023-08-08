@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
 
       try {
         // Fetch the current user from API
-        const response = await fetch("/api/auth/current_user");
+        const response = await fetch("/api/auth/currentUser");
         const { user } = await response.json();
 
         setCurrentUser(user);
@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
         console.error(error);
         setCurrentUser(null);
       }
-
+      setIsAuthChecked(true);
       
     };
 
