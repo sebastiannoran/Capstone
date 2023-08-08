@@ -7,13 +7,12 @@ import { AuthContext } from "../contexts/AuthContext";
 const Homepage = () => {
   const { currentUser } = useContext(AuthContext);
   const [currentCollege, setCurrentCollege] = useState(null);
-
   const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
-  const handleSearch = (query) => {
+  const handleSearch = (query) => { //search button
     setSearchQuery(query);
 
     navigate({
@@ -22,12 +21,11 @@ const Homepage = () => {
     });
   };
 
-  const handleSelect = (result) => {
+  const handleSelect = (result) => { //handling the selection of the searchlist
     setCurrentCollege(result);
-    // console.log(`Current College: ${currentCollege.id}`);
   };
 
-  const handleChange = (value) => {
+  const handleChange = (value) => { //update the input of the search field
     setInput(value);
   };
   return (
