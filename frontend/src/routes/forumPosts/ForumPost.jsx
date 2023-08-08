@@ -10,7 +10,6 @@ export async function loader({ params }) {
 }
 
 const ForumPost = () => {
-  
   const [posts, setPosts] = useState(forumData[0]);
   const [isTitleEditing, setTitleEditing] = useState(false);
   const [isContentEditing, setContentEditing] = useState(false);
