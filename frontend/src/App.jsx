@@ -12,6 +12,7 @@ import CourseForum from "./routes/courseForums/CourseForum";
 import ForumPost from "./routes/forumPosts/ForumPost";
 import CreatePost from "./routes/forumPosts/CreatePost";
 import Major from "./routes/majors/Major";
+import MajorForum from "./routes/majors/MajorForum";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
           },
           {
             path: "/colleges/:collegeId/majors/:majorId",
-            element: <Major />,
+            element: <MajorForum />,
+          },
+          {
+            path: "/colleges/:collegeId/majors/:majorId/posts/:postId",
+            element: <ForumPost />,
           },
           {
             path: "/colleges/:collegeId/courses/:courseId",

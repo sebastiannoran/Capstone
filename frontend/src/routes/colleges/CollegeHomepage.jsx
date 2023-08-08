@@ -1,25 +1,30 @@
 import { useLoaderData } from "react-router-dom";
 import Courses from "./Courses";
 import PopularCourses from "./PopularCourses";
+import Major from "../majors/Major";
 
 export async function loader({ params }) {
-  const response = await fetch("/api/majors");
-  const majors = await response.json();
-  console.log(majors);
-  return { majors };
+  const majorResponse = await fetch("/api/majors");
+  const majors = await majorResponse.json();
+  const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
+  const college = await collegeResponse.json();
+  console.log(majors, college);
+  return { majors, college };
 }
 
 const CollegeHomepage = () => {
-  const { majors } = useLoaderData();
+  const { majors, college } = useLoaderData();
+  const { id, name } = college;
+  // const { id, name } = college;
 
   return (
     <div className="text-center">
       <div className="text-5xl mb-10 font-bold">
-        <p>CSI Homepage</p>
+        <p>{name}</p>
       </div>
 
-      <div className="pt-12">
-        <p>Prereq Courses</p>
+      <div className="">
+        <p className="p-4">Get Major Help Here!</p>
         <Major majors={majors} />
       </div>
     </div>
