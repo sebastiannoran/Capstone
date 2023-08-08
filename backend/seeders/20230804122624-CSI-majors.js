@@ -41,7 +41,6 @@ module.exports = csiMajors;
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // Get the collegeId of CSI
     const college = await queryInterface.rawSelect(
       'colleges',
       {
@@ -50,22 +49,18 @@ module.exports = {
       ['id']
     );
 
-    // If the collegeId is found, insert data into the majors table
     if (college) {
-      // Create an array to store major objects
       const majorData = [];
 
-      // Loop through the majors list and create major objects
       for (const majorName of csiMajors) {
         majorData.push({
           name: majorName,
           createdAt: new Date(),
           updatedAt: new Date(),
-          collegeId: college, // Use the retrieved collegeId
+          collegeId: college,
         });
       }
 
-      // Insert all major objects into the majors table
       await queryInterface.bulkInsert('majors', majorData);
     } else {
       console.error("College of Staten Island not found.");
