@@ -1,75 +1,51 @@
-import React, { useState } from 'react';
-import { AuthContext } from "../../contexts/AuthContext";
+import { useState } from "react";
+import { forumData } from "../../misc/data";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext, user, currentUser } from "../../contexts/AuthContext";
+
+export async function loader({ params }) {
+  const courseResponse = await fetch(`/api/posts/${params.courseId}`);
+  const course = await courseResponse.json();
+  return { course };
+}
 
 const ForumPost = () => {
   
-  const [post, setPost] = useState({
-    
-  });
-
-  const [comments, setComments] = useState([
-    
-  ]);
-
+  const [posts, setPosts] = useState(forumData[0]);
   const [isTitleEditing, setTitleEditing] = useState(false);
   const [isContentEditing, setContentEditing] = useState(false);
-  const [editedComments, setEditedComments] = useState([]);
-  const [newCommentText, setNewCommentText] = useState('');
 
   const handlePostEdit = () => {
-    setTitleEditing(true);
-    setContentEditing(false);
+    if (user == currentUser) {
+      setTitleEditing(true);
+      setContentEditing(false);
+    }
+    else{
+      console.log("Unauthorized");
+    }
   };
 
   const handleContentEdit = () => {
-    setTitleEditing(false);
-    setContentEditing(true);
+    if (user == currentUser) {
+      setTitleEditing(false);
+      setContentEditing(true);
+    }
+    else{
+      console.log("Unauthorized");
+    }
   };
 
   const handleTitleChange = (event) => {
-    setPost({ ...post, title: event.target.value });
+    setPosts({ ...posts, title: event.target.value });
   };
 
   const handleContentChange = (event) => {
-    setPost({ ...post, content: event.target.value });
-  };
-
-  const handleCommentEdit = (commentId) => {
-    
-    const commentToEdit = comments.find((comment) => comment.id === commentId);
-    setEditedComments([{ ...commentToEdit }]);
-  };
-
-  const handleCommentChange = (commentId, event) => {
-    const { value } = event.target;
-    setEditedComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === commentId ? { ...comment, text: value } : comment
-      )
-    );
+    setPosts({ ...posts, content: event.target.value });
   };
 
   const handlePostSave = () => {
     setTitleEditing(false);
     setContentEditing(false);
-  };
-
-  const handleCommentSave = (commentId) => {
-    if (commentId === -1) {
-      // New comment
-      if (newCommentText.trim() !== '') {
-        const newCommentId = comments.length + 1;
-        setComments([...comments, { id: newCommentId, text: newCommentText }]);
-        setNewCommentText('');
-      }
-    } else {
-      // Existing comment
-      const updatedComments = comments.map((comment) =>
-        comment.id === commentId ? editedComments[0] : comment
-      );
-      setComments(updatedComments);
-    }
-    setEditedComments(editedComments.filter((comment) => comment.id !== commentId));
   };
 
   return (
@@ -78,12 +54,12 @@ const ForumPost = () => {
         {isTitleEditing ? (
           <input
             type="text"
-            value={post.title}
+            value={posts.title}
             onChange={handleTitleChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <h3 className="text-2xl font-bold mb-2">Title: {post.title}</h3>
+          <h3 className="text-2xl font-bold mb-2">Title: {posts.title}</h3>
         )}
         {isTitleEditing ? (
           <button
@@ -105,12 +81,12 @@ const ForumPost = () => {
         <h2 className="text-2xl font-bold mb-2">Post:</h2>
         {isContentEditing ? (
           <textarea
-            value={post.content}
+            value={posts.content}
             onChange={handleContentChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <p className="text-lg">{post.content}</p>
+          <p className="text-lg">{posts.content}</p>
         )}
         {isContentEditing ? (
           <button
