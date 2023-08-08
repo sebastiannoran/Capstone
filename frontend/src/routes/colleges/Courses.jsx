@@ -11,7 +11,6 @@ const Courses = () => {
       <div className="">
         {courses.map((course, id) => (
           <Link
-            // to={`/college/${collegeData}/courses/${course.id}`}
             to={`/colleges/${college[id]}/courses/${courses[id]}`}
             key={course.id}
           >

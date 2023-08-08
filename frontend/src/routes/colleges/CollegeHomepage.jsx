@@ -5,7 +5,7 @@ const CollegeHomepage = () => {
   return (
     <div className="text-center">
       <div className="text-5xl mb-10 font-bold">
-        <p>(College Name) Homepage</p>
+        <p>CSI Homepage</p>
       </div>
 
       <div className="pt-12">
