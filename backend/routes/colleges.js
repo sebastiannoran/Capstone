@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a specific job
+// Get a specific college
 router.get("/:id", async (req, res) => {
   try {
     const college = await getCollege(req.params.id);

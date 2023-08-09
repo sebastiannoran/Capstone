@@ -1,15 +1,24 @@
 import { useContext } from "react";
-import { Form, Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigation, Form, redirect  } from "react-router-dom";
+import classNames from "classnames";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Root = () => {
   const { currentUser, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const navigation = useNavigation();
+
+  const outletClasses = classNames(
+    // "mx-auto max-w-4xl sm:px-12 px-4 transition-opacity",
+    {
+      "opacity-100": navigation.state !== "loading",
+      "opacity-50": navigation.state === "loading",
+    }
+  );
 
   const handleLogout = (e) => {
     e.preventDefault();
     logout();
-    navigate("/login");
+    redirect("/login");
   };
 
   return (
@@ -33,7 +42,7 @@ const Root = () => {
           )}
         </div>
       </nav>
-      <div>
+      <div className={outletClasses}>
         <Outlet />
       </div>
     </div>

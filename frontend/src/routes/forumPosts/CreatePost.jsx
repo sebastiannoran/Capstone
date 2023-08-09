@@ -1,7 +1,7 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link} from "react-router-dom";
 
 const CreatePost = () => {
-  // const errors = useActionData();
+  
 
   return (
     <Form method="post" className="selection:bg-blue-200 flex flex-col gap-2">
