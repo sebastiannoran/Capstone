@@ -53,12 +53,12 @@ const ForumPost = () => {
         {isTitleEditing ? (
           <input
             type="text"
-            value={posts.title}
+            value={forumData.title}
             onChange={handleTitleChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <h3 className="text-2xl font-bold mb-2">Title: {posts.title}</h3>
+          <h3 className="text-2xl font-bold mb-2">Title: {forumData.title}</h3>
         )}
         {isTitleEditing ? (
           <button
@@ -80,12 +80,12 @@ const ForumPost = () => {
         <h2 className="text-2xl font-bold mb-2">Post:</h2>
         {isContentEditing ? (
           <textarea
-            value={posts.content}
+            value={forumData.content}
             onChange={handleContentChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <p className="text-lg">{posts.content}</p>
+          <p className="text-lg">{forumData.content}</p>
         )}
         {isContentEditing ? (
           <button

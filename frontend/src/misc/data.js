@@ -17,13 +17,13 @@ const data = [
         content: "Post 2 contents.",
       },
       {
-        id: 1,
+        id: 2,
         title:
           "POST 3 TITLE THIS IS JUST A TEST MR. HOLMES! YUURRRRRRR RRRRRR RRRRRR RRRRRR RRRRRR",
         content: "Post 2 contents.",
       },
       {
-        id: 1,
+        id: 3,
         title: "POST 4 TITLE LOLOLOLOLOLOLOLOLOWHATISTHISLOLOL",
         content: "Post 2 contents.",
       },
