@@ -7,14 +7,18 @@ export async function loader({ params }) {
   const major = await majorResponse.json();
   const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
   const college = await collegeResponse.json();
+  const postsResponse = await fetch(`
+    /api/posts?majorId=${params.majorId}
+    `);
+  const posts = await postsResponse.json();
   console.log(major, college);
-  return { major, college };
+  return { major, college, posts };
 }
 
 const MajorForum = () => {
-  const { major, college } = useLoaderData();
-  const { id, name: courseName } = major; // Use the actual course name from the major data
-  const [posts, setPosts] = useState(forumData[0]);
+  const { major, college, posts } = useLoaderData();
+  const { id, name } = college;
+  // const [posts, setPosts] = useState(forumData[0]);
 
   return (
     <div className="text-center">

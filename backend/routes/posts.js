@@ -34,13 +34,19 @@ router.post("/", authenticateUser, async (req, res) => {
 //     res.status(500).send({ message: err.message });
 //   }
 // });
+//
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.findAll();
-    res.json(posts);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    const whereClause = {};
+    if (req.query.majorId) {
+      whereClause.majorId = req.query.majorId;
+    }
+    const allPosts = await req.major.getPosts({ where: whereClause });
+
+    res.status(200).json(allPosts);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: err.message });
   }
 });
 
