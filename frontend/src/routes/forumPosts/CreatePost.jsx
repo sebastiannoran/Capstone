@@ -1,4 +1,30 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+
+export async function action({ request, params }) {
+  let formData = await request.formData();
+  let postData = Object.fromEntries(formData);
+  postData.MajorId = parseInt(params.majorId);
+  console.log(params.majorId);
+  console.log(postData);
+  //console.log(formData);
+  try {
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
+    if (response.ok) {
+      return redirect(`/colleges/${params.collegeId}/majors/${params.majorId}`);
+    }
+    const { errors } = await response.json();
+    return errors;
+  } catch (error) {
+    console.error(error);
+    return "Whoops! Something went wrong";
+  }
+}
 
 const CreatePost = () => {
   // const errors = useActionData();
@@ -44,8 +70,8 @@ const CreatePost = () => {
               <textarea
                 placeholder=""
                 type="text"
-                name="company"
-                id="company"
+                name="content"
+                id="content"
                 className="
                 bg-[#272727] focus:outline-none px-10 py-8 text-white h-[30rem] 
                   focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
@@ -58,16 +84,16 @@ const CreatePost = () => {
         </div>
         <div className="flex justify-center mx-auto mt-24 text-center">
           <div className="ml-10">
-            <Link to={`/colleges/:collegeId/courses/:courseId`}>
-              <div
-                className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
+            {/* <Link to={`/colleges/:collegeId/courses/:courseId`}> */}
+            <button
+              className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
               hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
               font-bold border-b-[1px] border-fuchsia-700
               "
-              >
-                <p>Submit Post</p>
-              </div>
-            </Link>
+            >
+              Submit Post
+            </button>
+            {/* </Link> */}
           </div>
         </div>
       </div>
