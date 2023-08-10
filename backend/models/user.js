@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // this.hasMany(models.Major);
       this.hasMany(models.Post);
-      this.hasMany(models.Comments);
+      this.hasMany(models.Comment);
     }
   }
   User.init(

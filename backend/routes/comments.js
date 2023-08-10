@@ -5,11 +5,11 @@ const {Comment} = require('../models');
 
 // Create a new Comment
 router.post('/', authenticateUser, async (req, res) => {
-    const { content, postId } = req.body;
-    const userId = req.session.user.id;
+    const { content, PostId } = req.body;
+    const UserId = req.session.user.id;
   
     try {
-      const newComment = await Comment.create({ content, userId, postId });
+      const newComment = await Comment.create({ content, UserId, PostId });
       res.json(newComment);
     } catch (error) {
       console.error(error);
@@ -19,15 +19,15 @@ router.post('/', authenticateUser, async (req, res) => {
 
 // Retrieve all Comments for a specific Post
 router.get('/posts/:id', async (req, res) => {
-  const postId = req.params.id;
+  const PostId = req.params.id;
 
   try {
-    const post = await Post.findOne({ where: { id: postId } });
+    const post = await Post.findOne({ where: { id: PostId } });
     if (!post) {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    const comments = await Comment.findAll({where: {id: postId }});
+    const comments = await Comment.findAll({where: {id: PostId }});
 
     res.json(comments);
   } catch (error) {
@@ -65,7 +65,7 @@ router.put('/:id', authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the comment
-    if (req.session.user.id !== comment.userId) {
+    if (req.session.user.id !== comment.UserId) {
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
@@ -88,7 +88,7 @@ router.delete('/:id', authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the comment
-    if (req.session.user.id !== comment.userId) {
+    if (req.session.user.id !== comment.UserId) {
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
