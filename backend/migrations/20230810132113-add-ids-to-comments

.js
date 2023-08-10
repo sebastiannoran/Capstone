@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn('comments', 'postId', {
+    await queryInterface.addColumn('comments', 'PostId', {
       type: Sequelize.INTEGER,
       references: {
         model: 'posts',
@@ -13,7 +13,7 @@ module.exports = {
       onDelete: 'SET NULL',
     });
 
-    // await queryInterface.addColumn('comments', 'userId', {
+    // await queryInterface.addColumn('comments', 'UserId', {
     //   type: Sequelize.INTEGER,
     //   references: {
     //     model: 'users',
@@ -25,7 +25,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.removeColumn('comments', 'postId');
+    await queryInterface.removeColumn('comments', 'PostId');
     // await queryInterface.removeColumn('comments', 'userId')
   }
 };
