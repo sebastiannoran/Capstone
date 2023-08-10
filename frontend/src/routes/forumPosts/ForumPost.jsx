@@ -1,41 +1,54 @@
-import React, { useState } from 'react';
-import isAuthChecked from '../../contexts/AuthContext';
+import React, { useState } from "react";
+import isAuthChecked from "../../contexts/AuthContext";
+import { useFetcher, useLoaderData } from "react-router-dom";
 
-const ForumPost = () => {
-  
-  const [post, setPost] = useState({
-    id: 1,
-    title: 'Sample Post',
-    content: 'This is the content of the post.',
-  });
+export async function loader({ params }) {
+  // const majorResponse = await fetch(`/api/majors/${params.majorId}`);
+  // const major = await majorResponse.json();
+  // const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
+  // const college = await collegeResponse.json();
+  const postResponse = await fetch(`/api/posts/${params.postId}`);
+  const post = await postResponse.json();
+  // console.log(major, college, post);
+  console.log(post);
+  // return { major, college, post };
+  return { post };
+}
 
-  const [comments, setComments] = useState([
-    { id: 1, text: 'Comment 1' },
-    { id: 2, text: 'Comment 2' },
-  ]);
+export const ForumPost = () => {
+  const { post } = useLoaderData();
+  const fetcher = useFetcher();
+  // const [post, setPost] = useState({
+  //   id: 1,
+  //   title: "Sample Post",
+  //   content: "This is the content of the post.",
+  // });
+
+  // const [comments, setComments] = useState([
+  //   { id: 1, text: "Comment 1" },
+  //   { id: 2, text: "Comment 2" },
+  // ]);
 
   const [isTitleEditing, setTitleEditing] = useState(false);
   const [isContentEditing, setContentEditing] = useState(false);
   const [editedComments, setEditedComments] = useState([]);
-  const [newCommentText, setNewCommentText] = useState('');
+  const [newCommentText, setNewCommentText] = useState("");
 
   const handlePostEdit = () => {
-    if (isAuthChecked){
+    if (isAuthChecked) {
       setTitleEditing(true);
       setContentEditing(false);
-    }
-    else{
-      console.log('Error');
+    } else {
+      console.log("Error");
     }
   };
 
   const handleContentEdit = () => {
-    if (isAuthChecked){
+    if (isAuthChecked) {
       setTitleEditing(false);
       setContentEditing(true);
-    } 
-    else{
-      console.log('Error');
+    } else {
+      console.log("Error");
     }
   };
 
@@ -47,24 +60,25 @@ const ForumPost = () => {
     setPost({ ...post, content: event.target.value });
   };
 
-  const handleCommentEdit = (commentId) => {
-    if (isAuthChecked){
-      const commentToEdit = comments.find((comment) => comment.id === commentId);
-      setEditedComments([{ ...commentToEdit }]);
-    }
-    else{
-      console.log('Error');
-    }
-  };
+  // const handleCommentEdit = (commentId) => {
+  //   if (isAuthChecked) {
+  //     const commentToEdit = comments.find(
+  //       (comment) => comment.id === commentId
+  //     );
+  //     setEditedComments([{ ...commentToEdit }]);
+  //   } else {
+  //     console.log("Error");
+  //   }
+  // };
 
-  const handleCommentChange = (commentId, event) => {
-    const { value } = event.target;
-    setEditedComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === commentId ? { ...comment, text: value } : comment
-      )
-    );
-  };
+  // const handleCommentChange = (commentId, event) => {
+  //   const { value } = event.target;
+  //   setEditedComments((prevComments) =>
+  //     prevComments.map((comment) =>
+  //       comment.id === commentId ? { ...comment, text: value } : comment
+  //     )
+  //   );
+  // };
 
   const handlePostSave = () => {
     setTitleEditing(false);
@@ -74,10 +88,10 @@ const ForumPost = () => {
   const handleCommentSave = (commentId) => {
     if (commentId === -1) {
       // New comment
-      if (newCommentText.trim() !== '') {
+      if (newCommentText.trim() !== "") {
         const newCommentId = comments.length + 1;
         setComments([...comments, { id: newCommentId, text: newCommentText }]);
-        setNewCommentText('');
+        setNewCommentText("");
       }
     } else {
       // Existing comment
@@ -86,7 +100,9 @@ const ForumPost = () => {
       );
       setComments(updatedComments);
     }
-    setEditedComments(editedComments.filter((comment) => comment.id !== commentId));
+    setEditedComments(
+      editedComments.filter((comment) => comment.id !== commentId)
+    );
   };
 
   return (
@@ -145,22 +161,44 @@ const ForumPost = () => {
           </button>
         )}
       </div>
+
       <div className="bg-green-200 p-6 rounded-lg mb-4">
-        <h2 className="text-2xl font-bold mb-2">Comments:</h2>
-        <ul className="comments">
+        <fetcher.Form
+          method="post"
+          action={`/posts/${post.id}/delete`}
+          onSubmit={(event) => {
+            if (!confirm("Please confirm you want to delete this record.")) {
+              event.preventDefault();
+            }
+          }}
+        >
+          <button>
+            <p>DELETE</p>
+          </button>
+        </fetcher.Form>
+        {/* <h2 className="text-2xl font-bold mb-2">Comments:</h2> */}
+        {/* <ul className="comments">
           {comments.map((comment) => (
             <li key={comment.id} className="comment-item">
-              {!editedComments.some((editedComment) => editedComment.id === comment.id) ? (
+              {!editedComments.some(
+                (editedComment) => editedComment.id === comment.id
+              ) ? (
                 <span className="text-sm mr-2">{comment.text}</span>
               ) : (
                 <input
                   type="text"
-                  value={editedComments.find((editedComment) => editedComment.id === comment.id)?.text || ''}
+                  value={
+                    editedComments.find(
+                      (editedComment) => editedComment.id === comment.id
+                    )?.text || ""
+                  }
                   onChange={(e) => handleCommentChange(comment.id, e)}
                   className="block w-full border rounded-md px-3 py-2 mb-2"
                 />
               )}
-              {!editedComments.some((editedComment) => editedComment.id === comment.id) ? (
+              {!editedComments.some(
+                (editedComment) => editedComment.id === comment.id
+              ) ? (
                 <button
                   className="comment-button bg-blue-500 hover:bg-blue-600 text-white mr-2"
                   onClick={() => handleCommentEdit(comment.id)}
@@ -193,22 +231,28 @@ const ForumPost = () => {
               </button>
               <button
                 className="comment-button bg-red-500 hover:bg-red-600 text-white"
-                onClick={() => setEditedComments(editedComments.filter((comment) => comment.id !== -1))}
+                onClick={() =>
+                  setEditedComments(
+                    editedComments.filter((comment) => comment.id !== -1)
+                  )
+                }
               >
                 Cancel
               </button>
             </li>
           )}
-        </ul>
-        <button
+        </ul> */}
+        {/* <button
           className="button bg-green-500 hover:bg-green-600 text-white mt-2"
-          onClick={() => setEditedComments([...editedComments, { id: -1, text: '' }])}
+          onClick={() =>
+            setEditedComments([...editedComments, { id: -1, text: "" }])
+          }
         >
           Add Comment
-        </button>
+        </button> */}
       </div>
     </div>
   );
-}
+};
 
 export default ForumPost;
