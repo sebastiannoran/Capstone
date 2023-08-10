@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Major);
       this.belongsTo(models.User);
     }
-  }
+  } 
   Post.init(
     {
       title: DataTypes.STRING,

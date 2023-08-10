@@ -8,24 +8,19 @@ const data = [
     [
       {
         id: 0,
-        title: "POST 1 TITLE",
-        content: "This is in the post contents section.",
+        title: "Lecture on tax rebate",
+        content: "Professor James did a fanstastic job, highly reccomend this section.",
       },
       {
         id: 1,
-        title: "POST 2 TITLE",
-        content: "Post 2 contents.",
+        title: "Helpful resources",
+        content: "I used the following youtube playlist for ACC 201, very helpful",
       },
       {
         id: 1,
         title:
-          "POST 3 TITLE THIS IS JUST A TEST MR. HOLMES! YUURRRRRRR RRRRRR RRRRRR RRRRRR RRRRRR",
-        content: "Post 2 contents.",
-      },
-      {
-        id: 1,
-        title: "POST 4 TITLE LOLOLOLOLOLOLOLOLOWHATISTHISLOLOL",
-        content: "Post 2 contents.",
+          "ACC 111 helpful hints",
+        content: "If this is your first time in an accouting class, then please review my notes closley.",
       },
     ],
     //COMMENTS
