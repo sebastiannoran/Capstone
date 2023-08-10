@@ -7,8 +7,10 @@ export async function loader({ params }) {
   const major = await majorResponse.json();
   const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
   const college = await collegeResponse.json();
-  const postsResponse= await fetch(`/api/posts/${params.postsId}`);
-  const posts = postsResponse.json();
+  const postsResponse = await fetch(`
+    /api/posts?majorId=${params.majorId}
+    `);
+  const posts = await postsResponse.json();
   console.log(major, college, posts);
   return { major, college, posts };
 }

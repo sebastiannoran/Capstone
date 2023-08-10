@@ -6,11 +6,11 @@ const { Post } = require("../models");
 
 // Create a new Post
 router.post("/", authenticateUser, async (req, res) => {
-  const { title, content } = req.body;
-  const userId = req.session.userId;
+  const { title, content, MajorId } = req.body;
+  const UserId = req.session.userId;
 
   try {
-    const newPost = await Post.create({ title, content, userId, majorId });
+    const newPost = await Post.create({ title, content, UserId, MajorId });
     res.json(newPost);
   } catch (error) {
     console.error(error);
@@ -37,6 +37,7 @@ router.post("/", authenticateUser, async (req, res) => {
 //
 router.get("/", async (req, res) => {
   try {
+    // console.log("GETRnadj");
     const whereClause = {};
     if (req.query.majorId) {
       whereClause.MajorId = req.query.majorId;
@@ -102,9 +103,9 @@ router.delete("/:id", authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the post
-    if (req.session.user.id !== post.userId) {
-      return res.status(403).json({ error: "Unauthorized" });
-    }
+    // if (req.session.user.id !== post.userId) {
+    //   return res.status(403).json({ error: "Unauthorized" });
+    // }
 
     await post.destroy();
     res.json({ message: "Post deleted successfully" });
