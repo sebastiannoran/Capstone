@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import isAuthChecked from "../../contexts/AuthContext";
-import { useFetcher, useLoaderData } from "react-router-dom";
+import {
+  Navigate,
+  redirect,
+  useFetcher,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 
 export async function loader({ params }) {
   // const majorResponse = await fetch(`/api/majors/${params.majorId}`);
@@ -9,15 +15,22 @@ export async function loader({ params }) {
   // const college = await collegeResponse.json();
   const postResponse = await fetch(`/api/posts/${params.postId}`);
   const post = await postResponse.json();
+  const id = {
+    majorId: params.majorId,
+    collegeId: params.collegeId,
+    postId: params.post,
+  };
   // console.log(major, college, post);
-  console.log(post);
-  // return { major, college, post };
-  return { post };
+  // console.log(post);
+  return { id, post };
+  // return { post };
 }
 
 export const ForumPost = () => {
-  const { post } = useLoaderData();
+  const { id, post } = useLoaderData();
+  console.log(id);
   const fetcher = useFetcher();
+  const navigate = useNavigate();
   // const [post, setPost] = useState({
   //   id: 1,
   //   title: "Sample Post",
@@ -165,11 +178,13 @@ export const ForumPost = () => {
       <div className="bg-green-200 p-6 rounded-lg mb-4">
         <fetcher.Form
           method="post"
-          action={`/posts/${post.id}/delete`}
+          action={`delete`}
           onSubmit={(event) => {
             if (!confirm("Please confirm you want to delete this record.")) {
               event.preventDefault();
+              // redirect(`/colleges/${id.collegeId}/majors/${id.majorId}`);
             }
+            navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
           }}
         >
           <button>

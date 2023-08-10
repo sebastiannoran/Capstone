@@ -36,10 +36,7 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-      {
-        path: "posts/:postId/delete",
-        action: deletePostAction,
-      },
+
       {
         path: "/colleges/:collegeId",
         element: <College />,
@@ -64,6 +61,10 @@ const router = createBrowserRouter([
             path: "/colleges/:collegeId/majors/:majorId/create-post",
             element: <CreatePost />,
             action: createPostAction,
+          },
+          {
+            path: "/colleges/:collegeId/majors/:majorId/posts/:postId/delete",
+            action: deletePostAction,
           },
 
           {
