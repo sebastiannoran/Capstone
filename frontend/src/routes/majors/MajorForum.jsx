@@ -11,7 +11,7 @@ export async function loader({ params }) {
     /api/posts?majorId=${params.majorId}
     `);
   const posts = await postsResponse.json();
-  console.log(major, college);
+  console.log(major, college, posts);
   return { major, college, posts };
 }
 
