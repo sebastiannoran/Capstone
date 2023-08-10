@@ -80,9 +80,9 @@ router.put("/:id", authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the post
-    if (req.session.user.id !== post.userId) {
-      return res.status(403).json({ error: "Unauthorized" });
-    }
+    // if (req.session.user.id !== post.userId) {
+    //   return res.status(403).json({ error: "Unauthorized" });
+    // }
 
     await post.update({ title, content });
     res.json(post);
