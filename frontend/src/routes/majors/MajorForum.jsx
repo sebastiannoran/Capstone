@@ -16,9 +16,9 @@ export async function loader({ params }) {
 }
 
 const MajorForum = () => {
-  const { major, college } = useLoaderData();
+  const { major, college, posts } = useLoaderData();
   const { id, name:majorName } = college;
-  const [posts, setPosts] = useState(forumData[0]);
+  // const [posts, setPosts] = useState(forumData[0]);
 
   return (
     <div className="text-center">
