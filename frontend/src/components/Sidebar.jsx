@@ -11,7 +11,7 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [majors,setMajors] = useState([]);
+  const [majors, setMajors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -127,7 +127,6 @@ const Sidebar = () => {
   //   .catch((error) => console.error('could not fetch majors', error))
   // }, []);
 
-
   const [menusOpen, setMenusOpen] = useState(
     menus.reduce((acc, menu, index) => {
       acc[index] = menu.submenu;
@@ -200,7 +199,7 @@ const Sidebar = () => {
           </div>
 
           <ul className="pt-2">
-            {menus.map((menu, index) => (
+            {/* {menus.map((menu, index) => (
               <>
                 <li
                   key={index}
@@ -260,9 +259,8 @@ const Sidebar = () => {
                   </ul>
                 )}
               </>
-            ))}
+            ))} */}
           </ul>
-
         </div>
       </div>
     </div>

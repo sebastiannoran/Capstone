@@ -9,11 +9,14 @@ import CollegeHomepage, {
   loader as majorLoader,
 } from "./routes/colleges/CollegeHomepage";
 import CourseForum from "./routes/courseForums/CourseForum";
-import ForumPost from "./routes/forumPosts/ForumPost";
+import ForumPost, {
+  loader as forumPostLoader,
+} from "./routes/forumPosts/ForumPost";
 import CreatePost, {
   action as createPostAction,
 } from "./routes/forumPosts/CreatePost";
 import MajorForum, { loader as forumLoader } from "./routes/majors/MajorForum";
+import { action as deletePostAction } from "./routes/forumPosts/DeletePost";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,7 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/colleges/:collegeId",
         element: <College />,
@@ -50,12 +54,17 @@ const router = createBrowserRouter([
           {
             path: "/colleges/:collegeId/majors/:majorId/posts/:postId",
             element: <ForumPost />,
+            loader: forumPostLoader,
           },
 
           {
             path: "/colleges/:collegeId/majors/:majorId/create-post",
             element: <CreatePost />,
             action: createPostAction,
+          },
+          {
+            path: "/colleges/:collegeId/majors/:majorId/posts/:postId/delete",
+            action: deletePostAction,
           },
 
           {

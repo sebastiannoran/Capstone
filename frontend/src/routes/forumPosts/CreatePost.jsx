@@ -3,7 +3,10 @@ import { Form, Link, redirect } from "react-router-dom";
 export async function action({ request, params }) {
   let formData = await request.formData();
   let postData = Object.fromEntries(formData);
-  postData.MajorId = params.majorId;
+  postData.MajorId = parseInt(params.majorId);
+  console.log(params.majorId);
+  console.log(postData);
+  //console.log(formData);
   try {
     const response = await fetch("/api/posts", {
       method: "POST",
@@ -67,8 +70,8 @@ const CreatePost = () => {
               <textarea
                 placeholder=""
                 type="text"
-                name="company"
-                id="company"
+                name="content"
+                id="content"
                 className="
                 bg-[#272727] focus:outline-none px-10 py-8 text-white h-[30rem] 
                   focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
