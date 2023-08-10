@@ -9,7 +9,7 @@ const authRouter = require("./routes/auth.js");
 const postRouter = require("./routes/posts.js");
 const majorRouter = require("./routes/majors.js");
 const collegeRouter = require("./routes/colleges.js");
-// const commentRouter = require("./routes/comments.js");
+const commentRouter = require("./routes/comments.js");
 
 // const {
 //     forbiddenErrorHandler,
@@ -51,7 +51,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/majors", majorRouter);
 app.use("/api/colleges", collegeRouter);
-// app.use("/api/comments", commentRouter);
+app.use("/api/comments", commentRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");

@@ -17,24 +17,39 @@ router.post('/', authenticateUser, async (req, res) => {
     }
   });
 
-// Retrieve all Comments for a specific Post
-router.get('/posts/:id', async (req, res) => {
-  const PostId = req.params.id;
-
-  try {
-    const post = await Post.findOne({ where: { id: PostId } });
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
+router.get('/', async (req, res) => {
+    try {
+        const whereClause = {};
+        if (req.query.postId) {
+            whereClause.PostId = req.query.postId;
+        }
+        const allComments = await Comment.findAll({where: whereClause});
+    } catch(err){ 
+        console.error(err);
+        res.status(500).send({message: err.message});
     }
+})
 
-    const comments = await Comment.findAll({where: {id: PostId }});
 
-    res.json(comments);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+
+// // Retrieve all Comments for a specific Post
+// router.get('/:id', async (req, res) => {
+//   const PostId = req.params.id;
+
+//   try {
+//     const post = await Post.findOne({ where: { id: PostId } });
+//     if (!post) {
+//       return res.status(404).json({ error: 'Post not found' });
+//     }
+
+//     const comments = await Comment.findAll({where: {id: PostId }});
+
+//     res.json(comments);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
 // Retrieve a specific Comment by ID
 router.get('/:id', async (req, res) => {
@@ -65,9 +80,11 @@ router.put('/:id', authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the comment
-    if (req.session.user.id !== comment.UserId) {
-      return res.status(403).json({ error: 'Unauthorized' });
-    }
+    // authentication comes after CRUD is up, test crud first
+    // then come back to authenticate a user before placing a comment
+    // if (req.session.user.id !== comment.UserId) {
+    //   return res.status(403).json({ error: 'Unauthorized' });
+    // }
 
     await comment.update({ content });
     res.json(comment);
