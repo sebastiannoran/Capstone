@@ -7,23 +7,25 @@ export async function loader({ params }) {
   const major = await majorResponse.json();
   const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
   const college = await collegeResponse.json();
-  const postsResponse= await fetch(`/api/posts/${params.postsId}`);
-  const posts = postsResponse.json();
-  console.log(major, college, posts);
+  const postsResponse = await fetch(`
+    /api/posts?majorId=${params.majorId}
+    `);
+  const posts = await postsResponse.json();
+  console.log(major, college);
   return { major, college, posts };
 }
 
 const MajorForum = () => {
   const { major, college } = useLoaderData();
-  const { id, name:courseName } = major;
-  const [posts, setPosts] = useState(forumData[0]); 
+  const { id, name:majorName } = college;
+  const [posts, setPosts] = useState(forumData[0]);
 
   return (
     <div className="text-center">
       <div className="flex justify-center">
         <div>
           <div className="mb-12">
-            <p className="text-5xl font-bold">{courseName}</p>
+            <p className="text-5xl font-bold">{majorName}</p>
           </div>
           <div className="max-w-4xl bg-[#272727] divide-y-[1px] divide-black rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)]">
             {posts.map(({ id, title, content }) => {
