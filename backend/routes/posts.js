@@ -7,7 +7,7 @@ const { Post } = require("../models");
 // Create a new Post
 router.post("/", authenticateUser, async (req, res) => {
   const { title, content } = req.body;
-  const userId = req.session.user.id;
+  const userId = req.session.userId;
 
   try {
     const newPost = await Post.create({ title, content, userId });
@@ -39,9 +39,9 @@ router.get("/", async (req, res) => {
   try {
     const whereClause = {};
     if (req.query.majorId) {
-      whereClause.majorId = req.query.majorId;
+      whereClause.MajorId = req.query.majorId;
     }
-    const allPosts = await req.major.getPosts({ where: whereClause });
+    const allPosts = await Post.findAll({ where: whereClause });
 
     res.status(200).json(allPosts);
   } catch (err) {
