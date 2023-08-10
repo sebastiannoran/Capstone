@@ -36,7 +36,7 @@ function Login() {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                name="email_address"
+                name="email"
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />
