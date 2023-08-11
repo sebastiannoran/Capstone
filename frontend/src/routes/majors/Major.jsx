@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Major = ({ majors, college }) => {
+const Major = ({ majors, college={} }) => {
   console.log(college.id);
   return (
     <div className="mx-auto">

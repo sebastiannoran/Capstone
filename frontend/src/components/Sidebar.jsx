@@ -4,17 +4,144 @@ import { FaSchool } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { MdSchool } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+import { useLoaderData, useNavigate } from "react-router-dom";
+
+const Sidebar = ({ majors, college }) => {
   const [open, setOpen] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [majors, setMajors] = useState([]);
+  // const [majors, setMajors] = useState([]);
 
   const navigate = useNavigate();
 
+  const menus = [
+    // {
+    //   title: "Accounting",
+    // },
+    // {
+    //   title: "African and African Diaspora Studies",
+    // },
+    // {
+    //   title: "American Studies",
+    // },
+    // {
+    //   title: "Art",
+    // },
+    // {
+    //   title: "Biochemistry",
+    // },
+    // {
+    //   title: "Biology",
+    // },
+    // {
+    //   title: "Business",
+    // },
+    // {
+    //   title: "Chemistry",
+    // },
+    // {
+    //   title: "Communications",
+    // },
+    // {
+    //   title: "Computer Science",
+    // },
+    // {
+    //   title: "Computer Technology",
+    // },
+    // {
+    //   title: "Earth and Environmental Science",
+    // },
+    // {
+    //   title: "Economics",
+    // },
+    // {
+    //   title: "Electrical Engineering",
+    // },
+    // {
+    //   title: "Engineering Science",
+    // },
+    // {
+    //   title: "English",
+    // },
+    // {
+    //   title: "Geography",
+    // },
+    // {
+    //   title: "History",
+    // },
+    // {
+    //   title: "Information Systems and Informatics",
+    // },
+    // {
+    //   title: "International Studies",
+    // },
+    // {
+    //   title: "Italian Studies",
+    // },
+    // {
+    //   title: "Mathematics",
+    // },
+    // {
+    //   title: "Medical Laboratory Science",
+    // },
+    // {
+    //   title: "Music",
+    // },
+    // {
+    //   title: "Nursing",
+    // },
+    // {
+    //   title: "Philosophy",
+    // },
+    // {
+    //   title: "Physics",
+    // },
+    // {
+    //   title: "Political Science",
+    // },
+    // {
+    //   title: "Psychology",
+    // },
+    // {
+    //   title: "Science, Letters, Society",
+    // },
+    // {
+    //   title: "Social Work",
+    // },
+    // {
+    //   title: "Sociology/Anthropology",
+    // },
+    // {
+    //   title: "Spanish",
+    // },
+    // {
+    //   title: "Womens Gender And Sexuality Studies",
+    // },
+  ];
+
+  // useEffect(() => {
+  //   fetch('/api/majors')
+  //   .then((response) => response.json());
+  //   .then ((data) => setMajors(data);
+  //   .catch((error) => console.error('could not fetch majors', error))
+  // }, []);
+
+  const [menusOpen, setMenusOpen] = useState(
+    menus.reduce((acc, menu, index) => {
+      acc[index] = menu.submenu;
+      return acc;
+    }, {})
+  );
+
+  const toggleMenu = (index) => {
+    setMenusOpen({
+      ...menusOpen,
+      [index]: !menusOpen[index],
+    });
+  };
 
   return (
     <div className="bg-[#272727] text-white h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
@@ -48,7 +175,7 @@ const Sidebar = () => {
                 !open && "scale-0"
               }`}
             >
-              College of Staten Island
+              {college.name}
             </h1>
           </div>
 
@@ -74,7 +201,58 @@ const Sidebar = () => {
           </div>
 
           <ul className="pt-2">
-            {}
+            {majors.map((major) => (
+              <Link to={`/colleges/${college.id}/majors/${major.id}`}>{major.name}</Link>
+            ))}
+            {menus.map((menu, index) => (
+              <>
+                <li
+                  key={index}
+                  onClick={() => toggleMenu(index)}
+                  className="text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md mt-2"
+                >
+                  <span className="text-2xl block float-left">
+                    <MdSchool
+                      className={`transition-transform ${
+                        !open && "translate-x-[-12px]"
+                      }`}
+                    />
+                  </span>
+                  <span
+                    className={`text-base font-medium flex-1 duration-200 ${
+                      !open && "hidden"
+                    }`}
+                  >
+                    {menu.title}
+                  </span>
+                  {menu.submenu && open && (
+                    <BsChevronDown
+                      className={`${menusOpen[index] && "rotate-180"}`}
+                    />
+                  )}
+                </li>
+
+                {menu.submenu && menusOpen[index] && open && (
+                  <ul className="bg-white rounded-md mt-2">
+                    {menu.submenuItems
+                      .filter(
+                        (submenuItem) =>
+                          submenuItem.title
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase()) || // Check if title matches search query
+                          submenuItem.title
+                            .toLowerCase()
+                            .includes(
+                              menu.courseCode.toLowerCase() +
+                                " " +
+                                searchQuery.toLowerCase()
+                            ) // Check if course code + title matches search query
+                      )
+                      }
+                  </ul>
+                )}
+              </>
+            ))}
           </ul>
         </div>
       </div>
