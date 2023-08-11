@@ -4,120 +4,122 @@ import { FaSchool } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { MdSchool } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+import { useLoaderData, useNavigate } from "react-router-dom";
+
+const Sidebar = ({ majors, college }) => {
   const [open, setOpen] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [majors, setMajors] = useState([]);
+  // const [majors, setMajors] = useState([]);
 
   const navigate = useNavigate();
 
   const menus = [
-    {
-      title: "Accounting",
-    },
-    {
-      title: "African and African Diaspora Studies",
-    },
-    {
-      title: "American Studies",
-    },
-    {
-      title: "Art",
-    },
-    {
-      title: "Biochemistry",
-    },
-    {
-      title: "Biology",
-    },
-    {
-      title: "Business",
-    },
-    {
-      title: "Chemistry",
-    },
-    {
-      title: "Communications",
-    },
-    {
-      title: "Computer Science",
-    },
-    {
-      title: "Computer Technology",
-    },
-    {
-      title: "Earth and Environmental Science",
-    },
-    {
-      title: "Economics",
-    },
-    {
-      title: "Electrical Engineering",
-    },
-    {
-      title: "Engineering Science",
-    },
-    {
-      title: "English",
-    },
-    {
-      title: "Geography",
-    },
-    {
-      title: "History",
-    },
-    {
-      title: "Information Systems and Informatics",
-    },
-    {
-      title: "International Studies",
-    },
-    {
-      title: "Italian Studies",
-    },
-    {
-      title: "Mathematics",
-    },
-    {
-      title: "Medical Laboratory Science",
-    },
-    {
-      title: "Music",
-    },
-    {
-      title: "Nursing",
-    },
-    {
-      title: "Philosophy",
-    },
-    {
-      title: "Physics",
-    },
-    {
-      title: "Political Science",
-    },
-    {
-      title: "Psychology",
-    },
-    {
-      title: "Science, Letters, Society",
-    },
-    {
-      title: "Social Work",
-    },
-    {
-      title: "Sociology/Anthropology",
-    },
-    {
-      title: "Spanish",
-    },
-    {
-      title: "Womens Gender And Sexuality Studies",
-    },
+    // {
+    //   title: "Accounting",
+    // },
+    // {
+    //   title: "African and African Diaspora Studies",
+    // },
+    // {
+    //   title: "American Studies",
+    // },
+    // {
+    //   title: "Art",
+    // },
+    // {
+    //   title: "Biochemistry",
+    // },
+    // {
+    //   title: "Biology",
+    // },
+    // {
+    //   title: "Business",
+    // },
+    // {
+    //   title: "Chemistry",
+    // },
+    // {
+    //   title: "Communications",
+    // },
+    // {
+    //   title: "Computer Science",
+    // },
+    // {
+    //   title: "Computer Technology",
+    // },
+    // {
+    //   title: "Earth and Environmental Science",
+    // },
+    // {
+    //   title: "Economics",
+    // },
+    // {
+    //   title: "Electrical Engineering",
+    // },
+    // {
+    //   title: "Engineering Science",
+    // },
+    // {
+    //   title: "English",
+    // },
+    // {
+    //   title: "Geography",
+    // },
+    // {
+    //   title: "History",
+    // },
+    // {
+    //   title: "Information Systems and Informatics",
+    // },
+    // {
+    //   title: "International Studies",
+    // },
+    // {
+    //   title: "Italian Studies",
+    // },
+    // {
+    //   title: "Mathematics",
+    // },
+    // {
+    //   title: "Medical Laboratory Science",
+    // },
+    // {
+    //   title: "Music",
+    // },
+    // {
+    //   title: "Nursing",
+    // },
+    // {
+    //   title: "Philosophy",
+    // },
+    // {
+    //   title: "Physics",
+    // },
+    // {
+    //   title: "Political Science",
+    // },
+    // {
+    //   title: "Psychology",
+    // },
+    // {
+    //   title: "Science, Letters, Society",
+    // },
+    // {
+    //   title: "Social Work",
+    // },
+    // {
+    //   title: "Sociology/Anthropology",
+    // },
+    // {
+    //   title: "Spanish",
+    // },
+    // {
+    //   title: "Womens Gender And Sexuality Studies",
+    // },
   ];
 
   // useEffect(() => {
@@ -173,7 +175,7 @@ const Sidebar = () => {
                 !open && "scale-0"
               }`}
             >
-              College of Staten Island
+              {college.name}
             </h1>
           </div>
 
@@ -199,7 +201,10 @@ const Sidebar = () => {
           </div>
 
           <ul className="pt-2">
-            {/* {menus.map((menu, index) => (
+            {majors.map((major) => (
+              <Link to={`/colleges/${college.id}/majors/${major.id}`}>{major.name}</Link>
+            ))}
+            {menus.map((menu, index) => (
               <>
                 <li
                   key={index}
@@ -243,23 +248,11 @@ const Sidebar = () => {
                                 searchQuery.toLowerCase()
                             ) // Check if course code + title matches search query
                       )
-                      .map((submenuItem) => (
-                        <li
-                          key={submenuItem.title}
-                          className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 px-7 hover:bg-indigo-400 rounded-md mt-2 "
-                          onClick={() =>
-                            navigate(
-                              `/colleges/${menu.courseCode}/courses/${submenuItem.title}`
-                            )
-                          }
-                        >
-                          {submenuItem.title}
-                        </li>
-                      ))}
+                      }
                   </ul>
                 )}
               </>
-            ))} */}
+            ))}
           </ul>
         </div>
       </div>
