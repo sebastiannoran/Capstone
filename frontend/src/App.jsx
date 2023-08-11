@@ -8,7 +8,6 @@ import Register from "./routes/authentication/Register";
 import CollegeHomepage, {
   loader as majorLoader,
 } from "./routes/colleges/CollegeHomepage";
-import CourseForum from "./routes/courseForums/CourseForum";
 import ForumPost, {
   loader as forumPostLoader,
 } from "./routes/forumPosts/ForumPost";
@@ -17,7 +16,10 @@ import CreatePost, {
 } from "./routes/forumPosts/CreatePost";
 import MajorForum, { loader as forumLoader } from "./routes/majors/MajorForum";
 import { action as deletePostAction } from "./routes/forumPosts/DeletePost";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import EditPost, {
+  loader as editPostLoader,
+  action as editPostAction,
+} from "./routes/forumPosts/EditPost";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +39,6 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-
       {
         path: "/colleges/:collegeId",
         element: <College />,
@@ -57,27 +58,20 @@ const router = createBrowserRouter([
             element: <ForumPost />,
             loader: forumPostLoader,
           },
-
           {
             path: "/colleges/:collegeId/majors/:majorId/create-post",
-            element: 
-            <ProtectedRoute>
-            <CreatePost /> 
-            </ProtectedRoute>,
+            element: <CreatePost />,
             action: createPostAction,
           },
           {
             path: "/colleges/:collegeId/majors/:majorId/posts/:postId/delete",
             action: deletePostAction,
           },
-
           {
-            path: "/colleges/:collegeId/courses/:courseId",
-            element: <CourseForum />,
-          },
-          {
-            path: "/colleges/:collegeId/courses/:courseId/posts/:postId",
-            element: <ForumPost />,
+            path: "/colleges/:collegeId/majors/:majorId/posts/:postId/edit",
+            element: <EditPost />,
+            loader: editPostLoader,
+            action: editPostAction,
           },
         ],
       },
