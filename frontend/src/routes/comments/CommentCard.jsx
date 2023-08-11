@@ -1,7 +1,7 @@
 import { useFetcher } from "react-router-dom";
 import { FaTrash, FaPen } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
-import { formatTime } from './utlis';
+import { formatTime } from '../../../utlis';
 
 function CommentCard({ comment }) {
   const [isEditing, setIsEditing] = useState(false);
