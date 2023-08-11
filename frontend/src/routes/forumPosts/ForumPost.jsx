@@ -1,5 +1,12 @@
-import React, { useState } from 'react';
-import isAuthChecked from '../../contexts/AuthContext';
+import React, { useState } from "react";
+import isAuthChecked from "../../contexts/AuthContext";
+import {
+  Navigate,
+  redirect,
+  useFetcher,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 
 export async function loader({ params }) {
   // const majorResponse = await fetch(`/api/majors/${params.majorId}`);
@@ -59,7 +66,7 @@ export const ForumPost = () => {
   };
 
   const handleTitleChange = (event) => {
-    setPosts({ ...posts, title: event.target.value });
+    setPost({ ...post, title: event.target.value });
   };
 
   const handleContentChange = (event) => {
@@ -117,12 +124,12 @@ export const ForumPost = () => {
         {isTitleEditing ? (
           <input
             type="text"
-            value={forumData.title}
+            value={post.title}
             onChange={handleTitleChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <h3 className="text-2xl font-bold mb-2">Title: {forumData.title}</h3>
+          <h3 className="text-2xl font-bold mb-2">Title: {post.title}</h3>
         )}
         {isTitleEditing ? (
           <button
@@ -144,12 +151,12 @@ export const ForumPost = () => {
         <h2 className="text-2xl font-bold mb-2">Post:</h2>
         {isContentEditing ? (
           <textarea
-            value={forumData.content}
+            value={post.content}
             onChange={handleContentChange}
             className="block w-full border rounded-md px-3 py-2 mb-2"
           />
         ) : (
-          <p className="text-lg">{forumData.content}</p>
+          <p className="text-lg">{post.content}</p>
         )}
         {isContentEditing ? (
           <button
@@ -259,6 +266,7 @@ export const ForumPost = () => {
           Add Comment
         </button> */}
       </div>
+    </div>
   );
 };
 
