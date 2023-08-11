@@ -6,7 +6,7 @@ const {Comment} = require('../models');
 // Create a new Comment
 router.post('/', authenticateUser, async (req, res) => {
     const { content, PostId } = req.body;
-    const UserId = req.session.user.id;
+    const UserId = req.session.userId;
   
     try {
       const newComment = await Comment.create({ content, UserId, PostId });
@@ -105,9 +105,9 @@ router.delete('/:id', authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the comment
-    if (req.session.user.id !== comment.UserId) {
-      return res.status(403).json({ error: 'Unauthorized' });
-    }
+    // if (req.session.user.id !== comment.UserId) {
+    //   return res.status(403).json({ error: 'Unauthorized' });
+    // }
 
     await comment.destroy();
     res.json({ message: 'Comment deleted successfully' });
