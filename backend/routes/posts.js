@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-// const authenticateUser = require("./auth");
 const { Post } = require("../models");
 
 const authenticateUser = (req, res, next) => {
-  if (req.session.user) {
+  if (req.session.userId) { //THIS is failing
     // User is authenticated, proceed to the next middleware or route handler
     next();
   } else {
