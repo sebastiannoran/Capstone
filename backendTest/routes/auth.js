@@ -33,6 +33,7 @@ router.post("/register", async (req, res) => {
     res.status(201).json({
       message: "User created!",
       user: {
+        id: user.id,
         name: user.name,
         email: user.email,
       },
@@ -82,6 +83,7 @@ router.post("/login", async (req, res) => {
         res.status(200).json({
           message: "Logged in successfully",
           user: {
+            id: user.id,
             name: user.name,
             email: user.email,
           },
