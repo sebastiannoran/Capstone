@@ -68,23 +68,3 @@ export const ForumPost = () => {
 };
 
 export default ForumPost;
-
-{
-  /* <div className="">
-          <fetcher.Form
-            method="post"
-            action={`delete`}
-            onSubmit={(event) => {
-              if (!confirm("Please confirm you want to delete this record.")) {
-                event.preventDefault();
-                // redirect(`/colleges/${id.collegeId}/majors/${id.majorId}`);
-              }
-              navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
-            }}
-          >
-            <button>
-              <p>DELETE</p>
-            </button>
-          </fetcher.Form>
-        </div> */
-}
