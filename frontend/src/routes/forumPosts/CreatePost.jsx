@@ -54,7 +54,7 @@ const CreatePost = () => {
                 className="
                   bg-[#272727] focus:outline-none px-10 py-8 text-white w-[56rem] h-[10rem] 
                   focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
-                  shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-5xl transition
+                  shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-4xl transition
                   duration-200 resize-none
                   "
               />
@@ -75,7 +75,7 @@ const CreatePost = () => {
                 className="
                 bg-[#272727] focus:outline-none px-10 py-8 text-white h-[30rem] 
                   focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
-                  shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-xl transition
+                  shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 transition
                   duration-200 resize-none
                   "
               />

@@ -1,13 +1,12 @@
 import { AuthContext } from "../../contexts/AuthContext";
-import { Form, useNavigate, Navigate } from "react-router-dom";
+import { Form, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 function Login() {
   const { currentUser, login, authError } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   if (currentUser) {
-    navigate(`/`);
+    return <Navigate to="/" />;
   }
 
   const handleSubmit = async (e) => {
@@ -37,7 +36,7 @@ function Login() {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                name="email"
+                name="email_address"
                 required
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />

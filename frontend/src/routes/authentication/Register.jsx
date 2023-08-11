@@ -45,7 +45,7 @@ const Register = () => {
               <label htmlFor="title">Email</label>
               <input
                 type="email"
-                name="email"
+                name="email_address"
                 id="email"
                 className="border-none focus:outline-none p-2 text-black rounded-md"
               />

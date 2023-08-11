@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import isAuthChecked from "../../contexts/AuthContext";
 import { Link, useFetcher, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import CommentCard from "../comments/CommentCard";
 
 export async function loader({ params }) {
   const postResponse = await fetch(`/api/posts/${params.postId}`);

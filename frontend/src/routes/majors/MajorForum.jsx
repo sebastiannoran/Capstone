@@ -63,23 +63,3 @@ const MajorForum = () => {
 };
 
 export default MajorForum;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
