@@ -1,12 +1,13 @@
 import { AuthContext } from "../../contexts/AuthContext";
-import { Form, Navigate } from "react-router-dom";
+import { Form, useNavigate, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 function Login() {
   const { currentUser, login, authError } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   if (currentUser) {
-    return <Navigate to="/" />;
+    navigate(`/`);
   }
 
   const handleSubmit = async (e) => {

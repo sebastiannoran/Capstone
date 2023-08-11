@@ -19,7 +19,6 @@ export async function loader({ params }) {
 
 export const ForumPost = () => {
   const { id, post } = useLoaderData();
-  const { title, content } = post;
   const fetcher = useFetcher();
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
@@ -51,14 +50,35 @@ export const ForumPost = () => {
         </div>
         <div>comments go here</div>
       </div>
-      {currentUser.id === post.UserId ? (
+      {!!currentUser && currentUser.id === post.UserId ? (
         <div className="">
-          <Link
-            to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
-            className=""
-          >
-            Edit
-          </Link>
+          <div className="border-[1px] m-4">
+            <Link
+              to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
+              className=""
+            >
+              Edit
+            </Link>
+          </div>
+          <div className="border-[1px] m-4">
+            <fetcher.Form
+              method="post"
+              action={`delete`}
+              onSubmit={(event) => {
+                if (
+                  !confirm("Please confirm you want to delete this record.")
+                ) {
+                  event.preventDefault();
+                  // redirect(`/colleges/${id.collegeId}/majors/${id.majorId}`);
+                }
+                navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
+              }}
+            >
+              <button>
+                <p>DELETE</p>
+              </button>
+            </fetcher.Form>
+          </div>
         </div>
       ) : (
         <></>
