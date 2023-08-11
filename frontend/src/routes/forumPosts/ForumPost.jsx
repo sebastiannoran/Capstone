@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import isAuthChecked from "../../contexts/AuthContext";
-import {
-  Navigate,
-  redirect,
-  useFetcher,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useFetcher, useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import CommentCard from "../comments/CommentCard";
 
 export async function loader({ params }) {
   // const majorResponse = await fetch(`/api/majors/${params.majorId}`);
