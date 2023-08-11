@@ -1,6 +1,4 @@
 import { useLoaderData } from "react-router-dom";
-import Courses from "./Courses";
-import PopularCourses from "./PopularCourses";
 import Major from "../majors/Major";
 
 export async function loader({ params }) {
@@ -14,18 +12,18 @@ export async function loader({ params }) {
 
 const CollegeHomepage = () => {
   const { majors, college } = useLoaderData();
-  const { id, name } = college;
+  // const { id, name } = college;
   // const { id, name } = college;
 
   return (
     <div className="text-center">
       <div className="text-5xl mb-10 font-bold">
-        <p>{name}</p>
+        <p>{college.name}</p>
       </div>
 
       <div className="">
         <p className="p-4">Get Major Help Here!</p>
-        <Major majors={majors} />
+        <Major majors={majors} college={college} />
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 
-const Major = ({ majors }) => {
+const Major = ({ majors, college }) => {
+  console.log(college.id);
   return (
     <div className="mx-auto">
       <div className="">
         {majors.map(({ id, name, CollegeId }) => (
           <Link
             // to={`/college/${collegeData}/courses/${course.id}`}
-            to={`/colleges/${CollegeId}/majors/${id}`}
+            to={`/colleges/${college.id}/majors/${id}`}
             key={id}
           >
             <button
