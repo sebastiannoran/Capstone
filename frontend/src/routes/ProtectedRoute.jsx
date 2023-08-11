@@ -8,7 +8,6 @@ export default function ProtectedRoute({ children }) {
   if (!isAuthChecked) {
     return null;
   }
-  
   if (!currentUser) {
     return <Navigate to="/login" />;
   }

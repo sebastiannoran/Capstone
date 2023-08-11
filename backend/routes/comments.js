@@ -17,8 +17,23 @@ router.post('/', authenticateUser, async (req, res) => {
     }
   });
 
-// Retrieve all Comments for a specific Post
-// router.get('/posts/:id', async (req, res) => {
+router.get('/', async (req, res) => {
+    try {
+        const whereClause = {};
+        if (req.query.postId) {
+            whereClause.PostId = req.query.postId;
+        }
+        const allComments = await Comment.findAll({where: whereClause});
+    } catch(err){ 
+        console.error(err);
+        res.status(500).send({message: err.message});
+    }
+})
+
+
+
+// // Retrieve all Comments for a specific Post
+// router.get('/:id', async (req, res) => {
 //   const PostId = req.params.id;
 
 //   try {
@@ -35,20 +50,6 @@ router.post('/', authenticateUser, async (req, res) => {
 //     res.status(500).json({ error: 'Internal server error' });
 //   }
 // });
-router.get("/", async (req, res) => {
-  try {
-    const whereClause = {};
-    if (req.query.postId) {
-      whereClause.PostId = req.query.postId;
-    }
-    const allComments = await Post.findAll({ where: whereClause });
-
-    res.status(200).json(allComments);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ message: err.message });
-  }
-});
 
 // Retrieve a specific Comment by ID
 router.get('/:id', async (req, res) => {
@@ -79,9 +80,11 @@ router.put('/:id', authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the comment
-    if (req.session.user.id !== comment.UserId) {
-      return res.status(403).json({ error: 'Unauthorized' });
-    }
+    // authentication comes after CRUD is up, test crud first
+    // then come back to authenticate a user before placing a comment
+    // if (req.session.user.id !== comment.UserId) {
+    //   return res.status(403).json({ error: 'Unauthorized' });
+    // }
 
     await comment.update({ content });
     res.json(comment);
@@ -102,9 +105,9 @@ router.delete('/:id', authenticateUser, async (req, res) => {
     }
 
     // Check if the authenticated user is the owner of the comment
-    if (req.session.user.id !== comment.UserId) {
-      return res.status(403).json({ error: 'Unauthorized' });
-    }
+    // if (req.session.user.id !== comment.UserId) {
+    //   return res.status(403).json({ error: 'Unauthorized' });
+    // }
 
     await comment.destroy();
     res.json({ message: 'Comment deleted successfully' });
