@@ -5,15 +5,28 @@ import { BiSearch } from "react-icons/bi";
 import { MdSchool } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
-
-
 import { useLoaderData, useNavigate } from "react-router-dom";
 
-const Sidebar = ({ majors, college }) => {
-  const [open, setOpen] = useState(false);
 
+const Sidebar = ({ majors, college }) => {
+// console.log(queryString)
+
+  // console.log(URLSearchParams(this.props.location.search) )
+  const [open, setOpen] = useState(false);
+  const [sidebarMajors, setsidebarMajors] = useState(majors);
   const [searchQuery, setSearchQuery] = useState("");
   // const [majors, setMajors] = useState([]);
+ const collapse=(open)=>{
+ 
+  if (!open) {
+    setsidebarMajors(majors);
+    setOpen(!open);
+  }else{
+    setsidebarMajors([]);
+    setOpen(!open);
+  } 
+  
+ }
 
   const navigate = useNavigate();
 
@@ -36,7 +49,7 @@ const Sidebar = ({ majors, college }) => {
   };
 
   return (
-    <div className="bg-[#272727] text-white h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
+    <div className="bg-[#272727] text-white min-h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
       <div
         className={`flex-shrink-0 p-5 pt-8 ${
           open ? "w-72 bg-fuchsia-700 duration-300" : "w-20 duration-100"
@@ -51,7 +64,7 @@ const Sidebar = ({ majors, college }) => {
             className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${
               !open && "rotate-180"
             }`}
-            onClick={() => setOpen(!open)}
+            onClick={() => collapse(open)}
           />
 
           <div className="flex items-center">
@@ -67,6 +80,7 @@ const Sidebar = ({ majors, college }) => {
                 !open && "scale-0"
               }`}
             >
+              
               {college.name}
             </h1>
           </div>
@@ -93,20 +107,21 @@ const Sidebar = ({ majors, college }) => {
           </div>
 
           <ul className="pt-2">
-            {majors.map((major) => (
+            {sidebarMajors.map((major) => (
               <li key={major.id} className="mb-1">
+               {/* { console.log(params)} */}
                 <Link
-                  to={`/colleges/${college.id}/majors/${major.id}`}
+                  to={`/colleges/27/majors/${major.id}`}
                   title={major.name}
                   className="truncate w-full text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md"
                 >
-                  <span className="text-2xl block float-left">
+                  {/* <span className="text-2xl block float-left">
                     <MdSchool
                       className={`transition-transform ${
                         !open && "translate-x-[-12px]"
                       }`}
                     />
-                  </span>
+                  </span> */}
                   <span
                     className={`text-base font-medium flex-1 duration-200 ${
                       !open && "hidden"
