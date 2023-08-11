@@ -6,7 +6,7 @@ const {Comment} = require('../models');
 // Create a new Comment
 router.post('/', authenticateUser, async (req, res) => {
     const { content, PostId } = req.body;
-    const UserId = req.session.user.id;
+    const UserId = req.session.userId;
   
     try {
       const newComment = await Comment.create({ content, UserId, PostId });
@@ -18,21 +18,35 @@ router.post('/', authenticateUser, async (req, res) => {
   });
 
 // Retrieve all Comments for a specific Post
-router.get('/posts/:id', async (req, res) => {
-  const PostId = req.params.id;
+// router.get('/posts/:id', async (req, res) => {
+//   const PostId = req.params.id;
 
+//   try {
+//     const post = await Post.findOne({ where: { id: PostId } });
+//     if (!post) {
+//       return res.status(404).json({ error: 'Post not found' });
+//     }
+
+//     const comments = await Comment.findAll({where: {id: PostId }});
+
+//     res.json(comments);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
+router.get("/", async (req, res) => {
   try {
-    const post = await Post.findOne({ where: { id: PostId } });
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
+    const whereClause = {};
+    if (req.query.postId) {
+      whereClause.PostId = req.query.postId;
     }
+    const allComments = await Post.findAll({ where: whereClause });
 
-    const comments = await Comment.findAll({where: {id: PostId }});
-
-    res.json(comments);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(200).json(allComments);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: err.message });
   }
 });
 
