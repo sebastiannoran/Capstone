@@ -1,6 +1,4 @@
 import { useLoaderData } from "react-router-dom";
-import Courses from "./Courses";
-import PopularCourses from "./PopularCourses";
 import Major from "../majors/Major";
 
 export async function loader({ params }) {
@@ -14,6 +12,8 @@ export async function loader({ params }) {
 
 const CollegeHomepage = () => {
   const { majors, college } = useLoaderData();
+  // const { id, name } = college;
+  // const { id, name } = college;
 
   return (
     <div className="text-center">

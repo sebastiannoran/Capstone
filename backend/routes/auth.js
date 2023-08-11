@@ -20,14 +20,14 @@ router.get("/current_user", async (req, res) => {
 });
 
 // Middleware for user authentication
-const authenticateUser = (req, res, next) => {
-  if (req.session.user) {
-    // User is authenticated, proceed to the next middleware or route handler
-    next();
-  } else {
-    res.status(401).json({ error: "Unauthorized" });
-  }
-};
+// const authenticateUser = (req, res, next) => {
+//   if (req.session.user) {
+//     // User is authenticated, proceed to the next middleware or route handler
+//     next();
+//   } else {
+//     res.status(401).json({ error: "Unauthorized" });
+//   }
+// };
 
 // User registration endpoint
 router.post("/register", async (req, res) => {
@@ -45,6 +45,7 @@ router.post("/register", async (req, res) => {
     res.status(201).json({
       message: "User created!",
       user: {
+        id: user.id,
         name: user.name,
         email_address: user.email_address,
       },
@@ -84,6 +85,7 @@ router.post("/login", async (req, res) => {
     res.json({
       message: "Login successful",
       user: {
+        id: user.id,
         name: user.name,
         email_address: user.email_address,
       },
