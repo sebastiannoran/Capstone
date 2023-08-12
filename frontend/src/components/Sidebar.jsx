@@ -115,13 +115,6 @@ const Sidebar = ({ majors, college }) => {
                   title={major.name}
                   className="truncate w-full text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md"
                 >
-                  {/* <span className="text-2xl block float-left">
-                    <MdSchool
-                      className={`transition-transform ${
-                        !open && "translate-x-[-12px]"
-                      }`}
-                    />
-                  </span> */}
                   <span
                     className={`text-base font-medium flex-1 duration-200 ${
                       !open && "hidden"
