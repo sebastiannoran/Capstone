@@ -15,7 +15,11 @@ const getMajor = async (id) => {
 // Get all majors
 router.get("/", async (req, res) => {
   try {
-    const allMajors = await Major.findAll();
+    const whereClause = {};
+    if (req.query.collegeId) {
+      whereClause.CollegeId = req.query.collegeId;
+    }
+    const allMajors = await Major.findAll({ where: whereClause });
 
     res.status(200).json(allMajors);
   } catch (err) {
