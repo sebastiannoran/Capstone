@@ -1,6 +1,6 @@
-import { AuthContext } from "../../contexts/AuthContext";
-import { Form, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import React, { useContext } from 'react';
+import { Link, Navigate, Form } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 function Login() {
   const { currentUser, login, authError } = useContext(AuthContext);
@@ -19,21 +19,18 @@ function Login() {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="h-screen"
-      style={{
-        backgroundSize: "cover",
-        backgroundImage: "url(src/misc/Sunset.jpg)",
-      }}
+      className="h-screen bg-cover"
+      style={{ backgroundImage: 'url(src/misc/Sunset.jpg)' }}
     >
       <div className="w-full h-full flex justify-center items-center">
-        <div className=" bg-[#1C1C1C]/95 text-white rounded-2xl px-16 py-12 grid justify-items-center gap-6">
+        <div className="bg-[#1C1C1C]/95 text-white rounded-2xl px-16 py-12 grid justify-items-center gap-6">
           <div className="flex flex-col">
             <p className="text-center text-3xl pb-6">Login</p>
 
             {authError && <div className="text-red-500">{authError}</div>}
 
             <fieldset className="flex flex-col">
-              <label htmlFor="title">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 name="email_address"
@@ -42,7 +39,7 @@ function Login() {
               />
             </fieldset>
             <fieldset className="flex flex-col">
-              <label htmlFor="company">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 name="password"
@@ -53,8 +50,20 @@ function Login() {
           </div>
           <input
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          ></input>
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
+            value="Login"
+          />
+          <div className="mt-4 text-center ">
+            Don't have an account?<br />{' '}
+            <Link
+              to="/register"
+              className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 m-3"
+            >
+              <div className="">
+              Register
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </Form>
@@ -62,3 +71,9 @@ function Login() {
 }
 
 export default Login;
+
+
+
+
+
+

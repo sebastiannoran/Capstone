@@ -1,6 +1,6 @@
-import { AuthContext } from "../../contexts/AuthContext";
-import { Form, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import React, { useContext } from 'react';
+import { Link, Navigate, Form } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Register = () => {
   const { currentUser, register, authError } = useContext(AuthContext);
@@ -16,24 +16,23 @@ const Register = () => {
     await register(credentials);
   };
 
+  const buttonStyle = "bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md";
+
   return (
     <Form
       onSubmit={handleSubmit}
-      className="h-screen"
-      style={{
-        backgroundSize: "cover",
-        backgroundImage: "url(src/misc/friends.jpg)",
-      }}
+      className="h-screen bg-cover"
+      style={{ backgroundImage: 'url(src/misc/friends.jpg)' }}
     >
       <div className="w-full h-full flex justify-center items-center">
-        <div className=" bg-[#1C1C1C]/95 text-white rounded-2xl px-16 py-12 grid justify-items-center gap-6">
+        <div className="bg-[#1C1C1C]/95 text-white rounded-2xl px-16 py-12 grid justify-items-center gap-6">
           <div className="flex flex-col">
             <p className="text-center text-3xl pb-6">Register</p>
 
             {authError && <div className="text-red-500">{authError}</div>}
 
             <fieldset className="flex flex-col">
-              <label htmlFor="title">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 name="name"
@@ -42,7 +41,7 @@ const Register = () => {
               />
             </fieldset>
             <fieldset className="flex flex-col">
-              <label htmlFor="title">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 name="email_address"
@@ -51,7 +50,7 @@ const Register = () => {
               />
             </fieldset>
             <fieldset className="flex flex-col">
-              <label htmlFor="company">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 name="password"
@@ -61,9 +60,18 @@ const Register = () => {
             </fieldset>
           </div>
           <input
-            className="bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md"
+            className={buttonStyle}
             type="submit"
-          ></input>
+            value="Register"
+          />
+          <div className="text-center mt-4">
+            Already have an account?<br/> 
+            <Link to="/login">
+              <button className={buttonStyle}>
+                Login
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </Form>
