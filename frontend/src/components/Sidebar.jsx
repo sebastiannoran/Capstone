@@ -8,40 +8,25 @@ import { Link } from "react-router-dom";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ majors, college }) => {
-  // console.log(queryString)
-
-  // console.log(URLSearchParams(this.props.location.search) )
   const [open, setOpen] = useState(false);
-  const [sidebarMajors, setsidebarMajors] = useState(majors);
+  const [sidebarMajors, setSidebarMajors] = useState(majors);
   const [searchQuery, setSearchQuery] = useState("");
-  // const [majors, setMajors] = useState([]);
-  const collapse = (open) => {
+
+  // Filter the major names based on the search query
+  const filteredMajors = sidebarMajors.filter((major) =>
+    major.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const collapse = () => {
     if (!open) {
-      setsidebarMajors(majors);
-      setOpen(!open);
+      setSidebarMajors(majors);
     } else {
-      setsidebarMajors([]);
-      setOpen(!open);
+      setSidebarMajors([]);
     }
+    setOpen(!open);
   };
 
   const navigate = useNavigate();
-
-  const menus = [];
-
-  const [menusOpen, setMenusOpen] = useState(
-    menus.reduce((acc, menu, index) => {
-      acc[index] = menu.submenu;
-      return acc;
-    }, {})
-  );
-
-  const toggleMenu = (index) => {
-    setMenusOpen({
-      ...menusOpen,
-      [index]: !menusOpen[index],
-    });
-  };
 
   return (
     <div className="fixed bg-[#272727] text-white h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
@@ -59,7 +44,7 @@ const Sidebar = ({ majors, college }) => {
             className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${
               !open && "rotate-180"
             }`}
-            onClick={() => collapse(open)}
+            onClick={collapse}
           />
 
           <div className="flex items-center">
@@ -71,7 +56,7 @@ const Sidebar = ({ majors, college }) => {
               />
             </div>
             <h1
-              className={`text-dark origin-left font-lg font-bold  text-2xl duration-300 ${
+              className={`text-dark origin-left font-lg font-bold text-2xl duration-300 ${
                 !open && "scale-0"
               }`}
             >
@@ -100,18 +85,17 @@ const Sidebar = ({ majors, college }) => {
             />
           </div>
 
-          <ul className="pt-2">
-            {sidebarMajors.map((major) => (
-              <li key={major.id} className="mb-1">
-                {/* { console.log(params)} */}
+          <ul className="pt-4">
+            {filteredMajors.map((major) => (
+              <li key={major.id} className="mb-3">
                 <Link
                   to={`/colleges/${college.id}/majors/${major.id}`}
                   title={major.name}
-                  className="truncate w-full text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md"
+                  className="flex items-center gap-x-2 cursor-pointer p-2 px-4 text-bold rounded-lg hover:bg-zinc-900 hover:shadow-md transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   <span
-                    className={`text-base font-medium flex-1 duration-200 ${
-                      !open && "hidden"
+                    className={`text-base font-semibold flex-1 transition-opacity ${
+                      !open && "opacity-0"
                     }`}
                   >
                     {major.name}
