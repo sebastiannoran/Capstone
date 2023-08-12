@@ -7,32 +7,27 @@ import { BsChevronDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
-
 const Sidebar = ({ majors, college }) => {
-// console.log(queryString)
+  // console.log(queryString)
 
   // console.log(URLSearchParams(this.props.location.search) )
   const [open, setOpen] = useState(false);
   const [sidebarMajors, setsidebarMajors] = useState(majors);
   const [searchQuery, setSearchQuery] = useState("");
   // const [majors, setMajors] = useState([]);
- const collapse=(open)=>{
- 
-  if (!open) {
-    setsidebarMajors(majors);
-    setOpen(!open);
-  }else{
-    setsidebarMajors([]);
-    setOpen(!open);
-  } 
-  
- }
+  const collapse = (open) => {
+    if (!open) {
+      setsidebarMajors(majors);
+      setOpen(!open);
+    } else {
+      setsidebarMajors([]);
+      setOpen(!open);
+    }
+  };
 
   const navigate = useNavigate();
 
-  const menus = [
-  ];
-
+  const menus = [];
 
   const [menusOpen, setMenusOpen] = useState(
     menus.reduce((acc, menu, index) => {
@@ -49,7 +44,7 @@ const Sidebar = ({ majors, college }) => {
   };
 
   return (
-    <div className="bg-[#272727] text-white min-h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
+    <div className="fixed bg-[#272727] text-white h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
       <div
         className={`flex-shrink-0 p-5 pt-8 ${
           open ? "w-72 bg-fuchsia-700 duration-300" : "w-20 duration-100"
@@ -80,7 +75,6 @@ const Sidebar = ({ majors, college }) => {
                 !open && "scale-0"
               }`}
             >
-              
               {college.name}
             </h1>
           </div>
@@ -109,9 +103,9 @@ const Sidebar = ({ majors, college }) => {
           <ul className="pt-2">
             {sidebarMajors.map((major) => (
               <li key={major.id} className="mb-1">
-               {/* { console.log(params)} */}
+                {/* { console.log(params)} */}
                 <Link
-                  to={`/colleges/27/majors/${major.id}`}
+                  to={`/colleges/${college.id}/majors/${major.id}`}
                   title={major.name}
                   className="truncate w-full text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md"
                 >

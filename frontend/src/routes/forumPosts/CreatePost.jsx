@@ -84,7 +84,6 @@ const CreatePost = () => {
         </div>
         <div className="flex justify-center mx-auto mt-24 text-center">
           <div className="ml-10">
-            {/* <Link to={`/colleges/:collegeId/courses/:courseId`}> */}
             <button
               className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
               hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
@@ -93,7 +92,6 @@ const CreatePost = () => {
             >
               Submit Post
             </button>
-            {/* </Link> */}
           </div>
         </div>
       </div>

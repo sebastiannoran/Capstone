@@ -13,7 +13,7 @@ const Root = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#1f1f1f]">
       <nav className="bg-[#0d0d0d] py-2 border-b-[1px] border-fuchsia-900 sticky top-0 z-50 flex justify-items-center justify-between drop-shadow-[0_-2px_5px_rgb(255,0,255,0.5)]">
         <p className="text-white flex items-center">
           <Link
