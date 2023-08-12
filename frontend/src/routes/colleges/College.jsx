@@ -15,7 +15,7 @@ function College() {
   const { majors, college } = useLoaderData();
   return (
     <div className="flex text-white">
-      <div className="mr-[5rem]">
+      <div className="">
         <Sidebar college={college} majors={majors} />
       </div>
       <div className="max-w-7xl mx-auto p-12">
