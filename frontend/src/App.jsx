@@ -10,12 +10,15 @@ import CollegeHomepage, {
 } from "./routes/colleges/CollegeHomepage";
 import ForumPost, {
   loader as forumPostLoader,
+  action as forumPostAction,
 } from "./routes/forumPosts/ForumPost";
 import CreatePost, {
   action as createPostAction,
 } from "./routes/forumPosts/CreatePost";
 import MajorForum, { loader as forumLoader } from "./routes/majors/MajorForum";
 import { action as deletePostAction } from "./routes/forumPosts/DeletePost";
+import { action as editCommentAction } from "./routes/comments/EditComment";
+import { action as deleteCommentAction } from "./routes/comments/DeleteComment";
 import EditPost, {
   loader as editPostLoader,
   action as editPostAction,
@@ -40,6 +43,14 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "comments/:commentId/edit",
+        action: editCommentAction,
+      },
+      {
+        path: "comments/:commentId/delete",
+        action: deleteCommentAction,
+      },
+      {
         path: "/colleges/:collegeId",
         element: <College />,
         children: [
@@ -57,6 +68,7 @@ const router = createBrowserRouter([
             path: "/colleges/:collegeId/majors/:majorId/posts/:postId",
             element: <ForumPost />,
             loader: forumPostLoader,
+            action: forumPostAction,
           },
           {
             path: "/colleges/:collegeId/majors/:majorId/create-post",
