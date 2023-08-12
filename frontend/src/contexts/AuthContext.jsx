@@ -46,19 +46,24 @@ const AuthProvider = ({ children }) => {
         setCurrentUser(user);
         setAuthError(null);
       } else {
-        setCurrentUser(null);
         const errorData = await response.json();
+        if(response.status===404){
+          setAuthError("Email address does not exist");
+      }  else if (response.status === 401) {
+        setAuthError("Invalid password");
+      }
+      else{
         setAuthError(errorData.message);
+       } 
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error logging in user:",error);
       setCurrentUser(null);
-      setAuthError(error.message);
+      setAuthError("An error occurred while logging in.");
     }
-
     setIsAuthChecked(true);
   };
-
+  
   const register = async (credentials) => {
     setIsAuthChecked(false);
 
@@ -70,20 +75,22 @@ const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify(credentials),
       });
-
+      
       if (response.ok) {
+        
         const { user } = await response.json();
         setCurrentUser(user);
         setAuthError(null);
       } else {
         setCurrentUser(null);
         const errorData = await response.json();
-        setAuthError(errorData.message);
+        setAuthError(errorData.error);
+        
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error registering user:",error);
       setCurrentUser(null);
-      setAuthError(error.message);
+      setAuthError("An error occurred while registering.");
     }
 
     setIsAuthChecked(true);
