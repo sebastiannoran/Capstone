@@ -105,7 +105,7 @@ const Sidebar = ({ majors, college }) => {
               <li key={major.id} className="mb-1">
                 {/* { console.log(params)} */}
                 <Link
-                  to={`/colleges/27/majors/${major.id}`}
+                  to={`/colleges/${college.id}/majors/${major.id}`}
                   title={major.name}
                   className="truncate w-full text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md"
                 >
