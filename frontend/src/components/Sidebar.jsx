@@ -4,128 +4,30 @@ import { FaSchool } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { MdSchool } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+const Sidebar = ({ majors, college }) => {
+  // console.log(queryString)
 
-const Sidebar = () => {
+  // console.log(URLSearchParams(this.props.location.search) )
   const [open, setOpen] = useState(false);
-
+  const [sidebarMajors, setsidebarMajors] = useState(majors);
   const [searchQuery, setSearchQuery] = useState("");
-  const [majors, setMajors] = useState([]);
+  // const [majors, setMajors] = useState([]);
+  const collapse = (open) => {
+    if (!open) {
+      setsidebarMajors(majors);
+      setOpen(!open);
+    } else {
+      setsidebarMajors([]);
+      setOpen(!open);
+    }
+  };
 
   const navigate = useNavigate();
 
-  const menus = [
-    {
-      title: "Accounting",
-    },
-    {
-      title: "African and African Diaspora Studies",
-    },
-    {
-      title: "American Studies",
-    },
-    {
-      title: "Art",
-    },
-    {
-      title: "Biochemistry",
-    },
-    {
-      title: "Biology",
-    },
-    {
-      title: "Business",
-    },
-    {
-      title: "Chemistry",
-    },
-    {
-      title: "Communications",
-    },
-    {
-      title: "Computer Science",
-    },
-    {
-      title: "Computer Technology",
-    },
-    {
-      title: "Earth and Environmental Science",
-    },
-    {
-      title: "Economics",
-    },
-    {
-      title: "Electrical Engineering",
-    },
-    {
-      title: "Engineering Science",
-    },
-    {
-      title: "English",
-    },
-    {
-      title: "Geography",
-    },
-    {
-      title: "History",
-    },
-    {
-      title: "Information Systems and Informatics",
-    },
-    {
-      title: "International Studies",
-    },
-    {
-      title: "Italian Studies",
-    },
-    {
-      title: "Mathematics",
-    },
-    {
-      title: "Medical Laboratory Science",
-    },
-    {
-      title: "Music",
-    },
-    {
-      title: "Nursing",
-    },
-    {
-      title: "Philosophy",
-    },
-    {
-      title: "Physics",
-    },
-    {
-      title: "Political Science",
-    },
-    {
-      title: "Psychology",
-    },
-    {
-      title: "Science, Letters, Society",
-    },
-    {
-      title: "Social Work",
-    },
-    {
-      title: "Sociology/Anthropology",
-    },
-    {
-      title: "Spanish",
-    },
-    {
-      title: "Womens Gender And Sexuality Studies",
-    },
-  ];
-
-  // useEffect(() => {
-  //   fetch('/api/majors')
-  //   .then((response) => response.json());
-  //   .then ((data) => setMajors(data);
-  //   .catch((error) => console.error('could not fetch majors', error))
-  // }, []);
+  const menus = [];
 
   const [menusOpen, setMenusOpen] = useState(
     menus.reduce((acc, menu, index) => {
@@ -157,7 +59,7 @@ const Sidebar = () => {
             className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${
               !open && "rotate-180"
             }`}
-            onClick={() => setOpen(!open)}
+            onClick={() => collapse(open)}
           />
 
           <div className="flex items-center">
@@ -173,7 +75,7 @@ const Sidebar = () => {
                 !open && "scale-0"
               }`}
             >
-              College of Staten Island
+              {college.name}
             </h1>
           </div>
 
@@ -199,67 +101,31 @@ const Sidebar = () => {
           </div>
 
           <ul className="pt-2">
-            {/* {menus.map((menu, index) => (
-              <>
-                <li
-                  key={index}
-                  onClick={() => toggleMenu(index)}
-                  className="text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md mt-2"
+            {sidebarMajors.map((major) => (
+              <li key={major.id} className="mb-1">
+                {/* { console.log(params)} */}
+                <Link
+                  to={`/colleges/27/majors/${major.id}`}
+                  title={major.name}
+                  className="truncate w-full text-black-300 text-lg flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-indigo-400 rounded-md"
                 >
-                  <span className="text-2xl block float-left">
+                  {/* <span className="text-2xl block float-left">
                     <MdSchool
                       className={`transition-transform ${
                         !open && "translate-x-[-12px]"
                       }`}
                     />
-                  </span>
+                  </span> */}
                   <span
                     className={`text-base font-medium flex-1 duration-200 ${
                       !open && "hidden"
                     }`}
                   >
-                    {menu.title}
+                    {major.name}
                   </span>
-                  {menu.submenu && open && (
-                    <BsChevronDown
-                      className={`${menusOpen[index] && "rotate-180"}`}
-                    />
-                  )}
-                </li>
-
-                {menu.submenu && menusOpen[index] && open && (
-                  <ul className="bg-white rounded-md mt-2">
-                    {menu.submenuItems
-                      .filter(
-                        (submenuItem) =>
-                          submenuItem.title
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase()) || // Check if title matches search query
-                          submenuItem.title
-                            .toLowerCase()
-                            .includes(
-                              menu.courseCode.toLowerCase() +
-                                " " +
-                                searchQuery.toLowerCase()
-                            ) // Check if course code + title matches search query
-                      )
-                      .map((submenuItem) => (
-                        <li
-                          key={submenuItem.title}
-                          className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 px-7 hover:bg-indigo-400 rounded-md mt-2 "
-                          onClick={() =>
-                            navigate(
-                              `/colleges/${menu.courseCode}/courses/${submenuItem.title}`
-                            )
-                          }
-                        >
-                          {submenuItem.title}
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </>
-            ))} */}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

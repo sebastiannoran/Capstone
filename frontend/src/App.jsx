@@ -2,7 +2,7 @@ import Root from "./routes/root";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import Login from "./routes/authentication/Login";
-import College from "./routes/colleges/College";
+import College ,{loader as collegeLoader}from "./routes/colleges/College";
 import Homepage from "./routes/Homepage";
 import Register from "./routes/authentication/Register";
 import CollegeHomepage, {
@@ -54,6 +54,7 @@ const router = createBrowserRouter([
       {
         path: "/colleges/:collegeId",
         element: <College />,
+        loader:collegeLoader,
         children: [
           {
             index: true,
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
             path: "/colleges/:collegeId/majors/:majorId/create-post",
             element: 
             <ProtectedRoute>
-            <CreatePost />
+            <CreatePost />,
             </ProtectedRoute>,
             action: createPostAction,
           },
