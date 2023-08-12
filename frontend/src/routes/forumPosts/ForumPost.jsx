@@ -82,7 +82,7 @@ export const ForumPost = () => {
             </p>
           </div>
         </div>
-        <Form className="my-4 flex gap-2" method="post">
+         <Form className="my-4 flex gap-2" method="post">
           <input
             placeholder="add a comment..."
             className="flex-1 p-2 text-black"

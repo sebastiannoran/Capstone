@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiFillCaretLeft } from "react-icons/ai";
 import { FaSchool } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import { MdSchool } from "react-icons/md";
-import { BsChevronDown } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ majors, college }) => {
   const [open, setOpen] = useState(false);
   const [sidebarMajors, setSidebarMajors] = useState(majors);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter the major names based on the search query
   const filteredMajors = sidebarMajors.filter((major) =>
     major.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -46,8 +42,7 @@ const Sidebar = ({ majors, college }) => {
             }`}
             onClick={collapse}
           />
-
-          <div className="flex items-center">
+          <Link to={`/colleges/${college.id}`} className="flex items-center">
             <div className="flex-shrink-0">
               <FaSchool
                 className={`bg-fuchsia-100 text-[#1a031a] text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${
@@ -62,7 +57,7 @@ const Sidebar = ({ majors, college }) => {
             >
               {college.name}
             </h1>
-          </div>
+          </Link>
 
           <div
             className={`flex items-center rounded-md bg-white mt-5 ${
