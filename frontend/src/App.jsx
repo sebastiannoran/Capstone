@@ -23,6 +23,7 @@ import EditPost, {
   loader as editPostLoader,
   action as editPostAction,
 } from "./routes/forumPosts/EditPost";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -72,7 +73,10 @@ const router = createBrowserRouter([
           },
           {
             path: "/colleges/:collegeId/majors/:majorId/create-post",
-            element: <CreatePost />,
+            element: 
+            <ProtectedRoute>
+            <CreatePost />
+            </ProtectedRoute>,
             action: createPostAction,
           },
           {
