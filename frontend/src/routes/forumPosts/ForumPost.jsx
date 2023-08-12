@@ -111,7 +111,7 @@ export const ForumPost = () => {
           </div>
           <div className="border-[1px] m-4">
             <fetcher.Form
-              method="post"
+              method="delete"
               action={`delete`}
               onSubmit={(event) => {
                 if (
@@ -120,7 +120,7 @@ export const ForumPost = () => {
                   event.preventDefault();
                   // redirect(`/colleges/${id.collegeId}/majors/${id.majorId}`);
                 }
-                navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
+                // navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
               }}
             >
               <button>

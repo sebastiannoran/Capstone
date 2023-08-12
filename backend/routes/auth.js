@@ -34,6 +34,14 @@ router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
   try {
+    const existingUser = await User.findOne({
+      where: { email_address: req.body.email_address },
+    });
+
+    if (existingUser) {
+      return res.status(400).json({ error: "Email address is already in use" });
+    }
+    
     const user = await User.create({
       name: req.body.name,
       email_address: req.body.email_address,
