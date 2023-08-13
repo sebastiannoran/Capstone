@@ -92,7 +92,7 @@ const Sidebar = ({ majors, college }) => {
                 >
                   <span
                     className={`text-base font-semibold flex-1 transition-opacity ${
-                      !open && ("opacity-0")
+                      !open && "invisible"
                     }`}
                   >
                     {major.name}
