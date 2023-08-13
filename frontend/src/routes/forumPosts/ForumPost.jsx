@@ -31,6 +31,11 @@ export async function action({ request, params }) {
     ...Object.fromEntries(formData),
     PostId: parseInt(params.postId),
   };
+  if(preparedComment.content.trim().length <= 0){
+    alert("Please enter contents for your comment.");
+    // return redirect(`/colleges/${params.collegeId}/majors/${params.majorId}/create-post`);
+    return null;
+  }  
   // console.log(preparedComment);
   // const isLoggedIn = currentUser;
   // if (!isLoggedIn) {
