@@ -52,7 +52,7 @@ const Sidebar = ({ majors, college }) => {
             </div>
             <h1
               className={`text-dark origin-left font-lg font-bold text-2xl duration-300 ${
-                !open && "scale-0"
+                !open && "hidden"
               }`}
             >
               {college.name}
