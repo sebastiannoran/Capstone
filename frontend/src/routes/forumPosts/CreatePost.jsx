@@ -31,11 +31,11 @@ const CreatePost = () => {
 
   return (
     <Form method="post" className="selection:bg-blue-200 flex flex-col gap-2">
+      <div className="mb-12 text-center">
+        <p className="text-white text-5xl font-bold">{`What's on your mind?`}</p>
+      </div>
       <div className="flex justify-center">
         <div className="">
-          <div className="mb-12 text-center">
-            <p className="text-white text-5xl font-bold">{`What's on your mind?`}</p>
-          </div>
           <div className="flex flex-col rounded-lg gap-10">
             {/* {errors && <div className="text-red-300">{errors}</div>} */}
             <fieldset className="flex flex-col">
@@ -82,7 +82,7 @@ const CreatePost = () => {
             </fieldset>
           </div>
         </div>
-        <div className="flex justify-center mx-auto mt-24 text-center">
+        <div className="flex justify-center mx-auto text-center">
           <div className="ml-10">
             <button
               className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
