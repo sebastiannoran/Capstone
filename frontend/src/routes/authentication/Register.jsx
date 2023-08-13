@@ -11,10 +11,19 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const credentials = Object.fromEntries(formData);
-    await register(credentials);
+    const form = e.target;
+    
+    if (form.checkValidity()) {
+      const formData = new FormData(form);
+      const credentials = Object.fromEntries(formData);
+      await register(credentials);
+    } else {
+      // Handle form validation error, show a message or style the form
+      console.log("Please fill in all required fields.");
+    }
   };
+  
+  
 
   const buttonStyle =
     "bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md";
@@ -39,6 +48,7 @@ const Register = () => {
                 name="name"
                 id="name"
                 className="border-none focus:outline-none p-2 text-black rounded-md"
+                required 
               />
             </fieldset>
             <fieldset className="flex flex-col">
@@ -48,6 +58,7 @@ const Register = () => {
                 name="email_address"
                 id="email"
                 className="border-none focus:outline-none p-2 text-black rounded-md"
+                required
               />
             </fieldset>
             <fieldset className="flex flex-col">
@@ -57,6 +68,7 @@ const Register = () => {
                 name="password"
                 id="password"
                 className="border-none focus:outline-none p-2 text-black rounded-md"
+                required
               />
             </fieldset>
           </div>
