@@ -32,6 +32,11 @@ export async function action({ request, params }) {
     PostId: parseInt(params.postId),
   };
   // console.log(preparedComment);
+  // const isLoggedIn = currentUser;
+  // if (!isLoggedIn) {
+  //   // Return a 401 Unauthorized response
+  //   return new Response("Unauthorized", { status: 401 });
+  // }
   try {
     const response = await fetch("/api/comments", {
       method: "POST",
@@ -40,6 +45,10 @@ export async function action({ request, params }) {
       },
       body: JSON.stringify(preparedComment),
     });
+    // if (response.status === 401) {
+    //   // Redirect user to the login page
+    //   return Response.redirect("/login", 302);
+    // }
   } catch (error) {
     console.error(error);
     return "Whoops! Something went wrong";
@@ -71,6 +80,7 @@ export const ForumPost = () => {
               "
             >
               {post.title}
+  
             </p>
             <p
               className="
@@ -82,7 +92,7 @@ export const ForumPost = () => {
             </p>
           </div>
         </div>
-         <Form className="my-4 flex gap-2" method="post">
+        { currentUser ? <Form className="my-4 flex gap-2" method="post" >
           <input
             placeholder="add a comment..."
             className="flex-1 p-2 text-black"
@@ -94,7 +104,8 @@ export const ForumPost = () => {
           >
             Create Comment
           </button>
-        </Form>
+        </Form> : null }
+         
         <div className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg">
           {renderedComments}
         </div>

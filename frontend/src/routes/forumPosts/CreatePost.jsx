@@ -7,8 +7,15 @@ export async function action({ request, params }) {
   console.log(params.majorId);
   console.log(postData);
   //console.log(formData);
-  try {
-    const response = await fetch("/api/posts", {
+  if(postData.content.trim().length <= 0 || postData.title.trim().length <= 0){
+    alert("Please enter title and contents for your post.");
+    // return redirect(`/colleges/${params.collegeId}/majors/${params.majorId}/create-post`);
+    return null;
+  }  
+  else{
+    try {
+      
+      const response = await fetch("/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,11 +26,16 @@ export async function action({ request, params }) {
       return redirect(`/colleges/${params.collegeId}/majors/${params.majorId}`);
     }
     const { errors } = await response.json();
+    console.log("invalid");
     return errors;
+    
   } catch (error) {
     console.error(error);
     return "Whoops! Something went wrong";
   }
+  }
+  
+
 }
 
 const CreatePost = () => {
