@@ -38,7 +38,7 @@ export const SearchBar = ({ input, handleChange, setResults, setCollege }) => {
           <FaSearch className="w-[26.56px] h-[28.72px] absolute left-[19.55px] top-[10.14px] object-cover" />
           <input
             type="text"
-            className="w-[308.94px] h-[29.79px] absolute left-[57.99px] top-[7.10px] bg-transparent text-lg italic text-left text-black focus:outline-none mt-1"
+            className="w-[308.94px] h-[29.79px] absolute left-[57.99px] top-[3.0px] bg-transparent text-lg  text-left text-black focus:outline-none mt-1"
             placeholder="Type to Search..."
             value={input}
             onChange={(e) => handleChange2(e.target.value)}
