@@ -1,11 +1,5 @@
 import { useContext } from "react";
-import {
-  Form,
-  Link,
-  useFetcher,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom";
+import { Form, Link, useFetcher, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import CommentCard from "../comments/CommentCard";
 
@@ -19,10 +13,7 @@ export async function loader({ params }) {
     collegeId: params.collegeId,
     postId: params.post,
   };
-  // console.log(major, college, post);
-  // console.log(post);
   return { id, post, comments };
-  // return { post };
 }
 
 export async function action({ request, params }) {
@@ -31,17 +22,10 @@ export async function action({ request, params }) {
     ...Object.fromEntries(formData),
     PostId: parseInt(params.postId),
   };
-  if(preparedComment.content.trim().length <= 0){
+  if (preparedComment.content.trim().length <= 0) {
     alert("Please enter contents for your comment.");
-    // return redirect(`/colleges/${params.collegeId}/majors/${params.majorId}/create-post`);
     return null;
-  }  
-  // console.log(preparedComment);
-  // const isLoggedIn = currentUser;
-  // if (!isLoggedIn) {
-  //   // Return a 401 Unauthorized response
-  //   return new Response("Unauthorized", { status: 401 });
-  // }
+  }
   try {
     const response = await fetch("/api/comments", {
       method: "POST",
@@ -50,10 +34,6 @@ export async function action({ request, params }) {
       },
       body: JSON.stringify(preparedComment),
     });
-    // if (response.status === 401) {
-    //   // Redirect user to the login page
-    //   return Response.redirect("/login", 302);
-    // }
   } catch (error) {
     console.error(error);
     return "Whoops! Something went wrong";
@@ -66,17 +46,15 @@ export const ForumPost = () => {
   const fetcher = useFetcher();
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  // console.log(comments);
 
   const renderedComments = comments.map((comment) => (
-    <CommentCard comment={comment} />
+    <CommentCard comment={comment} key={comment.id} />
   ));
 
   return (
     <div className="flex justify-center">
       <div className="">
         <div className="flex flex-col rounded-lg gap-10">
-          {/* {errors && <div className="text-red-300">{errors}</div>} */}
           <div className="flex flex-col divide-y-[1px] divide-[#161616] rounded-lg">
             <p
               className="
@@ -85,7 +63,6 @@ export const ForumPost = () => {
               "
             >
               {post.title}
-  
             </p>
             <p
               className="
@@ -97,19 +74,21 @@ export const ForumPost = () => {
             </p>
           </div>
         </div>
-        { currentUser ? <Form className="my-4 flex gap-2" method="post" >
-          <input
-            placeholder="add a comment..."
-            className="flex-1 p-2 text-black"
-            name="content"
-          />
-          <button
-            className="bg-blue-500 px-3 text-2xl rounded-sm"
-            type="submit"
-          >
-            Create Comment
-          </button>
-        </Form> : null }
+        {currentUser ? (
+          <Form className="my-4 flex gap-2" method="post">
+            <input
+              placeholder="add a comment..."
+              className="flex-1 p-2 text-black"
+              name="content"
+            />
+            <button
+              className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded focus:outline-none border-none"
+              type="submit"
+            >
+              Create Comment
+            </button>
+          </Form>
+        ) : null}
          
         <div className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg">
           {renderedComments}
@@ -117,30 +96,32 @@ export const ForumPost = () => {
       </div>
       {!!currentUser && currentUser.id === post.UserId ? (
         <div className="">
-          <div className="border-[1px] m-4">
+          <div className="m-4">
             <Link
               to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
-              className=""
             >
-              Edit
+              <button
+                className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-14 rounded focus:outline-none border-none"
+              >
+                Edit
+              </button>
             </Link>
           </div>
-          <div className="border-[1px] m-4">
+          <div className="m-4">
             <fetcher.Form
               method="delete"
               action={`delete`}
               onSubmit={(event) => {
-                if (
-                  !confirm("Please confirm you want to delete this record.")
-                ) {
+                if (!confirm("Please confirm you want to delete this record.")) {
                   event.preventDefault();
-                  // redirect(`/colleges/${id.collegeId}/majors/${id.majorId}`);
                 }
-                // navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
               }}
             >
-              <button>
-                <p>DELETE</p>
+              <button
+                className="shared-button bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-10 rounded focus:outline-none border-none"
+                type="submit"
+              >
+                DELETE
               </button>
             </fetcher.Form>
           </div>
@@ -153,3 +134,8 @@ export const ForumPost = () => {
 };
 
 export default ForumPost;
+
+
+
+
+
