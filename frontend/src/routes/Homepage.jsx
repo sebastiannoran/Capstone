@@ -31,7 +31,7 @@ const Homepage = () => {
     setInput(value);
   };
   return (
-    <div className="bg-[#FFFDED] h-screen flex flex-col justify-center items-center pb-40">
+    <div className="bg-[#272727] h-screen flex flex-col justify-center items-center pb-40">
       <p className="text-5xl mb-8 font-bold">Welcome to Insight</p>
       <p className="text-1xl italic mb-5 text-[#b7b7b7]">
         Where Insightful Connections are Made
@@ -56,7 +56,9 @@ const Homepage = () => {
         </div>
         <div>
           <button
-            className="h-10 bg-[#D1D5B5] text-black px-4 py-2 rounded mt-1"
+            className="px-8 py-2 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
+            hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+            font-bold m-4 border-b-[1px] border-fuchsia-700"
             onClick={() => handleSearch(searchQuery)}
           >
             Search
@@ -66,12 +68,16 @@ const Homepage = () => {
       {!currentUser && (
         <div className="flex gap-4 mt-4">
           <Link to="/login">
-            <button className="bg-[#D1D5B5] text-black px-6 py-2 rounded ">
+            <button className="px-6 py-2 bg-fuchsia rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
+              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+              font-bold m-4 border-b-[1px] border-fuchsia-700 ">
               Login
             </button>
           </Link>
           <Link to="/register">
-            <button className="bg-[#D1D5B5] text-black px-4 py-2 rounded">
+            <button className="px-6 py-2 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
+              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+              font-bold m-4 border-b-[1px] border-fuchsia-700">
               Register
             </button>
           </Link>
