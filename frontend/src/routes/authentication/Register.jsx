@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { Link, Navigate, Form } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import React, { useContext } from "react";
+import { Link, Navigate, Form } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Register = () => {
   const { currentUser, register, authError } = useContext(AuthContext);
@@ -16,13 +16,14 @@ const Register = () => {
     await register(credentials);
   };
 
-  const buttonStyle = "bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md";
+  const buttonStyle =
+    "bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md";
 
   return (
     <Form
       onSubmit={handleSubmit}
       className="h-screen bg-cover"
-      style={{ backgroundImage: 'url(src/misc/friends.jpg)' }}
+      style={{ backgroundImage: "url(src/misc/friends.jpg)" }}
     >
       <div className="w-full h-full flex justify-center items-center">
         <div className="bg-[#1C1C1C]/95 text-white rounded-2xl px-16 py-12 grid justify-items-center gap-6">
@@ -59,17 +60,15 @@ const Register = () => {
               />
             </fieldset>
           </div>
-          <input
-            className={buttonStyle}
-            type="submit"
-            value="Register"
-          />
-          <div className="text-center mt-4">
-            Already have an account?<br/> 
-            <Link to="/login">
-              <button className={buttonStyle}>
-                Login
-              </button>
+          <input className={buttonStyle} type="submit" value="Register" />
+          <div className="mt-4 text-center ">
+            <p>{`Already have an account?`}</p>
+            <Link
+              reloadDocument={true}
+              to="/login"
+              className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 m-3"
+            >
+              <div className="">Login</div>
             </Link>
           </div>
         </div>

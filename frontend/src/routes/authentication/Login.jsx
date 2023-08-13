@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { Link, Navigate, Form } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import React, { useContext } from "react";
+import { Link, Navigate, Form } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Login() {
   const { currentUser, login, authError } = useContext(AuthContext);
@@ -20,7 +20,7 @@ function Login() {
     <Form
       onSubmit={handleSubmit}
       className="h-screen bg-cover"
-      style={{ backgroundImage: 'url(src/misc/Sunset.jpg)' }}
+      style={{ backgroundImage: "url(src/misc/Sunset.jpg)" }}
     >
       <div className="w-full h-full flex justify-center items-center">
         <div className="bg-[#1C1C1C]/95 text-white rounded-2xl px-16 py-12 grid justify-items-center gap-6">
@@ -54,14 +54,13 @@ function Login() {
             value="Login"
           />
           <div className="mt-4 text-center ">
-            Don't have an account?<br />{' '}
+            <p>{`Don't have an account?`}</p>
             <Link
+              reloadDocument={true}
               to="/register"
               className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 m-3"
             >
-              <div className="">
-              Register
-              </div>
+              <div className="">Register</div>
             </Link>
           </div>
         </div>
@@ -71,9 +70,3 @@ function Login() {
 }
 
 export default Login;
-
-
-
-
-
-
