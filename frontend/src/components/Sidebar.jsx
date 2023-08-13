@@ -31,11 +31,13 @@ const Sidebar = ({ majors, college }) => {
           open ? "w-72 bg-fuchsia-700 duration-300" : "w-20 duration-100"
         } relative`}
       >
-        <div
+        {/* <div
           className={`max-h-screen ${
             open ? "h-screen overflow-y-auto" : "h-20"
           }  pr-5`}
-        >
+        > */}
+        <div className={`h-[570px] ${open ? "h-screen overflow-y-auto" : "h-20"} pr-5`}>
+
           <AiFillCaretLeft
             className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${
               !open && "rotate-180"
@@ -52,7 +54,7 @@ const Sidebar = ({ majors, college }) => {
             </div>
             <h1
               className={`text-dark origin-left font-lg font-bold text-2xl duration-300 ${
-                !open && "scale-0"
+                !open && "hidden"
               }`}
             >
               {college.name}
@@ -90,7 +92,7 @@ const Sidebar = ({ majors, college }) => {
                 >
                   <span
                     className={`text-base font-semibold flex-1 transition-opacity ${
-                      !open && "opacity-0"
+                      !open && "invisible"
                     }`}
                   >
                     {major.name}
