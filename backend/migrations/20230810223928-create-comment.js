@@ -10,8 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       content: {
-        type: Sequelize.TEXT,
-        // allowNull: false,
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
