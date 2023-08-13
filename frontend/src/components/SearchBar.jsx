@@ -33,7 +33,8 @@ export const SearchBar = ({ input, handleChange, setResults, setCollege }) => {
           className="w-[400px] h-[50px] relative"
           style={{ filter: "drop-shadow(0px 4px 4px rgba(0,0,0,0.25)), " }}
         >
-          <div className="w-[400px] h-[50px] absolute left-[-1px] top-[-1px] rounded-[60px] bg-white/[0.89] border-2 border-black" />
+          <div className="w-[400px] h-[50px] absolute left-[-1px] top-[-1px] rounded-[60px] bg-white border-2 border-fuchsia-700 
+          shadow-[0px_0px_5px_rgba(0,0,0,0.40)] hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]" />
           <FaSearch className="w-[26.56px] h-[28.72px] absolute left-[19.55px] top-[10.14px] object-cover" />
           <input
             type="text"
