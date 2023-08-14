@@ -52,7 +52,10 @@ const Sidebar = ({ majors, college }) => {
             <DrawerCloseButton
               color="white"
               size="md"
-              className="rounded-lg mt-1 hover:shadow-[0_0px_5px_rgb(255,0,0,0.5)] transition ease-in-out transform hover:scale-110"
+              className="rounded-lg bg-[#1f1f1f] hover:hover:bg-fuchsia-500 transition 
+              border-b-[1px] border-fuchsia-700 duration-500
+              shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+              "
             />
           </div>
           <DrawerHeader>
@@ -104,7 +107,11 @@ const Sidebar = ({ majors, college }) => {
                 textColor="white"
                 variant=""
                 onClick={onClose}
-                className="rounded-lg hover:bg-[#1f1f1f] hover:shadow-[0_0px_5px_rgb(255,0,0,0.5)] transition ease-in-out transform hover:scale-110"
+                className="
+                rounded-lg bg-[#1f1f1f] hover:hover:bg-fuchsia-500 transition 
+                border-b-[1px] border-fuchsia-700 duration-500
+                shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+                "
               >
                 Close
               </Button>
