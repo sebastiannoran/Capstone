@@ -12,7 +12,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    
+
     if (form.checkValidity()) {
       const formData = new FormData(form);
       const credentials = Object.fromEntries(formData);
@@ -22,8 +22,6 @@ const Register = () => {
       console.log("Please fill in all required fields.");
     }
   };
-  
-  
 
   const buttonStyle =
     "bg-white text-black hover:bg-gray-200 transition mt-4 px-6 py-2 cursor-pointer rounded-md";
@@ -48,7 +46,7 @@ const Register = () => {
                 name="name"
                 id="name"
                 className="border-none focus:outline-none p-2 text-black rounded-md"
-                required 
+                required
               />
             </fieldset>
             <fieldset className="flex flex-col">
@@ -76,7 +74,7 @@ const Register = () => {
           <div className="mt-4 text-center ">
             <p>{`Already have an account?`}</p>
             <Link
-              reloadDocument={true}
+              reloadDocument
               to="/login"
               className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 m-3"
             >

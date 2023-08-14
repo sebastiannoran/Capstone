@@ -56,7 +56,7 @@ function Login() {
           <div className="mt-4 text-center ">
             <p>{`Don't have an account?`}</p>
             <Link
-              reloadDocument={true}
+              reloadDocument
               to="/register"
               className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 m-3"
             >
