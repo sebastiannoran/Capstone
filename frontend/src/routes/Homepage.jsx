@@ -31,9 +31,9 @@ const Homepage = () => {
   const handleChange = (value) => {
     setInput(value);
   };
+
   return (
-    <div className="bg-[#272727] h-screen flex">
-    <AboutUsSection />
+    <div className="bg-[#272727] h-screen flex flex-col">
       <div className="flex-1 p-8 flex flex-col justify-center items-center">
         <p className="text-5xl mb-8 font-bold text-white">Welcome to Insight</p>
         <p className="text-xl  mb-5 text-[#b7b7b7]">
@@ -57,7 +57,7 @@ const Homepage = () => {
           </div>
           <div>
             <button
-              className="px-6 py-2 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
+              className="px-6 py-2 bg-fuchsia-500 rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
               hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
               font-bold  border-b-[1px] border-fuchsia-700"
               onClick={() => handleSearch(searchQuery)}
@@ -66,27 +66,11 @@ const Homepage = () => {
             </button>
           </div>
         </div>
-        {/* {!currentUser && (
-          <div className="flex gap-4 mt-4">
-            <Link to="/login">
-              <button className="px-6 py-2 bg-fuchsia rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
-              font-bold m-4 border-b-[1px] border-fuchsia-700 ">
-                Login
-              </button>
-            </Link>
-            <Link to="/register">
-              <button className="px-6 py-2 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
-              font-bold m-4 border-b-[1px] border-fuchsia-700">
-                Register
-              </button>
-            </Link>
-          </div>
-        )} */}
       </div>
+      <AboutUsSection />
     </div>
   );
 };
 
 export default Homepage;
+

@@ -18,12 +18,12 @@ const AboutUsSection = () => {
   };
 
   return (
-    <div style={{ width: '55%' }} className="p-8 bg-[#1F1F1F] flex flex-col justify-center items-center">
-      <p className="text-5xl mb-8 font-bold text-white">About Us</p>
+    <div className="p-8 bg-[#1F1F1F] mx-auto mt-8 mb-0 rounded-t-3xl w-full">
+      <p className="text-5xl mb-8 font-bold text-white text-center">About Us</p>
       <div className="text-xl text-[#b7b7b7] mb-4 text-center">
         <p>{slides[activeSlide]}</p>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center justify-center">
         <button onClick={prevSlide}></button>
         {slides.map((_, index) => (
           <button
@@ -41,9 +41,3 @@ const AboutUsSection = () => {
 };
 
 export default AboutUsSection;
-
-
-
-
-
-
