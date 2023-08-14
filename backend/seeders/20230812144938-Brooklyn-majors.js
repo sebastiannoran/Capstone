@@ -115,3 +115,4 @@ module.exports = {
     await queryInterface.bulkDelete('majors', null, {})
   }
 };
+

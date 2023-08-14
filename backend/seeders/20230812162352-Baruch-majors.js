@@ -66,3 +66,4 @@ module.exports = {
        await queryInterface.bulkInsert('majors', null, {});
    }
  };
+

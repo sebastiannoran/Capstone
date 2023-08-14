@@ -1,107 +1,125 @@
-import React, { useState } from "react";
-import { AiFillCaretLeft } from "react-icons/ai";
-import { FaSchool } from "react-icons/fa";
-import { BiSearch } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  useDisclosure,
+  Input,
+  InputLeftElement,
+  InputGroup,
+} from "@chakra-ui/react";
+import { useRef, useState } from "react";
+import { HiBars4 } from "react-icons/hi2";
+import { MdManageSearch } from "react-icons/md";
+import { FaUniversity } from "react-icons/fa";
 
 const Sidebar = ({ majors, college }) => {
-  const [open, setOpen] = useState(false);
-  const [sidebarMajors, setSidebarMajors] = useState(majors);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredMajors = sidebarMajors.filter((major) =>
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+
+  // Filter the major names based on the search query
+  const filteredMajors = majors.filter((major) =>
     major.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const collapse = () => {
-    if (!open) {
-      setSidebarMajors(majors);
-    } else {
-      setSidebarMajors([]);
-    }
-    setOpen(!open);
-  };
-
-  const navigate = useNavigate();
-
   return (
-    <div className="fixed bg-[#272727] text-white h-screen w-20 drop-shadow-[0px_0px_5px_rgba(0,0,0,0.50)]">
-      <div
-        className={`flex-shrink-0 p-5 pt-8 ${
-          open ? "w-72 bg-fuchsia-700 duration-300" : "w-20 duration-100"
-        } relative`}
-      >
+    <>
+      <button ref={btnRef} onClick={onOpen}>
         <div
-          className={`max-h-screen ${
-            open ? "h-screen overflow-y-auto" : "h-20"
-          }  pr-5`}
+          className="bg-[#1f1f1f] rounded-lg px-2 py-2 mx-4 flex flex-col
+      justify-center items-center fixed shadow-[0_0px_5px_rgb(0,0,0,0.6)]"
         >
-          <AiFillCaretLeft
-            className={`bg-black text-white text-4xl absolute -right-8 top-1/2 transform -translate-y-1/2 border boarder-dark border-5 cursor-pointer ${
-              !open && "rotate-180"
-            }`}
-            onClick={collapse}
-          />
-          <Link to={`/colleges/${college.id}`} className="flex items-center">
-            <div className="flex-shrink-0">
-              <FaSchool
-                className={`bg-fuchsia-100 text-[#1a031a] text-5xl rounded cursor-pointer block float-left px-1 mr-6 duration-500 ${
-                  open && "rotate-[360deg]"
-                }`}
-              />
-            </div>
-            <h1
-              className={`text-dark origin-left font-lg font-bold text-2xl duration-300 ${
-                !open && "hidden"
-              }`}
-            >
-              {college.name}
-            </h1>
-          </Link>
-
-          <div
-            className={`flex items-center rounded-md bg-white mt-5 ${
-              open ? "p-2 px-6" : ""
-            }`}
-          >
-            <BiSearch
-              className={`text-black text-lg block float-left cursor-pointer ${
-                open ? "mr-4" : "mr-1"
-              }`}
-            />
-            <input
-              type="search"
-              placeholder="Search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`text-base bg-transparent w-full text-black focus:outline-none ${
-                !open && "hidden"
-              }`}
+          <HiBars4 className="text-3xl text-white" />
+        </div>
+      </button>
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent bg="#1f1f1f" textColor="white">
+          <div>
+            <DrawerCloseButton
+              color="white"
+              size="md"
+              className="rounded-lg bg-[#1f1f1f] hover:hover:bg-fuchsia-500 transition 
+              border-b-[1px] border-fuchsia-700 duration-500
+              shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+              "
             />
           </div>
-
-          <ul className="pt-4">
-            {filteredMajors.map((major) => (
-              <li key={major.id} className="mb-3">
-                <Link
-                  to={`/colleges/${college.id}/majors/${major.id}`}
-                  title={major.name}
-                  className="flex items-center gap-x-2 cursor-pointer p-2 px-4 text-bold rounded-lg hover:bg-zinc-900 hover:shadow-md transition duration-300 ease-in-out transform hover:scale-105"
-                >
-                  <span
-                    className={`text-base font-semibold flex-1 transition-opacity ${
-                      !open && "opacity-0"
-                    }`}
+          <DrawerHeader>
+            <div className="flex items-center justify-center mb-2">
+              <Link
+                className="flex flex-col items-start justify-center mt-2 max-w-[15rem]"
+                to={`/colleges/${college.id}`}
+              >
+                <FaUniversity className="text-center text-4xl" />
+              </Link>
+            </div>
+            <p className="mb-4 text-3xl text-center">{college.name}</p>
+            <div className="flex items-center justify-center gap-2">
+              <InputGroup>
+                <InputLeftElement pointerEvents="none">
+                  <MdManageSearch className="text-2xl" />
+                </InputLeftElement>
+                <Input
+                  variant="flushed"
+                  placeholder="Search Major Forums..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  focusBorderColor="#701a75"
+                />
+              </InputGroup>
+            </div>
+          </DrawerHeader>
+          <DrawerBody>
+            <ul className="">
+              {filteredMajors.map((major) => (
+                <li key={major.id} className="mb-[3px]">
+                  <Link
+                    to={`/colleges/${college.id}/majors/${major.id}`}
+                    title={major.name}
+                    className="
+                    flex items-center cursor-pointer py-4 px-4 text-bold rounded-lg
+                    hover:bg-fuchsia-900 transition duration-50
+                    "
                   >
-                    {major.name}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+                    <p className="">{major.name}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </DrawerBody>
+          <div className="flex items-center justify-center pb-2 pt-1">
+            <DrawerFooter>
+              <Button
+                textColor="white"
+                variant=""
+                onClick={onClose}
+                className="
+                rounded-lg bg-[#1f1f1f] hover:hover:bg-fuchsia-500 transition 
+                border-b-[1px] border-fuchsia-700 duration-500
+                shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+                "
+              >
+                Close
+              </Button>
+            </DrawerFooter>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 };
 
