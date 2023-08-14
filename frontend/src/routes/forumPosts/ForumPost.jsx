@@ -1,5 +1,11 @@
 import { useContext } from "react";
-import { Form, Link, useFetcher, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useFetcher,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import CommentCard from "../comments/CommentCard";
 
@@ -46,11 +52,13 @@ export const ForumPost = () => {
   const fetcher = useFetcher();
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+  console.log(comments);
 
-  const renderedComments = comments.map((comment) => (
-    <CommentCard comment={comment} key={comment.id} />
-  ));
+  const renderedComments = comments
+    .sort((x, y) => x.createdAt - y.createdAt)
+    .map((comment) => <CommentCard comment={comment} key={comment.id} />);
 
+  console.log(renderedComments);
   return (
     <div className="flex justify-center">
       <div className="">
@@ -67,7 +75,7 @@ export const ForumPost = () => {
             <p
               className="
               flex justify-start bg-[#272727] px-10 py-12 text-white w-[56rem] min-h-[5rem] 
-              rounded-b-lg focus:text-black text-xl whitespace-pre-wrap
+              rounded-b-lg focus:text-black text-xl whitespace-pre-wrap wordBreak overflow-hidden
               "
             >
               {post.content}
@@ -89,7 +97,7 @@ export const ForumPost = () => {
             </button>
           </Form>
         ) : null}
-         
+
         <div className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg">
           {renderedComments}
         </div>
@@ -100,9 +108,7 @@ export const ForumPost = () => {
             <Link
               to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
             >
-              <button
-                className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-14 rounded focus:outline-none border-none"
-              >
+              <button className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-14 rounded focus:outline-none border-none">
                 Edit
               </button>
             </Link>
@@ -112,7 +118,9 @@ export const ForumPost = () => {
               method="delete"
               action={`delete`}
               onSubmit={(event) => {
-                if (!confirm("Please confirm you want to delete this record.")) {
+                if (
+                  !confirm("Please confirm you want to delete this record.")
+                ) {
                   event.preventDefault();
                 }
               }}
@@ -134,8 +142,3 @@ export const ForumPost = () => {
 };
 
 export default ForumPost;
-
-
-
-
-

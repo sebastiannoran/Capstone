@@ -29,7 +29,10 @@ const EditPost = () => {
   const { post } = useLoaderData();
 
   return (
-    <Form method="post" className="selection:bg-blue-200 flex flex-col gap-2">
+    <Form
+      method="post"
+      className="selection:bg-blue-200 flex flex-col gap-2 pb-10"
+    >
       <div className="flex justify-center">
         <div className="">
           <div className="mb-12 text-center">
