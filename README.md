@@ -24,9 +24,9 @@ PostgreSQL: A powerful open-source relational database system for data storage a
 
 JavaScript: The primary programming language used for implementing dynamic features and interactions.
 
-React router:
+React Router: A popular routing library for React applications that enables navigation and multiple views.
 
-Chakra UI: 
+Chakra UI: A modern, accessible design system for building user interfaces with ease.
 
 Getting Started
 To run Insight on your local machine, follow these steps:
