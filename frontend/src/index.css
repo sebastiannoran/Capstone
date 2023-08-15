@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .wordBreak {
+    word-break: break-word;
+  }
+
+  .textShadow {
+    text-shadow: 0px 5px 3px black;
+  }
+}

@@ -10,6 +10,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import CommentCard from "../comments/CommentCard";
 
 export async function loader({ params }) {
+  const collegeResponse = await fetch(`/api/colleges/${params.collegeId}`);
+  const college = await collegeResponse.json();
   const postResponse = await fetch(`/api/posts/${params.postId}`);
   const post = await postResponse.json();
   const commentsResponse = await fetch(`/api/comments?postId=${params.postId}`);
@@ -19,10 +21,7 @@ export async function loader({ params }) {
     collegeId: params.collegeId,
     postId: params.post,
   };
-  // console.log(major, college, post);
-  // console.log(post);
-  return { id, post, comments };
-  // return { post };
+  return { id, post, comments, college };
 }
 
 export async function action({ request, params }) {
@@ -31,12 +30,10 @@ export async function action({ request, params }) {
     ...Object.fromEntries(formData),
     PostId: parseInt(params.postId),
   };
-  // console.log(preparedComment);
-  // const isLoggedIn = currentUser;
-  // if (!isLoggedIn) {
-  //   // Return a 401 Unauthorized response
-  //   return new Response("Unauthorized", { status: 401 });
-  // }
+  if (preparedComment.content.trim().length <= 0) {
+    alert("Please enter contents for your comment.");
+    return null;
+  }
   try {
     const response = await fetch("/api/comments", {
       method: "POST",
@@ -45,10 +42,6 @@ export async function action({ request, params }) {
       },
       body: JSON.stringify(preparedComment),
     });
-    // if (response.status === 401) {
-    //   // Redirect user to the login page
-    //   return Response.redirect("/login", 302);
-    // }
   } catch (error) {
     console.error(error);
     return "Whoops! Something went wrong";
@@ -57,92 +50,170 @@ export async function action({ request, params }) {
 }
 
 export const ForumPost = () => {
-  const { id, post, comments } = useLoaderData();
+  const { id, post, comments, college } = useLoaderData();
   const fetcher = useFetcher();
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  // console.log(comments);
+  console.log(comments);
 
-  const renderedComments = comments.map((comment) => (
-    <CommentCard comment={comment} />
-  ));
+  const renderedComments = comments
+    .sort((x, y) => x.createdAt - y.createdAt)
+    .map((comment) => <CommentCard comment={comment} key={comment.id} />);
 
+  console.log(renderedComments);
   return (
-    <div className="flex justify-center">
-      <div className="">
-        <div className="flex flex-col rounded-lg gap-10">
-          {/* {errors && <div className="text-red-300">{errors}</div>} */}
-          <div className="flex flex-col divide-y-[1px] divide-[#161616] rounded-lg">
-            <p
-              className="
-              flex items-center justify-center bg-[#272727] px-10 py-12 whitespace-pre-wrap
-              text-white w-[56rem] min-h-[5rem] rounded-t-lg focus:text-black text-5xl
-              "
-            >
-              {post.title}
-  
-            </p>
-            <p
-              className="
-              flex justify-start bg-[#272727] px-10 py-12 text-white w-[56rem] min-h-[5rem] 
-              rounded-b-lg focus:text-black text-xl whitespace-pre-wrap
-              "
-            >
-              {post.content}
-            </p>
-          </div>
-        </div>
-        { currentUser ? <Form className="my-4 flex gap-2" method="post" >
-          <input
-            placeholder="add a comment..."
-            className="flex-1 p-2 text-black"
-            name="content"
-          />
-          <button
-            className="bg-blue-500 px-3 text-2xl rounded-sm"
-            type="submit"
-          >
-            Create Comment
-          </button>
-        </Form> : null }
-         
-        <div className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg">
-          {renderedComments}
-        </div>
+    <div
+      className="flex flex-col justify-center items-center divide-y-[1px] divide-white
+    xl:w-[60rem] mb-[25rem]
+    "
+    >
+      <div className="bg-white my-10 rounded-lg hover:scale-95 ease-in-out duration-300">
+        <Link
+          className="
+        
+        "
+          to={`/colleges/${college.id}`}
+        >
+          <div
+            style={{ "--image-url": `url(${college.logo})` }}
+            className="bg-[image:var(--image-url)] w-[14rem] h-[6rem] bg-center bg-cover"
+          ></div>
+        </Link>
       </div>
-      {!!currentUser && currentUser.id === post.UserId ? (
+      <div
+        className="flex justify-center pt-10
+      "
+      >
         <div className="">
-          <div className="border-[1px] m-4">
-            <Link
-              to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
-              className=""
+          <div
+            className="flex flex-col rounded-lg
+          "
+          >
+            <div
+              className="flex flex-col divide-y-[1px] divide-[#161616] rounded-lg
+            shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+            "
             >
-              Edit
-            </Link>
+              <p
+                className="
+              flex items-center justify-center bg-[#272727] px-10 py-12 whitespace-pre-wrap
+              text-white w-[56rem] min-h-[5rem] rounded-t-lg text-5xl wordBreak
+              min-w-[10rem] text-center
+              sm:w-[20rem] 
+              md:w-[26rem]
+              lg:w-[35rem]
+              xl:w-[50rem]
+              "
+              >
+                {post.title}
+              </p>
+              <p
+                className="
+              flex justify-start bg-[#272727] px-10 py-12 text-white w-[56rem] min-h-[5rem] 
+              rounded-b-lg text-2xl whitespace-pre-wrap wordBreak overflow-hidden
+              min-w-[10rem]
+              sm:w-[20rem] 
+              md:w-[26rem]
+              lg:w-[35rem]
+              xl:w-[50rem]
+              "
+              >
+                {post.content}
+              </p>
+            </div>
           </div>
-          <div className="border-[1px] m-4">
-            <fetcher.Form
-              method="delete"
-              action={`delete`}
-              onSubmit={(event) => {
-                if (
-                  !confirm("Please confirm you want to delete this record.")
-                ) {
-                  event.preventDefault();
-                  // redirect(`/colleges/${id.collegeId}/majors/${id.majorId}`);
-                }
-                // navigate(`/colleges/${id.collegeId}/majors/${id.majorId}`);
-              }}
-            >
-              <button>
-                <p>DELETE</p>
+          {currentUser ? (
+            <Form className="my-4 flex gap-2" method="post">
+              <input
+                placeholder="Add a comment..."
+                className="flex-1 p-2 text-black rounded-lg"
+                name="content"
+              />
+              <button
+                className="
+                rounded-lg bg-[#272727] hover:hover:bg-fuchsia-500 transition 
+                border-b-[1px] border-fuchsia-700 duration-500 px-6 py-4
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                "
+                type="submit"
+              >
+                Create Comment
               </button>
-            </fetcher.Form>
+            </Form>
+          ) : (
+            <div className="my-4 flex gap-2">
+              <input
+                placeholder="add a comment..."
+                className="flex-1 p-2 text-black rounded-lg"
+                name="content"
+              />
+              <Link className="" to="/login">
+                <button
+                  className="
+                  rounded-lg bg-[#272727] hover:hover:bg-fuchsia-600 transition 
+                border-b-[1px] border-fuchsia-700 duration-500 px-6 py-4
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                  "
+                  type="submit"
+                >
+                  Create Comment
+                </button>
+              </Link>
+            </div>
+          )}
+
+          <div
+            className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg
+            shadow-[0_0px_5px_rgb(0,0,0,0.7)]"
+          >
+            {renderedComments}
           </div>
         </div>
-      ) : (
-        <></>
-      )}
+        {!!currentUser && currentUser.id === post.UserId ? (
+          <div className="">
+            <div className="ml-4 mb-4">
+              <Link
+                to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
+                className=""
+              >
+                <button
+                  className="bg-blue-600 px-8 py-6 w-[10rem] h-[5rem] rounded-lg
+                hover:bg-blue-700 transition duration-200
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                "
+                >
+                  Edit Post
+                </button>
+              </Link>
+            </div>
+            <div className="ml-4">
+              <fetcher.Form
+                method="delete"
+                action={`delete`}
+                onSubmit={(event) => {
+                  if (
+                    !confirm("Please confirm you want to delete this record.")
+                  ) {
+                    event.preventDefault();
+                  }
+                }}
+              >
+                <button
+                  className="bg-red-600 px-8 py-6 w-[10rem] h-[5rem] rounded-lg
+                  hover:bg-red-700 transition duration-200
+                  shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                  "
+                  type="submit"
+                >
+                  Delete Post
+                </button>
+              </fetcher.Form>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const baruchMajors = [
   "Accounting",
@@ -30,39 +30,39 @@ const baruchMajors = [
   "Sociology",
   "Spanish",
   "Statistics",
-  "Statistics and Quantitative Modeling"
-]
+  "Statistics and Quantitative Modeling",
+];
 
 module.exports = baruchMajors;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    const college = await queryInterface.rawSelect( 
-   'colleges',
-   {
-     where: { name: 'Baruch College' },
-   },
-   ['id']
- );
+  async up(queryInterface, Sequelize) {
+    const college = await queryInterface.rawSelect(
+      "colleges",
+      {
+        where: { name: "Baruch College" },
+      },
+      ["id"]
+    );
     if (college) {
-     const majorData = [];
- 
-     for (const majorName of baruchMajors){ 
-       majorData.push({
-         name: majorName,
-         createdAt: new Date(),
-         updatedAt: new Date(),
-         CollegeId: college,
-       })
-     }
-     await queryInterface.bulkInsert('majors', majorData);
+      const majorData = [];
+
+      for (const majorName of baruchMajors) {
+        majorData.push({
+          name: majorName,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          CollegeId: college,
+        });
+      }
+      await queryInterface.bulkInsert("majors", majorData);
     } else {
-     console.log('Baruch College not Found');
+      console.log("Baruch College not Found");
     }
-   },
- 
-   async down (queryInterface, Sequelize) {
-       await queryInterface.bulkInsert('majors', null, {});
-   }
- };
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert("majors", null, {});
+  },
+};

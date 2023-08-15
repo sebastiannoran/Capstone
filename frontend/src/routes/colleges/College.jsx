@@ -1,5 +1,6 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
+import { FaUniversity } from "react-icons/fa";
 
 export async function loader({ params }) {
   const majorResponse = await fetch(`
@@ -14,12 +15,14 @@ export async function loader({ params }) {
 function College() {
   const { majors, college } = useLoaderData();
   return (
-    <div className="flex text-white">
-      <div className="mr-[5rem]">
+    <div>
+      <div className="flex">
         <Sidebar college={college} majors={majors} />
       </div>
-      <div className="max-w-7xl mx-auto p-12">
-        <Outlet />
+      <div className="flex items-start justify-center">
+        <div className="text-white flex flex-col justify-center">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
