@@ -15,11 +15,20 @@ const CollegeHomepage = () => {
   const { majors, college } = useLoaderData();
   // const { id, name } = college;
   return (
-    <div className="text-center">
-      <div className="text-5xl mb-10 font-bold">
-        <p>{`${college.name} Major Forums`}</p>
+    <div className="">
+      <div
+        style={{ "--image-url": `url(${college.homepageImg})` }}
+        className="bg-[image:var(--image-url)] text-5xl mb-10 bg-center bg-cover flex 
+        justify-center items-center w-screen md:h-[40rem] xl:h-[50rem] lg:h-[45rem] sm:h-[35rem] xs:h-[30rem]"
+      >
+        <div className="bg-[#00000065] w-full h-full flex justify-center items-center">
+          <div className="text-white text-center textShadow font-bold">
+            <p className="">{`${college.name}`}</p>
+            <p className="">Forums</p>
+          </div>
+        </div>
       </div>
-      <div className="">
+      <div className="max-w-7xl mx-auto">
         <Major college={college} majors={majors} />
       </div>
     </div>

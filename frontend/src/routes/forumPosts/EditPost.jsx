@@ -31,7 +31,7 @@ const EditPost = () => {
   return (
     <Form
       method="post"
-      className="selection:bg-blue-200 flex flex-col gap-2 pb-10"
+      className="selection:bg-blue-200 flex flex-col gap-2 mb-[25rem]"
     >
       <div className="flex justify-center">
         <div className="">
@@ -58,7 +58,7 @@ const EditPost = () => {
               bg-[#272727] focus:outline-none px-10 py-8 text-white w-[56rem] h-[14rem] 
               focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
               shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-5xl transition
-              duration-200 resize-none
+              duration-200
               "
               />
             </fieldset>
@@ -80,7 +80,7 @@ const EditPost = () => {
             bg-[#272727] focus:outline-none px-10 py-8 text-white h-[40rem] 
               focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
               shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-xl transition
-              duration-200 resize-none
+              duration-200
               "
               />
             </fieldset>
