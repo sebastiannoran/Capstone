@@ -5,6 +5,14 @@ const AboutUsSection = () => {
   const slides = [
     "We are dedicated to providing insightful connections and information between undergraduate students attending CUNY.",
     "Our mission is to empower students with valuable information about educational institutions through major-connected forums.",
+    "We currently have support for the following colleges:",
+  ];
+
+  const colleges = [
+    "College of Staten Island",
+    "Brooklyn College",
+    "Hunter College",
+    'Baruch College',
   ];
 
   const nextSlide = () => {
@@ -17,13 +25,25 @@ const AboutUsSection = () => {
     );
   };
 
+
   return (
-    <div className="p-8 bg-[#1F1F1F] mx-auto mt-8 mb-0 rounded-t-3xl w-full"
-    style={{ position: "relative", top: "180px" }}
+    <div
+      className="p-8 bg-[#1F1F1F] mx-auto mt-8 mb-0 rounded-t-3xl w-full"
+      style={{
+        position: "relative",
+        top: "180px",
+      }}
     >
-      <p className="text-5xl mb-8 font-bold text-white text-center">About Us</p>
+       <p className="text-5xl mb-8 font-bold text-white text-center">About Us</p>
       <div className="text-xl text-[#b7b7b7] mb-4 text-center">
         <p>{slides[activeSlide]}</p>
+        {activeSlide === 2 && (
+          <ul className="text-center ml-2">
+            {colleges.map((college, index) => (
+              <li key={index}>{college}</li>
+            ))}
+          </ul>
+        )}
       </div>
       <div className="flex items-center justify-center">
         <button onClick={prevSlide}></button>
