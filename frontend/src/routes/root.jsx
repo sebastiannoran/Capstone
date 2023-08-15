@@ -16,7 +16,7 @@ const Root = () => {
   return (
     <div className="min-h-screen bg-[#1f1f1f]">
       <Navbar currentUser={currentUser} handleLogout={handleLogout} />
-      <div>
+      <div className="">
         <Outlet />
       </div>
     </div>

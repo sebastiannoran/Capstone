@@ -31,7 +31,7 @@ const Homepage = () => {
     setInput(value);
   };
   return (
-    <div className="bg-[#FFFDED] h-screen flex flex-col justify-center items-center pb-40">
+    <div className="flex flex-col justify-center items-center h-screen pb-40 text-white">
       <p className="text-5xl mb-8 font-bold">Welcome to Insight</p>
       <p className="text-1xl italic mb-5 text-[#b7b7b7]">
         Where Insightful Connections are Made

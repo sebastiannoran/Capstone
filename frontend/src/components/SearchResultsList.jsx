@@ -8,7 +8,7 @@ export const SearchResultsList = ({
 }) => {
   // console.log(results);
   return (
-    <div className="w-full bg-white flex flex-col shadow-md rounded-md mt-1 max-h-24 overflow-y-auto">
+    <div className="w-full text-black bg-white flex flex-col shadow-md rounded-md mt-1 max-h-24 overflow-y-auto">
       {results.map((result, id) => (
         <SearchResults
           handleChange={handleChange}
