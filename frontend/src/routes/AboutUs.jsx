@@ -18,7 +18,9 @@ const AboutUsSection = () => {
   };
 
   return (
-    <div className="p-8 bg-[#1F1F1F] mx-auto mt-8 mb-0 rounded-t-3xl w-full">
+    <div className="p-8 bg-[#1F1F1F] mx-auto mt-8 mb-0 rounded-t-3xl w-full"
+    style={{ position: "relative", top: "180px" }}
+    >
       <p className="text-5xl mb-8 font-bold text-white text-center">About Us</p>
       <div className="text-xl text-[#b7b7b7] mb-4 text-center">
         <p>{slides[activeSlide]}</p>

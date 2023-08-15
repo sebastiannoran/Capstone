@@ -33,7 +33,7 @@ const Homepage = () => {
   };
 
   return (
-    <div className="bg-[#272727] h-screen flex flex-col">
+    <div className="h-screen  bg-[#272727] h-screen flex flex-col">
       <div className="flex-1 p-8 flex flex-col justify-center items-center">
         <p className="text-5xl mb-8 font-bold text-white">Welcome to Insight</p>
         <p className="text-xl  mb-5 text-[#b7b7b7]">
@@ -67,7 +67,9 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <AboutUsSection />
+     
+        <AboutUsSection />
+      
     </div>
   );
 };
