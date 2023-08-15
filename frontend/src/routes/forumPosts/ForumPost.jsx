@@ -126,7 +126,7 @@ export const ForumPost = () => {
             <Form className="my-4 flex gap-2" method="post">
               <input
                 placeholder="Add a comment..."
-                className="flex-1 p-2 text-black rounded-lg"
+                className="flex-1 p-2 text-black rounded-lg focus:outline-none"
                 name="content"
               />
               <button
