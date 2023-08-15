@@ -1,10 +1,13 @@
 {
+  "engines": {
+    "node": "18.16.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "debug": "nodemon --inspect server.js",
-    "deploy": "npm install && npm install --prefix client && npm run build --prefix client && npm start",
-    "console": "node repl.js"
+    "console": "node repl.js",
+    "deploy": "npm install && npm install --prefix client && npm run build --prefix client && npm start"
   },
   "dependencies": {
     "axios": "^1.4.0",
