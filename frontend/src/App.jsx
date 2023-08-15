@@ -13,6 +13,7 @@ import ForumPost, {
   action as forumPostAction,
 } from "./routes/forumPosts/ForumPost";
 import CreatePost, {
+  loader as createPostLoader,
   action as createPostAction,
 } from "./routes/forumPosts/CreatePost";
 import MajorForum, { loader as forumLoader } from "./routes/majors/MajorForum";
@@ -79,6 +80,7 @@ const router = createBrowserRouter([
                 <CreatePost />
               </ProtectedRoute>
             ),
+            loader: createPostLoader,
             action: createPostAction,
           },
           {

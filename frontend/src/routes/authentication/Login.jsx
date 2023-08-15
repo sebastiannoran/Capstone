@@ -21,7 +21,8 @@ function Login() {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="h-screen bg-cover bg-[url(/src/misc/Friends.jpg)] text-white"
+      style={{ "--image-url": `url(/src/misc/Friends.jpg)` }}
+      className="h-screen bg-cover bg-[image:var(--image-url)] text-white"
     >
       <div className="w-full h-full flex justify-center items-center backdrop-blur-[2px]">
         <div className="bg-[#000000db] shadow-[0px_0px_14px_rgba(0,0,0,1)] rounded-lg px-16 py-12 grid justify-items-center gap-6">

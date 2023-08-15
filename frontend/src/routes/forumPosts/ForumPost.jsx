@@ -64,7 +64,7 @@ export const ForumPost = () => {
   return (
     <div
       className="flex flex-col justify-center items-center text-center divide-y-[1px] divide-white
-    xl:w-[60rem]
+    xl:w-[60rem] mb-[25rem]
     "
     >
       <div className="bg-white my-10 rounded-lg hover:scale-95 ease-in-out duration-300">
@@ -80,7 +80,7 @@ export const ForumPost = () => {
           ></div>
         </Link>
       </div>
-      <div className="flex justify-center pt-10 mb-[25rem]">
+      <div className="flex justify-center pt-10">
         <div className="">
           <div className="flex flex-col rounded-lg gap-10">
             <div className="flex flex-col divide-y-[1px] divide-[#161616] rounded-lg">

@@ -24,7 +24,7 @@ const MajorForum = () => {
   return (
     <div
       className="flex flex-col justify-center items-center text-center divide-y-[1px] divide-white
-    xl:w-[60rem]
+    xl:w-[60rem] mb-[25rem]
     "
     >
       <div className="bg-white my-10 rounded-lg hover:scale-95 ease-in-out duration-300">
@@ -40,7 +40,7 @@ const MajorForum = () => {
           ></div>
         </Link>
       </div>
-      <div className="pt-10">
+      <div className="text-center pt-10">
         <div className="mb-10 flex justify-center items-center">
           <p className="text-5xl font-bold">{`${major.name}`}</p>
         </div>
@@ -72,9 +72,9 @@ const MajorForum = () => {
                 >
                   <div
                     className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
-              font-bold border-b-[1px] border-fuchsia-700 w-[10rem]
-              "
+                  hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+                  font-bold border-b-[1px] border-fuchsia-700 w-[10rem]
+                  "
                   >
                     <p>Create Post</p>
                   </div>
@@ -87,9 +87,9 @@ const MajorForum = () => {
                 >
                   <div
                     className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-              hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
-              font-bold border-b-[1px] border-fuchsia-700 w-[10rem]
-              "
+                  hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+                  font-bold border-b-[1px] border-fuchsia-700 w-[10rem]
+                  "
                   >
                     <p>Create Post</p>
                   </div>
