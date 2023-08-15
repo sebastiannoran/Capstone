@@ -15,15 +15,14 @@ export async function loader({ params }) {
 function College() {
   const { majors, college } = useLoaderData();
   return (
-    <div className=" text-white">
-      <div className="">
+    <div>
+      <div className="flex">
         <Sidebar college={college} majors={majors} />
       </div>
-      <div className="flex flex-col items-center justify-center mx-16">
-        <Link className="mb-14" to={`/colleges/${college.id}`}>
-          <FaUniversity className="text-center text-4xl" />
-        </Link>
-        <Outlet />
+      <div className="flex items-start justify-center">
+        <div className="text-white flex flex-col justify-center">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

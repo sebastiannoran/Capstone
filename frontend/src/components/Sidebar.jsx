@@ -35,7 +35,9 @@ const Sidebar = ({ majors, college }) => {
       <button ref={btnRef} onClick={onOpen}>
         <div
           className="bg-[#1f1f1f] rounded-lg px-2 py-2 mx-4 flex flex-col
-      justify-center items-center fixed shadow-[0_0px_5px_rgb(0,0,0,0.6)]"
+          justify-center items-center fixed shadow-[0_2px_7px_rgb(0,0,0,0.7)] mt-8 ml-8
+          border-b-[1px] border-fuchsia-700
+          "
         >
           <HiBars4 className="text-3xl text-white" />
         </div>
