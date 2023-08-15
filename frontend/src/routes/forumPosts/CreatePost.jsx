@@ -93,6 +93,11 @@ const CreatePost = () => {
                   focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
                   shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-4xl transition
                   duration-200 resize-none
+                  min-w-[10rem]
+                  sm:w-[20rem] 
+                  md:w-[26rem]
+                  lg:w-[35rem]
+                  xl:w-[50rem]
                   "
                 />
               </fieldset>
@@ -114,6 +119,11 @@ const CreatePost = () => {
                   focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
                   shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 transition
                   duration-200 resize-none
+                  min-w-[10rem]
+                  sm:w-[20rem] 
+                  md:w-[26rem]
+                  lg:w-[35rem]
+                  xl:w-[50rem]
                   "
                 />
               </fieldset>

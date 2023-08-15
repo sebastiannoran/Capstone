@@ -56,7 +56,7 @@ const Sidebar = ({ majors, college }) => {
               size="md"
               className="rounded-lg bg-[#1f1f1f] hover:hover:bg-fuchsia-500 transition 
               border-b-[1px] border-fuchsia-700 duration-500
-              shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+              shadow-[0_4px_7px_rgb(0,0,0,0.7)]
               "
             />
           </div>
@@ -112,7 +112,7 @@ const Sidebar = ({ majors, college }) => {
                 className="
                 rounded-lg bg-[#1f1f1f] hover:hover:bg-fuchsia-500 transition 
                 border-b-[1px] border-fuchsia-700 duration-500
-                shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+                shadow-[0_4px_7px_rgb(0,0,0,0.7)]
                 "
               >
                 Close

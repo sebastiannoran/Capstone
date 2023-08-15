@@ -40,18 +40,32 @@ const MajorForum = () => {
           ></div>
         </Link>
       </div>
-      <div className="text-center pt-10">
+      <div
+        className="text-center pt-10
+      "
+      >
         <div className="mb-10 flex justify-center items-center">
           <p className="text-5xl font-bold">{`${major.name}`}</p>
         </div>
         <div className="flex justify-center">
-          <div>
-            <div className="max-w-4xl bg-[#272727] divide-y-[1px] divide-black rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)]">
+          <div className="flex justify-center">
+            <div
+              className=" bg-[#272727] divide-y-[1px] 
+            divide-black rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)]
+            "
+            >
               {posts.map(({ id, title, content }) => {
                 return (
                   <div
                     key={id}
-                    className="flex w-[56rem] justify-center font-bold py-10 px-10"
+                    className="
+                  font-bold py-10 px-10
+                  min-w-[5rem]
+                  sm:w-[15rem] 
+                  md:w-[20rem]
+                  lg:w-[35rem]
+                  xl:w-[50rem]
+                  "
                   >
                     <Link
                       to={`/colleges/${college.id}/majors/${major.id}/posts/${id}`}
@@ -72,7 +86,7 @@ const MajorForum = () => {
                 >
                   <div
                     className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-                  hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+                  hover:bg-fuchsia-500 transition duration-200
                   font-bold border-b-[1px] border-fuchsia-700 w-[10rem]
                   "
                   >
@@ -87,7 +101,7 @@ const MajorForum = () => {
                 >
                   <div
                     className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-                  hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
+                  hover:bg-fuchsia-500 transition duration-200
                   font-bold border-b-[1px] border-fuchsia-700 w-[10rem]
                   "
                   >

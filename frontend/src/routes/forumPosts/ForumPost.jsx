@@ -63,7 +63,7 @@ export const ForumPost = () => {
   console.log(renderedComments);
   return (
     <div
-      className="flex flex-col justify-center items-center text-center divide-y-[1px] divide-white
+      className="flex flex-col justify-center items-center divide-y-[1px] divide-white
     xl:w-[60rem] mb-[25rem]
     "
     >
@@ -80,14 +80,29 @@ export const ForumPost = () => {
           ></div>
         </Link>
       </div>
-      <div className="flex justify-center pt-10">
+      <div
+        className="flex justify-center pt-10
+      "
+      >
         <div className="">
-          <div className="flex flex-col rounded-lg gap-10">
-            <div className="flex flex-col divide-y-[1px] divide-[#161616] rounded-lg">
+          <div
+            className="flex flex-col rounded-lg
+          "
+          >
+            <div
+              className="flex flex-col divide-y-[1px] divide-[#161616] rounded-lg
+            shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+            "
+            >
               <p
                 className="
               flex items-center justify-center bg-[#272727] px-10 py-12 whitespace-pre-wrap
-              text-white w-[56rem] min-h-[5rem] rounded-t-lg focus:text-black text-5xl wordBreak
+              text-white w-[56rem] min-h-[5rem] rounded-t-lg text-5xl wordBreak
+              min-w-[10rem] text-center
+              sm:w-[20rem] 
+              md:w-[26rem]
+              lg:w-[35rem]
+              xl:w-[50rem]
               "
               >
                 {post.title}
@@ -95,7 +110,12 @@ export const ForumPost = () => {
               <p
                 className="
               flex justify-start bg-[#272727] px-10 py-12 text-white w-[56rem] min-h-[5rem] 
-              rounded-b-lg focus:text-black text-xl whitespace-pre-wrap wordBreak overflow-hidden
+              rounded-b-lg text-2xl whitespace-pre-wrap wordBreak overflow-hidden
+              min-w-[10rem]
+              sm:w-[20rem] 
+              md:w-[26rem]
+              lg:w-[35rem]
+              xl:w-[50rem]
               "
               >
                 {post.content}
@@ -105,12 +125,16 @@ export const ForumPost = () => {
           {currentUser ? (
             <Form className="my-4 flex gap-2" method="post">
               <input
-                placeholder="add a comment..."
-                className="flex-1 p-2 text-black"
+                placeholder="Add a comment..."
+                className="flex-1 p-2 text-black rounded-lg"
                 name="content"
               />
               <button
-                className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded focus:outline-none border-none"
+                className="
+                rounded-lg bg-[#272727] hover:hover:bg-fuchsia-500 transition 
+                border-b-[1px] border-fuchsia-700 duration-500 px-6 py-4
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                "
                 type="submit"
               >
                 Create Comment
@@ -120,12 +144,16 @@ export const ForumPost = () => {
             <div className="my-4 flex gap-2">
               <input
                 placeholder="add a comment..."
-                className="flex-1 p-2 text-black"
+                className="flex-1 p-2 text-black rounded-lg"
                 name="content"
               />
               <Link className="" to="/login">
                 <button
-                  className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded focus:outline-none border-none"
+                  className="
+                  rounded-lg bg-[#272727] hover:hover:bg-fuchsia-600 transition 
+                border-b-[1px] border-fuchsia-700 duration-500 px-6 py-4
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                  "
                   type="submit"
                 >
                   Create Comment
@@ -134,22 +162,31 @@ export const ForumPost = () => {
             </div>
           )}
 
-          <div className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg">
+          <div
+            className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg
+            shadow-[0_0px_5px_rgb(0,0,0,0.7)]"
+          >
             {renderedComments}
           </div>
         </div>
         {!!currentUser && currentUser.id === post.UserId ? (
           <div className="">
-            <div className="m-4">
+            <div className="ml-4 mb-4">
               <Link
                 to={`/colleges/${id.collegeId}/majors/${id.majorId}/posts/${post.id}/edit`}
+                className=""
               >
-                <button className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-14 rounded focus:outline-none border-none">
-                  Edit
+                <button
+                  className="bg-blue-600 px-8 py-6 w-[10rem] h-[5rem] rounded-lg
+                hover:bg-blue-700 transition duration-200
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                "
+                >
+                  Edit Post
                 </button>
               </Link>
             </div>
-            <div className="m-4">
+            <div className="ml-4">
               <fetcher.Form
                 method="delete"
                 action={`delete`}
@@ -162,10 +199,13 @@ export const ForumPost = () => {
                 }}
               >
                 <button
-                  className="shared-button bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-10 rounded focus:outline-none border-none"
+                  className="bg-red-600 px-8 py-6 w-[10rem] h-[5rem] rounded-lg
+                  hover:bg-red-700 transition duration-200
+                  shadow-[0_0px_5px_rgb(0,0,0,0.7)]
+                  "
                   type="submit"
                 >
-                  DELETE
+                  Delete Post
                 </button>
               </fetcher.Form>
             </div>

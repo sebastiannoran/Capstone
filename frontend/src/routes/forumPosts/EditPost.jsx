@@ -82,6 +82,11 @@ const EditPost = () => {
               focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
               shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-5xl transition
               duration-200
+              min-w-[10rem]
+              sm:w-[20rem] 
+              md:w-[26rem]
+              lg:w-[35rem]
+              xl:w-[50rem]
               "
                 />
               </fieldset>
@@ -104,6 +109,11 @@ const EditPost = () => {
               focus:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)] rounded-lg focus:text-black
               shadow-[0px_0px_5px_rgba(0,0,0,0.40)] focus:bg-gray-200 text-xl transition
               duration-200
+              min-w-[10rem]
+              sm:w-[20rem] 
+              md:w-[26rem]
+              lg:w-[35rem]
+              xl:w-[50rem]
               "
                 />
               </fieldset>
@@ -113,10 +123,11 @@ const EditPost = () => {
             <div className="ml-10">
               {/* <Link to={`/colleges/:collegeId/courses/:courseId`}> */}
               <button
-                className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
-          hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
-          font-bold border-b-[1px] border-fuchsia-700
-          "
+                className="bg-[#272727] px-8 py-6 w-[10rem] h-[5rem] rounded-lg
+                hover:bg-blue-600 transition duration-200
+                shadow-[0_0px_5px_rgb(0,0,0,0.7)] flex items-center justify-center
+                hover:hover:bg-fuchsia-600 border-fuchsia-700 border-b-[1px]
+                "
               >
                 Submit Changes
               </button>
