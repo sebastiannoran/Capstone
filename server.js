@@ -1,8 +1,12 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const port = 4000;
 const session = require("express-session");
-require("dotenv").config();
+const env = process.env.NODE_ENV || "development";
+if (env === "development") {
+  require("dotenv").config();
+}
 const cors = require("cors");
 
 const authRouter = require("./routes/auth.js");
@@ -10,11 +14,6 @@ const postRouter = require("./routes/posts.js");
 const majorRouter = require("./routes/majors.js");
 const collegeRouter = require("./routes/colleges.js");
 const commentRouter = require("./routes/comments.js");
-
-// const {
-//     forbiddenErrorHandler,
-//     notFoundErrorHandler,
-//   } = require("./middleware/errorHandlers");
 
 app.use(
   cors({
@@ -43,8 +42,6 @@ app.use(
     },
   })
 );
-// app.use(forbiddenErrorHandler);
-// app.use(notFoundErrorHandler);
 
 // routes
 app.use("/api/auth", authRouter);
@@ -53,10 +50,12 @@ app.use("/api/majors", majorRouter);
 app.use("/api/colleges", collegeRouter);
 app.use("/api/comments", commentRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
+app.use(express.static(path.join(__dirname, "client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running at http://localhost:${process.env.PORT}`);
 });
