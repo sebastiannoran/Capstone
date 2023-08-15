@@ -4,6 +4,7 @@ const port = 4000;
 const session = require("express-session");
 require("dotenv").config();
 const cors = require("cors");
+const path = require("path");
 
 const authRouter = require("./routes/auth.js");
 const postRouter = require("./routes/posts.js");
@@ -15,6 +16,11 @@ const commentRouter = require("./routes/comments.js");
 //     forbiddenErrorHandler,
 //     notFoundErrorHandler,
 //   } = require("./middleware/errorHandlers");
+app.use(express.static(path.join(__dirname, "client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+});
 
 app.use(
   cors({
@@ -57,6 +63,10 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running at http://localhost:${process.env.PORT}`);
 });
+
+// app.listen(port, () => {
+//   console.log(`Server is running at http://localhost:${port}`);
+// });
