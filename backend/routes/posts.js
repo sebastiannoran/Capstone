@@ -2,16 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { Post } = require("../models");
-
-// Middleware for user authentication
-const authenticateUser = (req, res, next) => {
-  if (req.session.user) {
-    // User is authenticated, proceed to the next middleware or route handler
-    next();
-  } else {
-    res.status(401).json({ error: "Unauthorized" });
-  }
-};
+const { authenticateUser } = require("../middleware/auth");
 
 // Create a new Post
 router.post("/", authenticateUser, async (req, res) => {
@@ -27,26 +18,9 @@ router.post("/", authenticateUser, async (req, res) => {
   }
 });
 
-// Get all posts
-// router.get("/", async (req, res) => {
-//   try {
-//     // const whereClause = {};
-//     // if (req.query.status) {
-//     //   whereClause.status = req.query.status;
-//     // }
-//     // const allJobs = await req.user.getJobApplications({ where: whereClause});
-//     const allPosts = await req.user.getPosts({ where: {} });
-
-//     res.status(200).json(allPosts);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send({ message: err.message });
-//   }
-// });
 //
 router.get("/", async (req, res) => {
   try {
-    // console.log("GETRnadj");
     const whereClause = {};
     if (req.query.majorId) {
       whereClause.MajorId = req.query.majorId;

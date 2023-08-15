@@ -16,17 +16,17 @@ export async function loader({ params }) {
 }
 
 const MajorForum = () => {
-  const { major, college, posts } = useLoaderData();
-  const { id, name } = college;
+  const { major, collegeId, posts } = useLoaderData();
+  console.log(posts.length);
   // const [posts, setPosts] = useState(forumData[0]);
 
   return (
     <div className="text-center">
+      <div className="mb-10">
+        <p className="text-5xl font-bold">{`${major.name}`}</p>
+      </div>
       <div className="flex justify-center">
         <div>
-          <div className="mb-12">
-            <p className="text-5xl font-bold">{`${major.name}`}</p>
-          </div>
           <div className="max-w-4xl bg-[#272727] divide-y-[1px] divide-black rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)]">
             {posts.map(({ id, title, content }) => {
               return (
@@ -47,17 +47,17 @@ const MajorForum = () => {
         </div>
         <div className="flex justify-center mx-auto mt-24">
           <div className="ml-10">
-            <Link to={`/colleges/${college.id}/majors/${major.id}/create-post`}>
+            <Link to={`/colleges/${collegeId}/majors/${major.id}/create-post`}>
               <div
                 className="px-10 py-6 bg-[#272727] rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.40)] 
               hover:bg-fuchsia-500 transition duration-200 hover:shadow-[inset_0_0px_10px_rgba(0,0,0,0.5)]
               font-bold border-b-[1px] border-fuchsia-700
               "
-              >
-                <p>Create Post</p>
-              </div>
-            </Link>
-          </div>
+                >
+                  <p>Create Post</p>
+                </div>
+              </Link>
+            </div>
         </div>
       </div>
     </div>
