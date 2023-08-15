@@ -1,4 +1,4 @@
-Insight - Supportive learning environment platform 
+Insight - Supportive learning environment platform:
 
 
 
@@ -6,7 +6,8 @@ Insight is a user-friendly online platform designed to facilitate knowledge shar
 
 
 
-Features
+Features:
+
 User Authentication: Secure user registration and login system ensures that only registered users can access the platform's features.
 
 Search Functionality: Users can search for their college and major to discover relevant posts and discussions.
@@ -19,7 +20,7 @@ Editing and Deletion: Each user has the ability to edit or delete their own post
 
 
 
-Technologies Used
+Technologies Used:
 
 React: A JavaScript library for building user interfaces, providing a dynamic and interactive experience.
 
@@ -37,7 +38,7 @@ Chakra UI: A modern, accessible design system for building user interfaces with 
 
 
 
-Getting Started
+Getting Started:
 
 To run Insight on your local machine, follow these steps:
 
@@ -64,7 +65,7 @@ Open the link provided: http://localhost:5713
 
 
 
-Usage
+Usage:
 
 Registration and Login: Users need to create an account or log in to access the website's main features. If not logged in, options to create, edit, or delete posts and comments will not be available.
 
