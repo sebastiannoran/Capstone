@@ -116,7 +116,23 @@ export const ForumPost = () => {
                 Create Comment
               </button>
             </Form>
-          ) : null}
+          ) : (
+            <div className="my-4 flex gap-2">
+              <input
+                placeholder="add a comment..."
+                className="flex-1 p-2 text-black"
+                name="content"
+              />
+              <Link className="" to="/login">
+                <button
+                  className="shared-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded focus:outline-none border-none"
+                  type="submit"
+                >
+                  Create Comment
+                </button>
+              </Link>
+            </div>
+          )}
 
           <div className="flex flex-col divide-y-[1px] divide-[#161616] bg-[#272727] rounded-lg">
             {renderedComments}
