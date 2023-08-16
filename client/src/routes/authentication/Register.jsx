@@ -29,7 +29,7 @@ const Register = () => {
   return (
     <Form
       onSubmit={handleSubmit}
-      style={{ "--image-url": `url(/src/misc/Sunset.jpg)` }}
+      style={{ "--image-url": `url(/client/src/misc/Sunset.jpg)` }}
       className="h-screen bg-cover bg-[image:var(--image-url)] text-white"
     >
       <div className="w-full h-full flex justify-center items-center backdrop-blur-[2px]">
