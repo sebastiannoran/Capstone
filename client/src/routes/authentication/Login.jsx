@@ -21,7 +21,7 @@ function Login() {
   return (
     <Form
       onSubmit={handleSubmit}
-      style={{ "--image-url": `url(/src/misc/Friends.jpg)` }}
+      style={{ "--image-url": `url("https://images.wallpapersden.com/image/download/friends-evening_bGtnZmWUmZqaraWkpJRqZmdlrWdtbWY.jpg")` }}
       className="h-screen bg-cover bg-[image:var(--image-url)] text-white"
     >
       <div className="w-full h-full flex justify-center items-center backdrop-blur-[2px]">
